@@ -1,0 +1,6 @@
+INFO:     Will watch for changes in these directories: ['E:\\vinuni\\DAY04_2A202601814_DAOHAIDANG\\flight_agent']
+INFO:     Uvicorn running on http://127.0.0.1:8787 (Press CTRL+C to quit)
+INFO:     Started reloader process [12592] using StatReload
+INFO:     Started server process [11812]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.

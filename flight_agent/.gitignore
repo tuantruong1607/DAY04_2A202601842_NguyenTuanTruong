@@ -1,0 +1,17 @@
+# Secrets — never commit real keys
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Runtime data (price history, watches) and chat transcripts
+data/*.json
+transcripts/*.json
+
+# OS
+.DS_Store
+Thumbs.db

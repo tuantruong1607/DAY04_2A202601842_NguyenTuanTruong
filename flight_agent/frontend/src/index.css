@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0a0e17;
+  --color-panel: #10151f;
+  --color-card: #141a26;
+  --color-border: #232b3a;
+  --color-accent: #38bdf8;
+  --color-accent-dim: #0ea5e9;
+  --color-ok: #34d399;
+  --color-warn: #fbbf24;
+  --color-danger: #fb7185;
+  --color-muted: #7c8aa3;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(1200px 600px at 10% -10%, #101c30 0%, var(--color-bg) 55%);
+  color: #e6ebf5;
+  font-family: var(--font-sans);
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #263041;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #33415a;
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+.jv-pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: #c8d3e6;
+}
+.jv-key {
+  color: #7dd3fc;
+}
+.jv-string {
+  color: #6ee7b7;
+}
+.jv-number {
+  color: #fbbf24;
+}
+.jv-boolean {
+  color: #c4b5fd;
+}
+.jv-null {
+  color: #fb7185;
+}
