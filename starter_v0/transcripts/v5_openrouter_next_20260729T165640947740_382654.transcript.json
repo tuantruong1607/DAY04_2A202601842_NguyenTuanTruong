@@ -1,0 +1,292 @@
+{
+  "transcript_id": "v5_openrouter_next_20260729T165640947740_382654",
+  "version": "v5",
+  "artifact_version": "v5+p520f36050b86+tb303857e6606",
+  "prompt_hash": "520f36050b8683f620b5f38693a553e9a55484a2fe9daeb939314348fb0283ca",
+  "tools_hash": "b303857e660637339444e3517684d68ad1a8edb926922a800ce1ddeb96be48a0",
+  "provider": "openrouter",
+  "model": "openai/gpt-4o-mini",
+  "system_prompt": "artifacts\\system_prompt.md",
+  "tools": "artifacts\\tools.yaml",
+  "created_at": "2026-07-29T16:56:40",
+  "updated_at": "2026-07-29T16:56:51",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-07-29T16:56:40",
+      "user": "bài báo về ronaldo lấy vợ",
+      "status": "answered",
+      "assistant_text": "### Kết luận\nCristiano Ronaldo và Georgina Rodríguez đã đính hôn từ tháng 8/2025 và dự kiến tổ chức đám cưới sau World Cup 2026. Tuy nhiên, sau khi đội tuyển Bồ Đào Nha bị loại sớm khỏi giải đấu, cặp đôi đã quyết định hoãn lại lễ cưới. Hôn lễ dự kiến sẽ diễn ra tại Madeira, quê hương của Ronaldo, nhưng thời gian cụ thể vẫn chưa được công bố.\n\n### Những gì đã kiểm tra\n- Ronaldo và Georgina đã đính hôn và có kế hoạch tổ chức đám cưới, nhưng đã hoãn lại sau thất bại tại World Cup 2026.\n- Cặp đôi đã có mối quan hệ từ năm 2016 và được xem là một trong những cặp đôi nổi tiếng nhất trong thể thao.\n\n### Mức tin cậy\nCao, vì thông tin được xác nhận từ nhiều nguồn báo chí uy tín.\n\n### Nguồn\n- [Bongdaplus.vn](https://bongdaplus.vn/world-cup/bo-dao-nha-bi-loai-cristiano-ronaldo-lap-tuc-lo-viec-cuoi-vo-5095292607.html)\n- [Dantri.com.vn](https://dantri.com.vn/giai-tri/cronaldo-va-vo-tuong-lai-hoan-cuoi-sau-that-bai-tai-world-cup-20260713131903489.htm)\n- [VnExpress.net](https://vnexpress.net/10-nam-ben-nhau-cua-ronaldo-va-vo-sap-cuoi-5090020.html)",
+      "rounds": [
+        {
+          "round": 1,
+          "stage": "planning",
+          "assistant_text": null,
+          "model_tool_calls": [
+            {
+              "name": "lookup",
+              "args": {
+                "query": "Ronaldo",
+                "intent": "lấy vợ",
+                "topic": "news",
+                "timeframe": "month"
+              }
+            }
+          ],
+          "tool_calls": [
+            {
+              "name": "lookup",
+              "args": {
+                "query": "Ronaldo",
+                "intent": "lấy vợ",
+                "topic": "news",
+                "timeframe": "month",
+                "strict_timeframe": false
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "lookup",
+              "args": {
+                "query": "Ronaldo",
+                "intent": "lấy vợ",
+                "topic": "news",
+                "timeframe": "month",
+                "strict_timeframe": false
+              },
+              "result": {
+                "tool": "web_search",
+                "query": "Ronaldo",
+                "intent": "lấy vợ",
+                "topic": "news",
+                "timeframe": "month",
+                "strict_timeframe": false,
+                "retrieved_at": "2026-07-29T09:56:45+00:00",
+                "items": [
+                  {
+                    "title": "World Cup 2026 - Bồ Đào Nha bị loại, Cristiano Ronaldo lập tức lo việc cưới vợ - Bongdaplus.vn",
+                    "url": "https://bongdaplus.vn/world-cup/bo-dao-nha-bi-loai-cristiano-ronaldo-lap-tuc-lo-viec-cuoi-vo-5095292607.html",
+                    "source": "bongdaplus.vn",
+                    "summary": "Trên thực tế, Ronaldo và Georgina đã đính hôn từ tháng 8/2025. Hôn lễ được cho là sẽ diễn ra trên đảo Madeira, quê hương của ngôi sao người Bồ Đào Nha. Nếu đúng như kế hoạch, cặp đôi sẽ làm lễ tại nhà thờ Funchal trước khi chiêu đãi khách mời tại một khách sạn sang trọng trên đảo. Tuy nhiên, đến thời điểm này, Ronaldo, Georgina cũng như người đại diện của hai người vẫn chưa xác nhận thông tin. [...] Theo tờ Jornal da Madeira, Ronaldo và Georgina trước đó đã lên kế hoạch kết hôn sau World Cup. Đáng nói, việc Bồ Đào Nha bị loại sớm đồng nghĩa CR7 có thể bắt tay vào chuẩn bị cho ngày trọng đại sớm hơn dự tính. Dù cả hai chưa công bố thời điểm tổ chức hôn lễ, song truyền thông Bồ Đào Nha cho rằng mọi công tác chuẩn bị đã được tiến hành từ năm ngoái. [...] Chuyện tình của Ronaldo và Georgina bắt đầu vào năm 2016, khi người đẹp mang hai dòng máu Ty Ban Nha và Argentina còn làm nhn viên bán hàng tại cửa hàng Gucci ở Madrid. Cuộc gặp gỡ định mệnh nhanh chóng đưa họ đến với nhau. Đầu năm 2017, Ronaldo lần đầu công khai đưa Georgina xuất hiện tại lễ trao giải FIFA The Best, đánh dấu việc chính thức giới thiệu bạn gái với công chúng.",
+                    "score": 0.84246206,
+                    "published_date": "Wed, 08 Jul 2026 12:30:53 GMT",
+                    "date": "Wed, 08 Jul 2026 12:30:53 GMT"
+                  },
+                  {
+                    "title": "C.Ronaldo và vợ tương lai hoãn cưới sau thất bại tại World ...",
+                    "url": "https://dantri.com.vn/giai-tri/cronaldo-va-vo-tuong-lai-hoan-cuoi-sau-that-bai-tai-world-cup-2026-20260713131903489.htm",
+                    "source": "dantri.com.vn",
+                    "summary": "Hiện, Ronaldo và Georgina chưa lên tiếng xác nhận thông tin này. Sau thất bại của tuyển Bồ Đào Nha, Ronaldo đã trở về bên gia đình và dành thời gian nghỉ ngơi sau một giải đấu nhiều cảm xúc.\n\nDù chưa chính thức kết hôn, Ronaldo và Georgina đã được xem là một trong những cặp đôi nổi tiếng nhất thế giới thể thao. Chuyện tình của họ bắt đầu từ một cuộc gặp tình cờ tại Madrid (Ty Ban Nha) vào năm 2016, khi Georgina còn là nhn viên bán hàng tại cửa hàng Gucci. [...] Mi Vn\n\nMi Vn\n\n## (Dn trí) - Cristiano Ronaldo và vị hôn thê Georgina Rodriguez được cho là đã quyết định lùi thời điểm tổ chức đám cưới sau khi tuyển Bồ Đào Nha dừng bước tại World Cup 2026.\n\nTrước khi World Cup 2026 khởi tranh, Ronaldo từng chia sẻ mong muốn giành chức vô địch cùng đội tuyển Bồ Đào Nha và tổ chức đám cưới với Georgina sau giải đấu. [...] C.Ronaldo và vợ tương lai hoãn cưới sau thất bại tại World Cup 2026 - 3' %2F%3E%3C%2Fsvg%3E \"C.Ronaldo và vợ tương lai hoãn cưới sau thất bại tại World Cup 2026 - 3\")\n\nCristiano Ronaldo và Georgina Rodriguez thông báo đính hôn vào năm ngoái (Ảnh: Getty).\n\nTrong nhiều cuộc phỏng vấn, Ronaldo cũng dành những lời đặc biệt cho Georgina. Anh từng gọi cô là \"hậu phương vững chắc\", người giúp anh duy trì sự cn bằng giữa áp lực thi đấu đỉnh cao và cuộc sống cá nhn.",
+                    "score": 0.81418616,
+                    "published_date": "Wed, 15 Jul 2026 09:00:00 GMT",
+                    "date": "Wed, 15 Jul 2026 09:00:00 GMT"
+                  },
+                  {
+                    "title": "10 năm bên nhau của Ronaldo và vợ sắp cưới - Báo VnExpress Giải trí",
+                    "url": "https://vnexpress.net/10-nam-ben-nhau-cua-ronaldo-va-vo-sap-cuoi-5090020.html",
+                    "source": "vnexpress.net",
+                    "summary": "Nhiều năm qua, Georgina Rodríguez và Ronaldo gắn kết su sắc trên sn cỏ và trong cuộc sống. Rodríguez cùng các con có mặt ở hầu hết trận cầu quan trọng trong sự nghiệp của Ronaldo. [...] Ngôi sao bóng đá dành nhiều lời khen cho vị hôn thê, gọi cô là tình yêu của đời mình và giải thích lý do cô là người anh muốn gắn bó trọn đời. \"Gio là người đặc biệt. Cô ấy chăm sóc tôi, điều đó rất quan trọng. Cô ấy lo cho gia đình, cho ngôi nhà, việc đòi hỏi rất nhiều công sức\".\n\nGeorgina Rodriguez, 32 tuổi, là người mẫu Argentina gốc Ty Ban Nha. Theo Celebrity Net Worth, cô có tài sản khoảng hơn 10 triệu USD nhờ thu nhập từ việc làm người mẫu, quảng cáo trên mạng xã hội, dự sự kiện. [...] Cặp sao chào đón con gái Alana Martina ngày 12/11/2017. Năm 2021, họ thông báo Rodríguez mang thai đôi. Năm 2022, Georgina Rodríguez ra mắt series I Am Georgina trên Netflix. Chương trình theo chn cuộc sống thường nhật của người mẫu kiêm influencer khi cô cn bằng giữa vai trò làm mẹ và các hoạt động kinh doanh. Trong đó, cô và Cristiano Ronaldo cùng chia sẻ kỷ niệm từ những ngày đầu bên nhau.",
+                    "score": 0.79119295,
+                    "published_date": "Tue, 30 Jun 2026 08:32:03 GMT",
+                    "date": "Tue, 30 Jun 2026 08:32:03 GMT"
+                  },
+                  {
+                    "title": "Cô bán hàng nghèo khổ năm nào nay được tiếp đón như bà hoàng ở World Cup, hưởng mọi đặc quyền xa hoa khi đến cổ vũ Ronaldo",
+                    "url": "https://kenh14.vn/co-ban-hang-ngheo-kho-nam-nao-nay-duoc-tiep-don-nhu-ba-hoang-o-world-cup-huong-moi-dac-quyen-xa-hoa-khi-den-co-vu-ronaldo-215260630183528123.chn",
+                    "source": "kenh14.vn",
+                    "summary": "Mới đy, nàng WAG Georgina Rodríguez - vợ sắp cưới của siêu sao Ronaldo gy sốt khi xuất hiện ở World Cup 2026, không chỉ bởi vẻ ngoài sang trọng mà còn bởi những đặc quyền hiếm người có được.\n\nTheo đó, trước trận đấu giữa Bồ Đào Nha và Colombia, bạn gái của Cristiano Ronaldo được đón tiếp theo chế độ VIP ngay từ khi đặt chn tới sn vận động. Cô được hộ tống qua các khu vực dành riêng cho khách đặc biệt, nhận sự chăm sóc chu đáo trước khi tiến vào khán đài theo dõi trận đấu. [...] Georgina - vợ sắp cưới Ronaldo khoe dáng sexy đốt mắt trên chuyên cơ 77 triệu USD, cuộc sống xa hoa đậm mùi tiền\n Georgina - vợ sắp cưới của Ronaldo khoe nhan sắc lộng lẫy chuẩn \"nữ hoàng làng WAGs\", là \"hậu phương\" được mong chờ nhất World Cup 2026\n Ronaldo vừa xác nhận tham dự World Cup 2026, vợ sắp cưới - Georgina tung ngay bộ ảnh khoe vòng 1 gợi cảm chiếm spotlight [...] Georgina xuất hiện sang chảnh khi tới World Cup cổ vũ cho chồng sắp cưới - siêu sao Ronaldo\n\nTheo  doisongphapluat.nguoiduatin.vn   Copy link \n\nLink bài gốc  Lấy link\n\n \n\nWorld Cup là \"mỏ vàng\" để nàng WAG quyền lực nhất thế giới kiếm tiền, lý do Georgina không mặc áo đấu Bồ Đào Nha cổ vũ Ronaldo\n\n tuyển bồ đào nha\n World Cup 2026\n người mẫu\n georgina\n\nTIN CÙNG CHUYÊN MỤC\n\nXem theo ngày\n\nTIN CÙNG CHUYÊN MỤC\n\nXem theo ngày",
+                    "score": 0.76173395,
+                    "published_date": "Wed, 01 Jul 2026 07:00:00 GMT",
+                    "date": "Wed, 01 Jul 2026 07:00:00 GMT"
+                  },
+                  {
+                    "title": "Ronaldo nghỉ dưỡng bên vợ sắp cưới sau World Cup - Báo VnExpress Giải trí",
+                    "url": "https://vnexpress.net/ronaldo-nghi-duong-ben-vo-sap-cuoi-sau-world-cup-5096736.html",
+                    "source": "vnexpress.net",
+                    "summary": "Họ đính hôn hồi tháng 8/2025, chưa công bố kế hoạch tổ chức đám cưới. Ngôi sao bóng đá từng dành nhiều lời khen cho vị hôn thê, gọi cô là tình yêu của đời mình và giải thích lý do cô là người anh muốn gắn bó trọn đời.\n\nGeorgina Rodriguez, 32 tuổi, là người mẫu Argentina gốc Ty Ban Nha. Theo Celebrity Net Worth, cô có tài sản khoảng hơn 10 triệu USD nhờ thu nhập từ việc làm người mẫu, quảng cáo trên mạng xã hội, dự sự kiện. [...] Georgina Rodríguez đăng ảnh chụp tại Mỹ cùng Ronaldo, hôm 25/6, khi anh đang thi đấu World Cup 2026. Ảnh:Instagram/ Georgina Rodríguez\n\nGeorgina Rodríguez đăng ảnh chụp tại Mỹ cùng Ronaldo, hôm 25/6, khi anh đang thi đấu World Cup 2026. Ảnh: Instagram/ Georgina Rodríguez\n\n \n\nMối quan hệ với Rodriguez là điểm tựa của Ronaldo trong giai đoạn cuối sự nghiệp của anh. Gặp nhau lần đầu năm 2016 tại một cửa hàng Gucci ở Madrid, Ty Ban Nha, họ nhanh chóng phải lòng nhau và gắn bó suốt 10 năm. [...] VnExpress  Thể thao\n\n \n\n Trang chủ\n Lịch thi đấu\n Tin tức\n Phn tích\n Dự đoán\n Đội tuyển\n Bảng xếp hạng\n\nĐẾM NGƯỢC TỚI GIẢI ĐẤU\n\n 00 Ngày\n 00 Giờ\n 00 Phút\n\n Trở lại Giải trí\n\n Giải trí\n Giới sao\n Quốc tế\n\nThứ hai, 13/7/2026, 11:48 (GMT+7)\n\n# Ronaldo nghỉ dưỡng bên vợ sắp cưới sau World Cup\n\nCristiano Ronaldo ở bên vợ sắp cưới, người mẫu Georgina Rodriguez, sau khi tuyển Bồ Đào Nha bị loại khỏi World Cup 2026.",
+                    "score": 0.7548612,
+                    "published_date": "Mon, 13 Jul 2026 04:48:04 GMT",
+                    "date": "Mon, 13 Jul 2026 04:48:04 GMT"
+                  }
+                ],
+                "quality": {
+                  "status": "sufficient",
+                  "relevant_count": 5,
+                  "discarded_count": 0,
+                  "timeframe_broadened": false
+                },
+                "attempts": [
+                  {
+                    "query": "Ronaldo lấy vợ",
+                    "timeframe": "month",
+                    "search_depth": "basic",
+                    "returned": 7,
+                    "accepted": 7
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "stage": "synthesis",
+          "assistant_text": "### Kết luận\nCristiano Ronaldo và Georgina Rodríguez đã đính hôn từ tháng 8/2025 và dự kiến tổ chức đám cưới sau World Cup 2026. Tuy nhiên, sau khi đội tuyển Bồ Đào Nha bị loại sớm khỏi giải đấu, cặp đôi đã quyết định hoãn lại lễ cưới. Hôn lễ dự kiến sẽ diễn ra tại Madeira, quê hương của Ronaldo, nhưng thời gian cụ thể vẫn chưa được công bố.\n\n### Những gì đã kiểm tra\n- Ronaldo và Georgina đã đính hôn và có kế hoạch tổ chức đám cưới, nhưng đã hoãn lại sau thất bại tại World Cup 2026.\n- Cặp đôi đã có mối quan hệ từ năm 2016 và được xem là một trong những cặp đôi nổi tiếng nhất trong thể thao.\n\n### Mức tin cậy\nHigh, vì thông tin được xác nhận từ nhiều nguồn báo chí uy tín.\n\n### Nguồn\n- [Bongdaplus.vn](https://bongdaplus.vn/world-cup/bo-dao-nha-bi-loai-cristiano-ronaldo-lap-tuc-lo-viec-cuoi-vo-5095292607.html)\n- [Dantri.com.vn](https://dantri.com.vn/giai-tri/cronaldo-va-vo-tuong-lai-hoan-cuoi-sau-that-bai-tai-world-cup-20260713131903489.htm)\n- [VnExpress.net](https://vnexpress.net/10-nam-ben-nhau-cua-ronaldo-va-vo-sap-cuoi-5090020.html)",
+          "model_tool_calls": [],
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "Ronaldo",
+            "intent": "lấy vợ",
+            "topic": "news",
+            "timeframe": "month",
+            "strict_timeframe": false
+          },
+          "result": {
+            "tool": "web_search",
+            "query": "Ronaldo",
+            "intent": "lấy vợ",
+            "topic": "news",
+            "timeframe": "month",
+            "strict_timeframe": false,
+            "retrieved_at": "2026-07-29T09:56:45+00:00",
+            "items": [
+              {
+                "title": "World Cup 2026 - Bồ Đào Nha bị loại, Cristiano Ronaldo lập tức lo việc cưới vợ - Bongdaplus.vn",
+                "url": "https://bongdaplus.vn/world-cup/bo-dao-nha-bi-loai-cristiano-ronaldo-lap-tuc-lo-viec-cuoi-vo-5095292607.html",
+                "source": "bongdaplus.vn",
+                "summary": "Trên thực tế, Ronaldo và Georgina đã đính hôn từ tháng 8/2025. Hôn lễ được cho là sẽ diễn ra trên đảo Madeira, quê hương của ngôi sao người Bồ Đào Nha. Nếu đúng như kế hoạch, cặp đôi sẽ làm lễ tại nhà thờ Funchal trước khi chiêu đãi khách mời tại một khách sạn sang trọng trên đảo. Tuy nhiên, đến thời điểm này, Ronaldo, Georgina cũng như người đại diện của hai người vẫn chưa xác nhận thông tin. [...] Theo tờ Jornal da Madeira, Ronaldo và Georgina trước đó đã lên kế hoạch kết hôn sau World Cup. Đáng nói, việc Bồ Đào Nha bị loại sớm đồng nghĩa CR7 có thể bắt tay vào chuẩn bị cho ngày trọng đại sớm hơn dự tính. Dù cả hai chưa công bố thời điểm tổ chức hôn lễ, song truyền thông Bồ Đào Nha cho rằng mọi công tác chuẩn bị đã được tiến hành từ năm ngoái. [...] Chuyện tình của Ronaldo và Georgina bắt đầu vào năm 2016, khi người đẹp mang hai dòng máu Ty Ban Nha và Argentina còn làm nhn viên bán hàng tại cửa hàng Gucci ở Madrid. Cuộc gặp gỡ định mệnh nhanh chóng đưa họ đến với nhau. Đầu năm 2017, Ronaldo lần đầu công khai đưa Georgina xuất hiện tại lễ trao giải FIFA The Best, đánh dấu việc chính thức giới thiệu bạn gái với công chúng.",
+                "score": 0.84246206,
+                "published_date": "Wed, 08 Jul 2026 12:30:53 GMT",
+                "date": "Wed, 08 Jul 2026 12:30:53 GMT"
+              },
+              {
+                "title": "C.Ronaldo và vợ tương lai hoãn cưới sau thất bại tại World ...",
+                "url": "https://dantri.com.vn/giai-tri/cronaldo-va-vo-tuong-lai-hoan-cuoi-sau-that-bai-tai-world-cup-2026-20260713131903489.htm",
+                "source": "dantri.com.vn",
+                "summary": "Hiện, Ronaldo và Georgina chưa lên tiếng xác nhận thông tin này. Sau thất bại của tuyển Bồ Đào Nha, Ronaldo đã trở về bên gia đình và dành thời gian nghỉ ngơi sau một giải đấu nhiều cảm xúc.\n\nDù chưa chính thức kết hôn, Ronaldo và Georgina đã được xem là một trong những cặp đôi nổi tiếng nhất thế giới thể thao. Chuyện tình của họ bắt đầu từ một cuộc gặp tình cờ tại Madrid (Ty Ban Nha) vào năm 2016, khi Georgina còn là nhn viên bán hàng tại cửa hàng Gucci. [...] Mi Vn\n\nMi Vn\n\n## (Dn trí) - Cristiano Ronaldo và vị hôn thê Georgina Rodriguez được cho là đã quyết định lùi thời điểm tổ chức đám cưới sau khi tuyển Bồ Đào Nha dừng bước tại World Cup 2026.\n\nTrước khi World Cup 2026 khởi tranh, Ronaldo từng chia sẻ mong muốn giành chức vô địch cùng đội tuyển Bồ Đào Nha và tổ chức đám cưới với Georgina sau giải đấu. [...] C.Ronaldo và vợ tương lai hoãn cưới sau thất bại tại World Cup 2026 - 3' %2F%3E%3C%2Fsvg%3E \"C.Ronaldo và vợ tương lai hoãn cưới sau thất bại tại World Cup 2026 - 3\")\n\nCristiano Ronaldo và Georgina Rodriguez thông báo đính hôn vào năm ngoái (Ảnh: Getty).\n\nTrong nhiều cuộc phỏng vấn, Ronaldo cũng dành những lời đặc biệt cho Georgina. Anh từng gọi cô là \"hậu phương vững chắc\", người giúp anh duy trì sự cn bằng giữa áp lực thi đấu đỉnh cao và cuộc sống cá nhn.",
+                "score": 0.81418616,
+                "published_date": "Wed, 15 Jul 2026 09:00:00 GMT",
+                "date": "Wed, 15 Jul 2026 09:00:00 GMT"
+              },
+              {
+                "title": "10 năm bên nhau của Ronaldo và vợ sắp cưới - Báo VnExpress Giải trí",
+                "url": "https://vnexpress.net/10-nam-ben-nhau-cua-ronaldo-va-vo-sap-cuoi-5090020.html",
+                "source": "vnexpress.net",
+                "summary": "Nhiều năm qua, Georgina Rodríguez và Ronaldo gắn kết su sắc trên sn cỏ và trong cuộc sống. Rodríguez cùng các con có mặt ở hầu hết trận cầu quan trọng trong sự nghiệp của Ronaldo. [...] Ngôi sao bóng đá dành nhiều lời khen cho vị hôn thê, gọi cô là tình yêu của đời mình và giải thích lý do cô là người anh muốn gắn bó trọn đời. \"Gio là người đặc biệt. Cô ấy chăm sóc tôi, điều đó rất quan trọng. Cô ấy lo cho gia đình, cho ngôi nhà, việc đòi hỏi rất nhiều công sức\".\n\nGeorgina Rodriguez, 32 tuổi, là người mẫu Argentina gốc Ty Ban Nha. Theo Celebrity Net Worth, cô có tài sản khoảng hơn 10 triệu USD nhờ thu nhập từ việc làm người mẫu, quảng cáo trên mạng xã hội, dự sự kiện. [...] Cặp sao chào đón con gái Alana Martina ngày 12/11/2017. Năm 2021, họ thông báo Rodríguez mang thai đôi. Năm 2022, Georgina Rodríguez ra mắt series I Am Georgina trên Netflix. Chương trình theo chn cuộc sống thường nhật của người mẫu kiêm influencer khi cô cn bằng giữa vai trò làm mẹ và các hoạt động kinh doanh. Trong đó, cô và Cristiano Ronaldo cùng chia sẻ kỷ niệm từ những ngày đầu bên nhau.",
+                "score": 0.79119295,
+                "published_date": "Tue, 30 Jun 2026 08:32:03 GMT",
+                "date": "Tue, 30 Jun 2026 08:32:03 GMT"
+              },
+              {
+                "title": "Cô bán hàng nghèo khổ năm nào nay được tiếp đón như bà hoàng ở World Cup, hưởng mọi đặc quyền xa hoa khi đến cổ vũ Ronaldo",
+                "url": "https://kenh14.vn/co-ban-hang-ngheo-kho-nam-nao-nay-duoc-tiep-don-nhu-ba-hoang-o-world-cup-huong-moi-dac-quyen-xa-hoa-khi-den-co-vu-ronaldo-215260630183528123.chn",
+                "source": "kenh14.vn",
+                "summary": "Mới đy, nàng WAG Georgina Rodríguez - vợ sắp cưới của siêu sao Ronaldo gy sốt khi xuất hiện ở World Cup 2026, không chỉ bởi vẻ ngoài sang trọng mà còn bởi những đặc quyền hiếm người có được.\n\nTheo đó, trước trận đấu giữa Bồ Đào Nha và Colombia, bạn gái của Cristiano Ronaldo được đón tiếp theo chế độ VIP ngay từ khi đặt chn tới sn vận động. Cô được hộ tống qua các khu vực dành riêng cho khách đặc biệt, nhận sự chăm sóc chu đáo trước khi tiến vào khán đài theo dõi trận đấu. [...] Georgina - vợ sắp cưới Ronaldo khoe dáng sexy đốt mắt trên chuyên cơ 77 triệu USD, cuộc sống xa hoa đậm mùi tiền\n Georgina - vợ sắp cưới của Ronaldo khoe nhan sắc lộng lẫy chuẩn \"nữ hoàng làng WAGs\", là \"hậu phương\" được mong chờ nhất World Cup 2026\n Ronaldo vừa xác nhận tham dự World Cup 2026, vợ sắp cưới - Georgina tung ngay bộ ảnh khoe vòng 1 gợi cảm chiếm spotlight [...] Georgina xuất hiện sang chảnh khi tới World Cup cổ vũ cho chồng sắp cưới - siêu sao Ronaldo\n\nTheo  doisongphapluat.nguoiduatin.vn   Copy link \n\nLink bài gốc  Lấy link\n\n \n\nWorld Cup là \"mỏ vàng\" để nàng WAG quyền lực nhất thế giới kiếm tiền, lý do Georgina không mặc áo đấu Bồ Đào Nha cổ vũ Ronaldo\n\n tuyển bồ đào nha\n World Cup 2026\n người mẫu\n georgina\n\nTIN CÙNG CHUYÊN MỤC\n\nXem theo ngày\n\nTIN CÙNG CHUYÊN MỤC\n\nXem theo ngày",
+                "score": 0.76173395,
+                "published_date": "Wed, 01 Jul 2026 07:00:00 GMT",
+                "date": "Wed, 01 Jul 2026 07:00:00 GMT"
+              },
+              {
+                "title": "Ronaldo nghỉ dưỡng bên vợ sắp cưới sau World Cup - Báo VnExpress Giải trí",
+                "url": "https://vnexpress.net/ronaldo-nghi-duong-ben-vo-sap-cuoi-sau-world-cup-5096736.html",
+                "source": "vnexpress.net",
+                "summary": "Họ đính hôn hồi tháng 8/2025, chưa công bố kế hoạch tổ chức đám cưới. Ngôi sao bóng đá từng dành nhiều lời khen cho vị hôn thê, gọi cô là tình yêu của đời mình và giải thích lý do cô là người anh muốn gắn bó trọn đời.\n\nGeorgina Rodriguez, 32 tuổi, là người mẫu Argentina gốc Ty Ban Nha. Theo Celebrity Net Worth, cô có tài sản khoảng hơn 10 triệu USD nhờ thu nhập từ việc làm người mẫu, quảng cáo trên mạng xã hội, dự sự kiện. [...] Georgina Rodríguez đăng ảnh chụp tại Mỹ cùng Ronaldo, hôm 25/6, khi anh đang thi đấu World Cup 2026. Ảnh:Instagram/ Georgina Rodríguez\n\nGeorgina Rodríguez đăng ảnh chụp tại Mỹ cùng Ronaldo, hôm 25/6, khi anh đang thi đấu World Cup 2026. Ảnh: Instagram/ Georgina Rodríguez\n\n \n\nMối quan hệ với Rodriguez là điểm tựa của Ronaldo trong giai đoạn cuối sự nghiệp của anh. Gặp nhau lần đầu năm 2016 tại một cửa hàng Gucci ở Madrid, Ty Ban Nha, họ nhanh chóng phải lòng nhau và gắn bó suốt 10 năm. [...] VnExpress  Thể thao\n\n \n\n Trang chủ\n Lịch thi đấu\n Tin tức\n Phn tích\n Dự đoán\n Đội tuyển\n Bảng xếp hạng\n\nĐẾM NGƯỢC TỚI GIẢI ĐẤU\n\n 00 Ngày\n 00 Giờ\n 00 Phút\n\n Trở lại Giải trí\n\n Giải trí\n Giới sao\n Quốc tế\n\nThứ hai, 13/7/2026, 11:48 (GMT+7)\n\n# Ronaldo nghỉ dưỡng bên vợ sắp cưới sau World Cup\n\nCristiano Ronaldo ở bên vợ sắp cưới, người mẫu Georgina Rodriguez, sau khi tuyển Bồ Đào Nha bị loại khỏi World Cup 2026.",
+                "score": 0.7548612,
+                "published_date": "Mon, 13 Jul 2026 04:48:04 GMT",
+                "date": "Mon, 13 Jul 2026 04:48:04 GMT"
+              }
+            ],
+            "quality": {
+              "status": "sufficient",
+              "relevant_count": 5,
+              "discarded_count": 0,
+              "timeframe_broadened": false
+            },
+            "attempts": [
+              {
+                "query": "Ronaldo lấy vợ",
+                "timeframe": "month",
+                "search_depth": "basic",
+                "returned": 7,
+                "accepted": 7
+              }
+            ]
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "tool": "lookup",
+          "title": "World Cup 2026 - Bồ Đào Nha bị loại, Cristiano Ronaldo lập tức lo việc cưới vợ - Bongdaplus.vn",
+          "url": "https://bongdaplus.vn/world-cup/bo-dao-nha-bi-loai-cristiano-ronaldo-lap-tuc-lo-viec-cuoi-vo-5095292607.html",
+          "source": "bongdaplus.vn",
+          "summary": "Trên thực tế, Ronaldo và Georgina đã đính hôn từ tháng 8/2025. Hôn lễ được cho là sẽ diễn ra trên đảo Madeira, quê hương của ngôi sao người Bồ Đào Nha. Nếu đúng như kế hoạch, cặp đôi sẽ làm lễ tại nhà thờ Funchal trước khi chiêu đãi khách mời tại một khách sạn sang trọng trên đảo. Tuy nhiên, đến thời điểm này, Ronaldo, Georgina cũng như người đại diện của hai người vẫn chưa xác nhận thông tin. [...] Theo tờ Jornal da Madeira, Ronaldo và Georgina trước đó đã lên kế hoạch kết hôn sau World Cup. Đáng nói, việc Bồ Đào Nha bị loại sớm đồng nghĩa CR7 có thể bắt tay vào chuẩn bị cho ngày trọng đại sớm hơn dự tính. Dù cả hai chưa công bố thời điểm tổ chức hôn lễ, song truyền thông Bồ Đào Nha cho rằng mọi công tác chuẩn bị đã được tiến hành từ năm ngoái. [...] Chuyện tình của Ronaldo và Georgina bắt đầu vào năm 2016, khi người đẹp mang hai dòng máu Ty Ban Nha và Argentina còn làm nhn viên bán hàn",
+          "score": 0.84246206,
+          "published_date": "Wed, 08 Jul 2026 12:30:53 GMT",
+          "modified_date": null,
+          "retrieved_at": "2026-07-29T09:56:45+00:00",
+          "backend": null
+        },
+        {
+          "tool": "lookup",
+          "title": "C.Ronaldo và vợ tương lai hoãn cưới sau thất bại tại World ...",
+          "url": "https://dantri.com.vn/giai-tri/cronaldo-va-vo-tuong-lai-hoan-cuoi-sau-that-bai-tai-world-cup-2026-20260713131903489.htm",
+          "source": "dantri.com.vn",
+          "summary": "Hiện, Ronaldo và Georgina chưa lên tiếng xác nhận thông tin này. Sau thất bại của tuyển Bồ Đào Nha, Ronaldo đã trở về bên gia đình và dành thời gian nghỉ ngơi sau một giải đấu nhiều cảm xúc.\n\nDù chưa chính thức kết hôn, Ronaldo và Georgina đã được xem là một trong những cặp đôi nổi tiếng nhất thế giới thể thao. Chuyện tình của họ bắt đầu từ một cuộc gặp tình cờ tại Madrid (Ty Ban Nha) vào năm 2016, khi Georgina còn là nhn viên bán hàng tại cửa hàng Gucci. [...] Mi Vn\n\nMi Vn\n\n## (Dn trí) - Cristiano Ronaldo và vị hôn thê Georgina Rodriguez được cho là đã quyết định lùi thời điểm tổ chức đám cưới sau khi tuyển Bồ Đào Nha dừng bước tại World Cup 2026.\n\nTrước khi World Cup 2026 khởi tranh, Ronaldo từng chia sẻ mong muốn giành chức vô địch cùng đội tuyển Bồ Đào Nha và tổ chức đám cưới với Georgina sau giải đấu. [...] C.Ronaldo và vợ tương lai hoãn cưới sau thất bại tại World Cup 2026 - 3' %2F",
+          "score": 0.81418616,
+          "published_date": "Wed, 15 Jul 2026 09:00:00 GMT",
+          "modified_date": null,
+          "retrieved_at": "2026-07-29T09:56:45+00:00",
+          "backend": null
+        },
+        {
+          "tool": "lookup",
+          "title": "10 năm bên nhau của Ronaldo và vợ sắp cưới - Báo VnExpress Giải trí",
+          "url": "https://vnexpress.net/10-nam-ben-nhau-cua-ronaldo-va-vo-sap-cuoi-5090020.html",
+          "source": "vnexpress.net",
+          "summary": "Nhiều năm qua, Georgina Rodríguez và Ronaldo gắn kết su sắc trên sn cỏ và trong cuộc sống. Rodríguez cùng các con có mặt ở hầu hết trận cầu quan trọng trong sự nghiệp của Ronaldo. [...] Ngôi sao bóng đá dành nhiều lời khen cho vị hôn thê, gọi cô là tình yêu của đời mình và giải thích lý do cô là người anh muốn gắn bó trọn đời. \"Gio là người đặc biệt. Cô ấy chăm sóc tôi, điều đó rất quan trọng. Cô ấy lo cho gia đình, cho ngôi nhà, việc đòi hỏi rất nhiều công sức\".\n\nGeorgina Rodriguez, 32 tuổi, là người mẫu Argentina gốc Ty Ban Nha. Theo Celebrity Net Worth, cô có tài sản khoảng hơn 10 triệu USD nhờ thu nhập từ việc làm người mẫu, quảng cáo trên mạng xã hội, dự sự kiện. [...] Cặp sao chào đón con gái Alana Martina ngày 12/11/2017. Năm 2021, họ thông báo Rodríguez mang thai đôi. Năm 2022, Georgina Rodríguez ra mắt series I Am Georgina trên Netflix. Chương trình theo chn cuộc sống thường nhậ",
+          "score": 0.79119295,
+          "published_date": "Tue, 30 Jun 2026 08:32:03 GMT",
+          "modified_date": null,
+          "retrieved_at": "2026-07-29T09:56:45+00:00",
+          "backend": null
+        },
+        {
+          "tool": "lookup",
+          "title": "Cô bán hàng nghèo khổ năm nào nay được tiếp đón như bà hoàng ở World Cup, hưởng mọi đặc quyền xa hoa khi đến cổ vũ Ronaldo",
+          "url": "https://kenh14.vn/co-ban-hang-ngheo-kho-nam-nao-nay-duoc-tiep-don-nhu-ba-hoang-o-world-cup-huong-moi-dac-quyen-xa-hoa-khi-den-co-vu-ronaldo-215260630183528123.chn",
+          "source": "kenh14.vn",
+          "summary": "Mới đy, nàng WAG Georgina Rodríguez - vợ sắp cưới của siêu sao Ronaldo gy sốt khi xuất hiện ở World Cup 2026, không chỉ bởi vẻ ngoài sang trọng mà còn bởi những đặc quyền hiếm người có được.\n\nTheo đó, trước trận đấu giữa Bồ Đào Nha và Colombia, bạn gái của Cristiano Ronaldo được đón tiếp theo chế độ VIP ngay từ khi đặt chn tới sn vận động. Cô được hộ tống qua các khu vực dành riêng cho khách đặc biệt, nhận sự chăm sóc chu đáo trước khi tiến vào khán đài theo dõi trận đấu. [...] Georgina - vợ sắp cưới Ronaldo khoe dáng sexy đốt mắt trên chuyên cơ 77 triệu USD, cuộc sống xa hoa đậm mùi tiền\n Georgina - vợ sắp cưới của Ronaldo khoe nhan sắc lộng lẫy chuẩn \"nữ hoàng làng WAGs\", là \"hậu phương\" được mong chờ nhất World Cup 2026\n Ronaldo vừa xác nhận tham dự World Cup 2026, vợ sắp cưới - Georgina tung ngay bộ ảnh khoe vòng 1 gợi cảm chiếm spotlight [...] Georgina xuất hiện sang chảnh khi tới W",
+          "score": 0.76173395,
+          "published_date": "Wed, 01 Jul 2026 07:00:00 GMT",
+          "modified_date": null,
+          "retrieved_at": "2026-07-29T09:56:45+00:00",
+          "backend": null
+        },
+        {
+          "tool": "lookup",
+          "title": "Ronaldo nghỉ dưỡng bên vợ sắp cưới sau World Cup - Báo VnExpress Giải trí",
+          "url": "https://vnexpress.net/ronaldo-nghi-duong-ben-vo-sap-cuoi-sau-world-cup-5096736.html",
+          "source": "vnexpress.net",
+          "summary": "Họ đính hôn hồi tháng 8/2025, chưa công bố kế hoạch tổ chức đám cưới. Ngôi sao bóng đá từng dành nhiều lời khen cho vị hôn thê, gọi cô là tình yêu của đời mình và giải thích lý do cô là người anh muốn gắn bó trọn đời.\n\nGeorgina Rodriguez, 32 tuổi, là người mẫu Argentina gốc Ty Ban Nha. Theo Celebrity Net Worth, cô có tài sản khoảng hơn 10 triệu USD nhờ thu nhập từ việc làm người mẫu, quảng cáo trên mạng xã hội, dự sự kiện. [...] Georgina Rodríguez đăng ảnh chụp tại Mỹ cùng Ronaldo, hôm 25/6, khi anh đang thi đấu World Cup 2026. Ảnh:Instagram/ Georgina Rodríguez\n\nGeorgina Rodríguez đăng ảnh chụp tại Mỹ cùng Ronaldo, hôm 25/6, khi anh đang thi đấu World Cup 2026. Ảnh: Instagram/ Georgina Rodríguez\n\n \n\nMối quan hệ với Rodriguez là điểm tựa của Ronaldo trong giai đoạn cuối sự nghiệp của anh. Gặp nhau lần đầu năm 2016 tại một cửa hàng Gucci ở Madrid, Ty Ban Nha, họ nhanh chóng phải lòng nhau ",
+          "score": 0.7548612,
+          "published_date": "Mon, 13 Jul 2026 04:48:04 GMT",
+          "modified_date": null,
+          "retrieved_at": "2026-07-29T09:56:45+00:00",
+          "backend": null
+        }
+      ],
+      "ended_at": "2026-07-29T16:56:51"
+    }
+  ],
+  "frontend": "nextjs",
+  "history_window": 5,
+  "max_tool_rounds": 4
+}

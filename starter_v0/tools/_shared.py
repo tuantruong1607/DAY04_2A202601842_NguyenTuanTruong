@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import re
 import unicodedata
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
@@ -9,6 +10,10 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 TIMEOUT = 30
+
+
+def utc_now_iso() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
 def err(tool: str, exc: Exception) -> dict[str, Any]:
@@ -23,7 +28,8 @@ def domain(url: str) -> str:
 
 
 def fold_text(text: str) -> str:
-    decomposed = unicodedata.normalize("NFD", text.lower())
+    # Vietnamese đ/Đ is a separate letter and is not decomposed by NFD.
+    decomposed = unicodedata.normalize("NFD", text.lower().replace("đ", "d"))
     return "".join(ch for ch in decomposed if unicodedata.category(ch) != "Mn")
 
 

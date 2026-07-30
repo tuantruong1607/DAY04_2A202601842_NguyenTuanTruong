@@ -1,0 +1,988 @@
+{
+  "run_id": "v5_B_group_openrouter_20260729T134513412901",
+  "version": "v5",
+  "artifact_version": "v5+p520f36050b86+tb303857e6606",
+  "prompt_hash": "520f36050b8683f620b5f38693a553e9a55484a2fe9daeb939314348fb0283ca",
+  "tools_hash": "b303857e660637339444e3517684d68ad1a8edb926922a800ce1ddeb96be48a0",
+  "phase": "B",
+  "suite": "group",
+  "provider": "openrouter",
+  "model": "openai/gpt-4o-mini",
+  "system_prompt": "C:\\Users\\banka\\Documents\\lab-04\\Day04-C401-Prompt-Engineering-Tool-Calling-Labs-student-k3\\starter_v0\\artifacts\\system_prompt.md",
+  "tools": "C:\\Users\\banka\\Documents\\lab-04\\Day04-C401-Prompt-Engineering-Tool-Calling-Labs-student-k3\\starter_v0\\artifacts\\tools.yaml",
+  "eval_cases": "data\\eval_group.json",
+  "dataset_id": "football_news_var_group_v1",
+  "dataset_role": "group",
+  "description": "Ten project-specific routing cases for Football News VAR: five single-turn and five multi-turn cases covering news, source reading, Instagram, Facebook, clarification, corrections, source switches, and cancellation.",
+  "generated_at": "2026-07-29T13:45:13",
+  "summary": {
+    "total_cases": 10,
+    "measured_cases": 10,
+    "provider_error_cases": 0,
+    "passed_cases": 10,
+    "case_accuracy": 1.0,
+    "tool_routing_accuracy": 1.0,
+    "argument_accuracy": 1.0,
+    "multiturn_accuracy": 1.0,
+    "failure_counts": {},
+    "observed_mismatch_counts": {}
+  },
+  "results": [
+    {
+      "id": "G01_liverpool_news_today",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "what_it_tests": "Single-turn football news routing and today-to-day freshness mapping."
+      },
+      "input": "Tìm tin mới nhất về Liverpool hôm nay.",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "Liverpool",
+              "topic": "news",
+              "timeframe": "day"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "Liverpool",
+              "intent": "tin bóng đá mới",
+              "topic": "news",
+              "timeframe": "day"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "Liverpool",
+            "intent": "tin bóng đá mới",
+            "topic": "news",
+            "timeframe": "day"
+          },
+          "result": {
+            "tool": "web_search",
+            "query": "Liverpool",
+            "intent": "tin bóng đá mới",
+            "topic": "news",
+            "timeframe": "day",
+            "strict_timeframe": false,
+            "retrieved_at": "2026-07-29T06:43:20+00:00",
+            "items": [
+              {
+                "title": "Liverpool preseason schedule, results 2026: Dates, times, more to know about Andoni Iraola plans - sportingnews.com",
+                "url": "https://www.sportingnews.com/in/football/liverpool/news/liverpool-preseason-schedule-results-2026-friendlies/ec529ddbc5d55ea2b5e67a7a",
+                "source": "sportingnews.com",
+                "summary": "New manager Andoni Iraola will usher the Liverpool squad into the 2026/27 campaign as the Reds ramp up their preseason slate with a tour of the United States. Following in the footsteps of the 2026 FIFA World Cup, also held across North America, Liverpool will visit Nashville, New York City, and Chicago as they look to build fitness and earn minutes ahead of what should be a long and testing season. Some Reds players participated in the World Cup this summer and will need extra time to rest and recover, while others are ready to gear up for the start of the Premier League season. The Sporting News brings you through a look at Liverpool's preseason as they get ready to play their first competitive match on August 23. Liverpool began their preseason slate with a 4-2 victory over Sunderland in Nashville on July 25. Three of Liverpool's five preseason matches will take place in the United States, with games in New York City and Chicago.",
+                "score": 0.50065976,
+                "published_date": "Wed, 29 Jul 2026 06:00:02 GMT",
+                "date": "Wed, 29 Jul 2026 06:00:02 GMT"
+              },
+              {
+                "title": "Liverpool vs Wrexham Prediction: The Reds will keep winning this summer - Telecom Asia Sport",
+                "url": "https://www.telecomasia.net/sports-betting/tips/football/liverpool-vs-wrexham-match-prediction-30-july-2026/",
+                "source": "telecomasia.net",
+                "summary": "# Liverpool vs Wrexham Prediction: The Reds will keep winning this summer. ## Liverpool vs Wrexham: Prediction for the match on 30 July 2026. On July 30, 2026, a friendly match will take place at Yankee Stadium in New York, featuring Liverpool and Wrexham. TelecomAsia offers a prediction for the Liverpool vs Wrexham match along with key statistics. A bet on Liverpool to win can be placed at odds of around 1.50. A bet on Liverpool's individual total over 2.5 goals can be placed at odds of around 2.15. A bet on total over 2.5 goals can be placed at odds of around 1.35. A bet on Wrexham's individual total over 0.5 goals can be placed at odds of around 1.35. ## Prediction for the Liverpool vs Wrexham Match on July 30, 2026. 1.Liverpool vs Wrexham: Prediction for the match on 30 July 20262.Liverpool3.Wrexham4.Head-to-Head Statistics: Liverpool vs Wrexham5.Betting Trends for the Liverpool vs Wrexham Match6.Bookmaker Odds for the Liverpool vs Wrexham Match7.Prediction for the Liverpool vs Wrexham Match on July 30, 2026.",
+                "score": 0.21635942,
+                "published_date": "Tue, 28 Jul 2026 07:15:00 GMT",
+                "date": "Tue, 28 Jul 2026 07:15:00 GMT"
+              },
+              {
+                "title": "Liverpool Initiates Talks for PSG Winger Bradley Barcola - Telecom Asia Sport",
+                "url": "https://www.telecomasia.net/news/football/liverpool-talks-psg-winger-bradley-barcola/",
+                "source": "telecomasia.net",
+                "summary": "**Liverpool has held preliminary discussions regarding a potential transfer for PSG and France winger Bradley Barcola, although official contacts between the clubs have yet to commence. According to the source, the deal hinges on the transfer fee, as PSG values Bradley Barcola at €170 million. However, Liverpool considers this amount excessive and unrealistic, aiming to negotiate a transfer on more favorable terms, as the French winger is the Merseysiders' top transfer target this summer. The high asking price from PSG is attributed to the current market situation in the Premier League and significant deals within the English top flight, including Elliot Anderson's move to Manchester City and Morgan Rogers' transfer to Chelsea. Moreover, Liverpool believes that if an agreement is not reached this summer, PSG risks losing Bradley Barcola in 2027 for a significantly lower fee, as the player is not inclined to extend his contract.",
+                "score": 0.19990121,
+                "published_date": "Tue, 28 Jul 2026 09:16:34 GMT",
+                "date": "Tue, 28 Jul 2026 09:16:34 GMT"
+              },
+              {
+                "title": "The Transfer DealSheet: Latest on Man Utd, Arsenal, Liverpool, Real Madrid and more - The Athletic - The New York Times",
+                "url": "https://www.nytimes.com/athletic/7472305/2026/07/28/yan-diomande-bradley-barcola-transfer/",
+                "source": "nytimes.com",
+                "summary": "# The Transfer DealSheet: Latest on Man Utd, Arsenal, Liverpool, Real Madrid and more. This includes the players who could arrive and the ones on their way out across the Premier League. In this edition, we have Seb Stafford-Bloor, Mario Cortegana and David Ornstein’s One To Watch and updates on Arsenal, Chelsea, Liverpool, Manchester City, Manchester United, Newcastle United, Tottenham Hotspur, Barcelona and Real Madrid. While Real Madrid and RB Leipzig remain confident of concluding a deal that will take Yan Diomande to the Spanish capital, they are still to reach an agreement, both on the fee and the structure of the payments, though that is expected to happen imminently. He is yet to receive permission to travel to Spain or to have a medical, but has already agreed personal terms with Madrid and has spoken with Jose Mourinho, the club’s new head coach, as part of that process.",
+                "score": 0.19046825,
+                "published_date": "Tue, 28 Jul 2026 06:48:22 GMT",
+                "date": "Tue, 28 Jul 2026 06:48:22 GMT"
+              },
+              {
+                "title": "France's Bradley Barcola Reaches Agreement To Join Liverpool From PSG - FOX Sports",
+                "url": "https://amp.foxsports.com/stories/soccer/france-bradley-barcola-reaches-agreement-join-liverpool-from-psg",
+                "source": "amp.foxsports.com",
+                "summary": "# France's Bradley Barcola Reaches Agreement To Join Liverpool From PSG. Paris Saint-Germain winger Bradley Barcola has reportedly reached an agreement in principle to join Liverpool following discussions with new manager Andoni Iraola. While the 23-year-old is eager to move to Anfield, the two clubs remain far apart in their valuation of the player. According to L'Équipe, Barcola has reached an agreement in principle to join Liverpool. The 23-year-old has informed the French champions that he does not intend to extend his current contract, which is set to expire in the summer of 2028. The same report claims that the France international recently held positive discussions with new Reds manager Iraola and several club executives to outline a potential move to Anfield. ## PSG Demand Massive Transfer Fee. While Barcola has agreed to the move in principle, completing the transfer remains a highly complex operation. However, Barcola's clear preference for a move to Anfield provides the Premier League side with a distinct advantage during these high-stakes discussions.",
+                "score": 0.1711723,
+                "published_date": "Tue, 28 Jul 2026 21:44:25 GMT",
+                "date": "Tue, 28 Jul 2026 21:44:25 GMT"
+              }
+            ],
+            "quality": {
+              "status": "sufficient",
+              "relevant_count": 5,
+              "discarded_count": 0,
+              "timeframe_broadened": false
+            },
+            "attempts": [
+              {
+                "query": "Liverpool tin bóng đá mới",
+                "timeframe": "day",
+                "search_depth": "basic",
+                "returned": 8,
+                "accepted": 8
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "G02_read_club_news_url",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "what_it_tests": "A supplied football source URL must route to fetch without inventing or searching another URL."
+      },
+      "input": "Đọc trang tin này và tóm tắt các nội dung chính: https://www.liverpoolfc.com/news",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "fetch",
+            "args": {
+              "url": "https://www.liverpoolfc.com/news"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "fetch",
+            "args": {
+              "url": "https://www.liverpoolfc.com/news"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "fetch",
+          "args": {
+            "url": "https://www.liverpoolfc.com/news"
+          },
+          "result": {
+            "tool": "read_url",
+            "url": "https://www.liverpoolfc.com/news",
+            "retrieved_at": "2026-07-29T06:43:46+00:00",
+            "max_age": 0,
+            "cache_state": null,
+            "items": [
+              {
+                "title": "Latest news - Liverpool FC",
+                "url": "https://www.liverpoolfc.com/news",
+                "source": "liverpoolfc.com",
+                "summary": "All news\n\nFilter by topic\n\n[!['Liverpool will always hold a special place in my heart'](https://backend.liverpoolfc.com/sites/default/files/styles/md/public/2026-07/leanne-kiernan-29072026_2_f9e82730b01dff81f6af604ce7d23779.webp?itok=luZm_N5k&width=1680)\\\\\n\\\\\n**News'Liverpool will always hold a special place in my heart'. Leanne Kiernan shared a farewell message after the confirmation of her move from Liverpool FC Women to Newcastle United.** 57 minutes ago](https://www.liverpoolfc.com/news/liverpool-will-always-hold-special-place-my-heart)\n\n[![Photos: Liverpool stars try on new away kit for 2026-27 in the USA](https://backend.liverpoolfc.com/sites/default/files/styles/md/public/2026-07/kit-photos-chicago-29072026-cover_%281%29_6bb48137c8e8402636618d8176972774.webp?itok=SVz5Xbwy&width=1680)\\\\\n\\\\\n**GalleryPhotos: Liverpool stars try on new away kit for 2026-27 in the USA. The launch of Liverpool FC’s new away kit in the USA on Tuesday included several of the squad trying on the strip.** 3 hours ago](https://www.liverpoolfc.com/news/photos-liverpool-stars-try-new-away-kit-2026-27-usa)\n\n[![Iconic Empire State Building in New York lit up in Liverpool colours](https://backend.liverpoolfc.com/sites/default/files/styles/md/public/2026-07/empire-state-building-29072026-cover_cf0998df51cc37e0e5d66d0059bdb9be.webp?itok=Sk9mPeq6&width=1680)\\\\\n\\\\\n**NewsIconic Empire State Building in New York lit up in Liverpool colours. The iconic Empire State Building in New York was lit up in Liverpool colours on Tuesday evening to celebrate the launch of the club's 2026-27 adidas away kit.** 4 hours ago](https://www.liverpoolfc.com/news/iconic-empire-state-building-new-york-lit-liverpool-colours)\n\n[![Gallery: Behind the scenes of the LFC x adidas away kit launch in New York](https://backend.liverpoolfc.com/sites/default/files/styles/md/public/2026-07/BTS-gallery-main-290726_5be974fc9bcdd3d0805576a4e29b981d.webp?itok=bqImaIrh&width=1680)\\\\\n\\\\\n**PhotosGallery: Behind the scenes of the LFC x adidas away kit launch in New York. Liverpool FC and adidas celebrated the launch of the club's new 2026-27 away kit with a special event in Brooklyn, New York.** 6 hours ago](https://www.liverpoolfc.com/news/gallery-behind-scenes-lfc-x-adidas-away-kit-launch-new-york)\n\n[‌\\\\\n\\\\\n![Liverpool FC officially unveils new adidas away kit for 2026-27](<Base64-Image-Removed>)\\\\\n\\\\\n**NewsLiverpool FC officially unveils new adidas away kit for 2026-27. Liverpool FC and adidas have officially unveiled the club's new away kit for the 2026-27 season.** 7 hours ago](https://www.liverpoolfc.com/news/liverpool-fc-officially-unveils-new-adidas-away-kit-2026-27)\n\n[‌\\\\\n\\\\\n![Pre-season tour podcast: Interviews, previews and Liverpool v Wrexham](<Base64-Image-Removed>)\\\\\n\\\\\n**Listen nowPre-season tour podcast: Interviews, previews and Liverpool v Wrexham. Listen to the latest pre-season tour podcast for interviews, analysis and more ahead of Liverpool v Wrexham in New York.** 13 hours ago](https://www.liverpoolfc.com/news/pre-season-tour-podcast-interviews-previews-and-liverpool-v-wrexham)\n\n[‌\\\\\n\\\\\n![Inside Training: Pre-season day one for Cody Gakpo and Virgil van Dijk](<Base64-Image-Removed>)\\\\\n\\\\\n**VideoInside Training: Pre-season day one for Cody Gakpo and Virgil van Dijk. Watch the story of Cody Gakpo and Virgil van Dijk's first day of pre-season with 'Inside Training'.** 14 hours ago](https://www.liverpoolfc.com/news/inside-training-pre-season-day-one-cody-gakpo-and-virgil-van-dijk)\n\n[‌\\\\\n\\\\\n![Training photos: Day two of pre-season camp for LFC Women](<Base64-Image-Removed>)\\\\\n\\\\\n**GalleryTraining photos: Day two of pre-season camp for LFC Women. See how day two of Liverpool FC Women's pre-season training camp unfolded with our new photos.** 15 hours ago](https://www.liverpoolfc.com/news/training-photos-day-two-pre-season-camp-lfc-women)\n\n[‌\\\\\n\\\\\n![Bradley Barcola 'reaches verbal agreement' with Liverpool as blockbuster transfer advances](<Base64-Image-Removed>)\\\\\n\\\\\n**Media watchBr",
+                "published_date": null,
+                "modified_date": null,
+                "date": null
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "G03_instagram_club_profile",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "what_it_tests": "Project-specific Instagram profile analytics routing; both bare and @-prefixed handles are valid tool inputs."
+      },
+      "input": "Kiểm tra số liệu công khai của tài khoản Instagram @realmadrid.",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "instagram_profile"
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "instagram_profile",
+            "args": {
+              "profile_url": "realmadrid"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "instagram_profile",
+          "args": {
+            "profile_url": "realmadrid"
+          },
+          "result": {
+            "tool": "instagram_profile",
+            "profile_url": "https://www.instagram.com/realmadrid/",
+            "profile": {
+              "username": "realmadrid",
+              "name": "Real Madrid C.F.",
+              "followers": 180061352,
+              "engagement_rate": 0.0036563704113811144,
+              "quality_score": 0.7120648286530572,
+              "verified": true,
+              "average_interactions": 656300,
+              "average_views": 0,
+              "average_likes": 652896,
+              "average_comments": 3404,
+              "fake_followers_percentage": 0.17195512986810838,
+              "country": "spain",
+              "profile_url": "https://www.instagram.com/realmadrid/"
+            },
+            "items": [
+              {
+                "title": "Real Madrid C.F.",
+                "url": "https://www.instagram.com/realmadrid/",
+                "source": "instagram.com",
+                "summary": "Followers: 180061352; Engagement: 0.0036563704113811144; Quality score: 0.7120648286530572; Estimated fake followers: 0.17195512986810838; Verified: True"
+              }
+            ],
+            "meta": {
+              "code": 200,
+              "message": "OK"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "G04_facebook_page_identity",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "what_it_tests": "Project-specific Facebook Page transparency routing with an explicit numeric ID."
+      },
+      "input": "Kiểm tra thông tin minh bạch của Facebook Page ID 20531316728.",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "facebook_page_transparency",
+            "args": {
+              "page_id": "20531316728"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "facebook_page_transparency",
+            "args": {
+              "page_id": "20531316728"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "facebook_page_transparency",
+          "args": {
+            "page_id": "20531316728"
+          },
+          "result": {
+            "tool": "facebook_page_transparency",
+            "page_id": "20531316728",
+            "transparency": {
+              "page_id": "20531316728",
+              "name": "Facebook",
+              "page_type": "PAGE",
+              "verification_status": "BLUE_VERIFIED",
+              "owner_type": "NONE",
+              "admin_countries": [
+                {
+                  "country": null,
+                  "count": 12
+                },
+                {
+                  "country": null,
+                  "count": 5
+                }
+              ],
+              "unknown_admin_count": 0,
+              "has_active_ads": true,
+              "has_run_political_ads": true,
+              "history": [
+                {
+                  "event_type": "NAME_CHANGE",
+                  "event_time": "2022-06-03T17:00:14+00:00",
+                  "target_name": "Facebook"
+                },
+                {
+                  "event_type": "NAME_CHANGE",
+                  "event_time": "2020-02-27T21:32:51+00:00",
+                  "target_name": "Facebook App"
+                },
+                {
+                  "event_type": "NAME_CHANGE",
+                  "event_time": "2020-02-25T18:45:14+00:00",
+                  "target_name": "Facebook app"
+                },
+                {
+                  "event_type": "NAME_CHANGE",
+                  "event_time": "2019-11-12T16:53:51+00:00",
+                  "target_name": "Facebook"
+                },
+                {
+                  "event_type": "NAME_CHANGE",
+                  "event_time": "2019-11-12T16:24:13+00:00",
+                  "target_name": "Facebook app"
+                },
+                {
+                  "event_type": "CREATION",
+                  "event_time": "2007-11-07T22:51:32+00:00",
+                  "target_name": "Facebook"
+                }
+              ]
+            },
+            "items": [
+              {
+                "title": "Facebook",
+                "url": "https://www.facebook.com/20531316728",
+                "source": "facebook.com",
+                "summary": "Verification: BLUE_VERIFIED; Admin locations: unknown (12), unknown (5); Active ads: True; Political ads: True; Transparency history events: 6"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "G05_missing_claim_subject",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "what_it_tests": "The agent must ask for the missing claim, player, club, or URL instead of guessing."
+      },
+      "input": "Kiểm tra tin chuyển nhượng này giúp tôi.",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "response_type": "text"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "question": "Bạn có thể cung cấp thêm thông tin về tin chuyển nhượng mà bạn muốn kiểm tra không?",
+              "response_type": "text"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "missing_info",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "clarify",
+          "args": {
+            "question": "Bạn có thể cung cấp thêm thông tin về tin chuyển nhượng mà bạn muốn kiểm tra không?",
+            "response_type": "text"
+          },
+          "result": {
+            "tool": "ask_user",
+            "question": "Bạn có thể cung cấp thêm thông tin về tin chuyển nhượng mà bạn muốn kiểm tra không?",
+            "response_type": "text",
+            "options": [],
+            "awaiting_user": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "G06_carry_club_change_timeframe",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "what_it_tests": "Carry the football subject forward while the latest turn overrides freshness."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tìm tin về Arsenal trong tuần này."
+        },
+        {
+          "role": "assistant",
+          "content": "Bạn muốn giữ chủ đề Arsenal và đổi khoảng thời gian không?"
+        },
+        {
+          "role": "user",
+          "content": "Giữ Arsenal nhưng chỉ lấy tin hôm nay."
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "Arsenal",
+              "topic": "news",
+              "timeframe": "day"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "Arsenal",
+              "intent": "tin bóng đá mới",
+              "topic": "news",
+              "timeframe": "day"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "Arsenal",
+            "intent": "tin bóng đá mới",
+            "topic": "news",
+            "timeframe": "day"
+          },
+          "result": {
+            "tool": "web_search",
+            "query": "Arsenal",
+            "intent": "tin bóng đá mới",
+            "topic": "news",
+            "timeframe": "day",
+            "strict_timeframe": false,
+            "retrieved_at": "2026-07-29T06:43:55+00:00",
+            "items": [
+              {
+                "title": "Kết quả Arsenal vs Chelsea, vòng 28 giải Ngoại Hạng Anh mới nhất",
+                "url": "https://baolangson.vn/ket-qua-arsenal-vs-chelsea-vong-28-giai-ngoai-hang-anh-moi-nhat-5079738.html",
+                "source": "baolangson.vn",
+                "summary": "Cập nhật kết quả bóng đá Ngoại Hạng Anh hôm nay 2/3: Arsenal thắng Chelsea với tỷ số 2-1 ở vòng 28. Arsenal, 2-1, Chelsea. Saliba, 21'. 45+2', Hincapie (PL).",
+                "score": 0.3344378,
+                "published_date": "Wed, 29 Jul 2026 01:00:00 GMT",
+                "date": "Wed, 29 Jul 2026 01:00:00 GMT"
+              },
+              {
+                "title": "Chuyển nhượng 29/7: Chelsea chốt ngày mua cựu sao MU, Arseanl chưa từ bỏ 'nhạc trưởng Brazil'",
+                "url": "https://thethao247.vn/503-chuyen-nhuong-29-7-chelsea-chot-ngay-mua-cuu-sao-mu-arseanl-chua-tu-bo-nhac-truong-brazil-d430093.html",
+                "source": "thethao247.vn",
+                "summary": "Arsenal được cho là muốn chốt thỏa thuận trước cuối tháng, nhằm sớm ổn định lực lượng cho mùa giải mới. Trong khi đó, Newcastle chắc chắn sẽ không dễ dàng để một trong những trụ cột quan trọng nhất rời St James' Park.\n\n## Man City sắp đẩy Kalvin Phillips đi lần nữa [...] Theo talkSPORT, Arsenal đã nối lại đàm phán với Newcastle United về thương vụ Bruno Guimaraes dù trước đó bị Chích chòe nhiều lần từ chối. Đội bóng Bắc London xem Guimaraes là mục tiêu quan trọng để nâng cấp tuyến giữa trong kỳ chuyển nhượng hè.\n\nNguồn tin này cho biết Arsenal đã đạt đồng thuận miệng ở mức khoảng 75 triệu bảng cho chữ ký của Guimaraes. Dù vậy, các bên vẫn cần hoàn tất những bước đàm phán chính thức trước khi thương vụ có thể tiến xa hơn. [...] Lịch thi đấu\n\nTrực tiếp\n\nTrực tiếp bóng đá\n\nKết quả bóng đá\n\nLivescore\n\nBảng xếp hạng bóng đá\n\nCHÍNH THỨC: ĐT Việt Nam đối đầu Thái Lan tại FIFA ASEAN Cup\nLịch thi đấu LoL KeSPA Cup 2026 bộ môn LMHT mới nhất\nLịch thi đấu AFF Cup 2026 | THỂ THAO 247\nUEFA dọa đưa hàng loạt đội tuyển tẩy chay World Cup\nThể thao 247\n\nTiện ích bóng đá\n\nGiải đấu nổi bật\n\nBảng xếp hạng bóng đá\n\nKết quả bóng đá\n\nThể thao tổng hợp\n\nCông ty TNHH MTV GenPress",
+                "score": 0.29542854,
+                "published_date": "Wed, 29 Jul 2026 01:57:00 GMT",
+                "date": "Wed, 29 Jul 2026 01:57:00 GMT"
+              },
+              {
+                "title": "Vụ Arsenal chiêu mộ ngôi sao Vinicius có diễn biến mới",
+                "url": "https://kenh14.vn/vu-arsenal-chieu-mo-ngoi-sao-vinicius-co-dien-bien-moi-215260729073944837.chn",
+                "source": "kenh14.vn",
+                "summary": "Kế hoạch sở hữu chữ ký của Vinicius Junior từ phía Arsenal đang rơi vào cảnh khó khăn. Mặc dù hợp đồng của ngôi sao 26 tuổi sẽ hết hạn vào tháng 6/2027 và",
+                "score": 0.2421971,
+                "published_date": "Wed, 29 Jul 2026 02:00:00 GMT",
+                "date": "Wed, 29 Jul 2026 02:00:00 GMT"
+              },
+              {
+                "title": "Tin chuyển nhượng 29.7: Real Madrid giữ chân Vinícius, Benzema khiến Al Hilal đau đầu",
+                "url": "https://vietbao.vn/tin-chuyen-nhuong-297-real-madrid-giu-chan-vinicius-benzema-khien-al-hilal-dau-dau-600831.html",
+                "source": "vietbao.vn",
+                "summary": "Theo Sky Sports, bất chấp sự quan tâm từ Arsenal, Real Madrid vẫn tin tưởng Vinícius sẽ tiếp tục gắn bó với sân Bernabéu. Đội bóng Hoàng gia được cho là",
+                "score": 0.1788271,
+                "published_date": "Wed, 29 Jul 2026 01:00:00 GMT",
+                "date": "Wed, 29 Jul 2026 01:00:00 GMT"
+              },
+              {
+                "title": "Yếu tố cản trở Arsenal trong thương vụ chiêu mộ Vinicius",
+                "url": "https://amp.laodong.vn/bong-da-quoc-te/yeu-to-can-tro-arsenal-trong-thuong-vu-chieu-mo-vinicius-1742565.ldo",
+                "source": "amp.laodong.vn",
+                "summary": "Arsenal đang theo dõi sát tình hình của Vinicius Junior, nhưng quyền quyết định vẫn nằm trong tay Real Madrid. Thông tin Arsenal cân nhắc chiêu mộ Vinicius",
+                "score": 0.12471342,
+                "published_date": "Wed, 29 Jul 2026 01:00:00 GMT",
+                "date": "Wed, 29 Jul 2026 01:00:00 GMT"
+              }
+            ],
+            "quality": {
+              "status": "sufficient",
+              "relevant_count": 5,
+              "discarded_count": 1,
+              "timeframe_broadened": false
+            },
+            "attempts": [
+              {
+                "query": "Arsenal tin bóng đá mới",
+                "timeframe": "day",
+                "search_depth": "basic",
+                "returned": 8,
+                "accepted": 7
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "G07_correct_player",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "what_it_tests": "A player correction replaces the earlier subject while preserving news and timeframe constraints."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tìm tin mới nhất về Mbappe hôm nay."
+        },
+        {
+          "role": "assistant",
+          "content": "Tôi sẽ tìm tin về Mbappe hôm nay."
+        },
+        {
+          "role": "user",
+          "content": "Sửa lại: Haaland, không phải Mbappe."
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "Haaland",
+              "topic": "news",
+              "timeframe": "day"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "Haaland",
+              "intent": "tin bóng đá mới",
+              "topic": "news",
+              "timeframe": "day"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "Haaland",
+            "intent": "tin bóng đá mới",
+            "topic": "news",
+            "timeframe": "day"
+          },
+          "result": {
+            "tool": "web_search",
+            "query": "Haaland",
+            "intent": "tin bóng đá mới",
+            "topic": "news",
+            "timeframe": "day",
+            "strict_timeframe": false,
+            "retrieved_at": "2026-07-29T06:44:04+00:00",
+            "items": [
+              {
+                "title": "Yamal và Haaland lập kỷ lục mới trên thị trường chuyển nhượng",
+                "url": "https://bongda24h.vn/tin-nong/yamal-va-haaland-lap-ky-luc-moi-tren-thi-truong-chuyen-nhuong-279-455758.html",
+                "source": "bongda24h.vn",
+                "summary": "logo-bongda24h\nic-picht\n\npitch\n\npitch\n\nTop câu lạc bộ\n\n# Yamal và Haaland lập kỷ lục mới trên thị trường chuyển nhượng\n\nThứ Năm 23/07/2026 10:40(GMT+7)\n\nGoogle News\n\n## Yamal và Haaland lập kỷ lục mới trên thị trường chuyển nhượng\n\nSau khi cùng Tây Ban Nha đăng quang tại World Cup 2026, Lamine Yamal tiếp tục đón nhận tin vui khi được định giá tới 220 triệu euro, ngang bằng Erling Haaland để trở thành hai cầu thủ đắt giá nhất thế giới hiện nay. Đây cũng là lần đầu tiên trong lịch sử bóng đá có cầu thủ vượt ngưỡng định giá 200 triệu euro. [...] Ở chiều ngược lại, những huyền thoại của bóng đá thế giới không còn giữ được vị thế về giá trị chuyển nhượng. Lionel Messi hiện được định giá khoảng 15 triệu euro, trong khi Cristiano Ronaldo ở mức 10 triệu euro. Dù vẫn là những biểu tượng của bóng đá thế giới, cả hai đã bị thế hệ kế cận như Lamine Yamal và Haaland bỏ lại rất xa về giá trị trên thị trường chuyển nhượng.\n\nSự bùng nổ của World Cup 2026 một lần nữa cho thấy sức ảnh hưởng to lớn của giải đấu đối với thị trường chuyển nhượng. Với việc lần đầu xuất hiện những cầu thủ được định giá trên 200 triệu euro, bóng đá thế giới đang bước sang một kỷ nguyên mới, nơi những tài năng như Lamine Yamal, Haaland, Mbappe hay Bellingham trở thành những gương mặt dẫn dắt cuộc chơi.\n\nLamine Yamal\nErling Haaland\n\n## Có thể bạn quan tâm [...] Lamine Yamal\nErling Haaland\n\n## Có thể bạn quan tâm\n\n## Cùng chuyên mục\n\n### NÓNG: Đội tuyển Việt Nam đối đầu Thái Lan tại sân chơi FIFA ASEAN Cup 2026\n\nNÓNG: Đội tuyển Việt Nam đối đầu Thái Lan tại sân chơi FIFA ASEAN Cup 2026\n\nNÓNG: Đội tuyển Việt Nam đối đầu Thái Lan tại sân chơi FIFA ASEAN Cup 2026\n\n### NÓNG: Đội tuyển Việt Nam đối đầu Thái Lan tại sân chơi FIFA ASEAN Cup 2026\n\n1h trước ĐT Việt Nam  Thái Lan\n\nTheo thông báo chính thức từ Liên đoàn bóng đá thế giới FIFA, tại giải đấu FIFA ASEAN Cup 2026, đội tuyển Việt Nam sẽ góp mặt tại Division 1 và nằm ở bảng B cùng các đội tuyển Thái Lan, Philippines cùng khách mời Pakistan.\n\n### Nhận định bóng đá Valerenga vs HamKam 0h00 ngày 1/8 (VĐQG Na Uy 2026)\")\n\nNhận định bóng đá Valerenga vs HamKam 0h00 ngày 1/8 (VĐQG Na Uy 2026)\")",
+                "score": 0.77548623,
+                "published_date": "Thu, 23 Jul 2026 03:40:22 GMT",
+                "date": "Thu, 23 Jul 2026 03:40:22 GMT"
+              },
+              {
+                "title": "Erling Haaland donated rare manuscript about Norway’s history, Christian kings",
+                "url": "https://www.newsnationnow.com/religion/erling-haaland-manuscript-norway-history-christian-kings/amp",
+                "source": "newsnationnow.com",
+                "summary": "# Erling Haaland donated rare manuscript about Norway’s history, Christian kings\n\nErling Haaland\n\nNorway's forward #09 Erling Braut Haaland warms up before the start of the 2026 World Cup football tournament quarter-final match between Norway and England at Miami Stadium in Miami on July 11, 2026. (Photo by ROBERTO SCHMIDT / AFP via Getty Images)\n\n(NewsNation) — Norway’s Erling Haaland made headlines during the 2026 World Cup for an extraordinary tournament debut. Additionally, a donation Haland and his father Alfie, a former professional soccer player himself, made earlier this year reveals a deep devotion to his country’s history and Christian roots. [...] Manchester City's Erling Haaland reacts after the English Premier League soccer match between Liverpool and Manchester City in Liverpool, England, Sunday, Feb. 8, 2026. (AP Photo/Jon Super)\nNorway's Kristoffer Ajer, from foreground, Erling Haaland and Antonio Nusa react after England's Jude Bellingham scored his side's second goal during the World Cup quarterfinal soccer match between Norway and England in Miami Gardens, Fla., Saturday, July 11, 2026. (AP Photo/Rebecca Blackwell) [...] A pair of dogs wear Norway's flag, a Viking helmet and a blond ponytail hairpiece suggestive of striker Erling Haaland's hair, as Norway soccer fans gather on Ocean Drive in Miami Beach, Fla., Friday, July 10, 2026, on the eve of their team's quarterfinal World Cup soccer match against England. (AP Photo/Rebecca Blackwell)\nErling Haaland\nNorway's Erling Haaland (9), left, scores during the World Cup round of 32 soccer match between Ivory Coast and Norway in Arlington, Texas, near Dallas, Tuesday, June 30, 2026. (AP Photo/Jessica Tobias)\nNorway's Erling Haaland, left, celebrates with David Moeller Wolfe after scoring their third goal during the World Cup Group I soccer match between Norway and Senegal in East Rutherford, N.J., near New York, Monday, June 22, 2026. (AP Photo/Steve Luciano)",
+                "score": 0.75831425,
+                "published_date": "Tue, 28 Jul 2026 04:18:17 GMT",
+                "date": "Tue, 28 Jul 2026 04:18:17 GMT"
+              },
+              {
+                "title": "Haaland and Yamal smash records as soccer’s new $240M kings emerge after the 2026 World Cup - AS USA",
+                "url": "https://en.as.com/soccer/haaland-and-yamal-smash-records-as-soccers-new-240m-kings-emerge-after-the-2026-world-cup-f202607-n",
+                "source": "en.as.com",
+                "summary": "facebook\n\ntwitter\n\nwhatsapp\n\nMake us preferred on Google\n\nLamine Yamal and Erling Haaland now sit alone at the summit of world soccer. With the 2026 World Cup officially wrapped up, the global transfer market is recalibrating — and the sport’s two brightest superstars have rewritten the rules of player valuation.\n\nThe Spanish phenom lifted the trophy, while Haaland delivered a historic tournament of his own. Both now carry an estimated market value of about $240 million, the first time in history any player has crossed the $220 million threshold. Their valuations jumped roughly $22 million each during the World Cup, a sign of just how fast the market keeps expanding.\n\n## Premier League muscle reshapes the market [...] Los 40 USA\n\nEditions\n\n Haaland and Yamal smash records as soccer’s new $240M kings emerge after the 2026 World CupSpain\n Haaland and Yamal smash records as soccer’s new $240M kings emerge after the 2026 World CupChile\n Haaland and Yamal smash records as soccer’s new $240M kings emerge after the 2026 World CupColombia\n Haaland and Yamal smash records as soccer’s new $240M kings emerge after the 2026 World CupUSA\n Haaland and Yamal smash records as soccer’s new $240M kings emerge after the 2026 World CupMexico\n Haaland and Yamal smash records as soccer’s new $240M kings emerge after the 2026 World CupUS Latino\n Haaland and Yamal smash records as soccer’s new $240M kings emerge after the 2026 World CupAmerica\n\nTopics [...] SoccerNFLNBA\n\nAS USA\n\nLog inSign in to comment\n\nEditions\n\n Haaland and Yamal smash records as soccer’s new $240M kings emerge after the 2026 World CupSpain\n Haaland and Yamal smash records as soccer’s new $240M kings emerge after the 2026 World CupChile\n Haaland and Yamal smash records as soccer’s new $240M kings emerge after the 2026 World CupColombia\n Haaland and Yamal smash records as soccer’s new $240M kings emerge after the 2026 World CupUSA\n Haaland and Yamal smash records as soccer’s new $240M kings emerge after the 2026 World CupMexico\n Haaland and Yamal smash records as soccer’s new $240M kings emerge after the 2026 World CupUS Latino\n Haaland and Yamal smash records as soccer’s new $240M kings emerge after the 2026 World CupAmerica\n\nLos 40 USA\n\nEditions",
+                "score": 0.7120925,
+                "published_date": "Wed, 22 Jul 2026 17:28:55 GMT",
+                "date": "Wed, 22 Jul 2026 17:28:55 GMT"
+              },
+              {
+                "title": "Erling Haaland gets fresh offer as Real Madrid continue cunning transfer tactics - Manchester Evening News",
+                "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/erling-haaland-transfer-real-madrid-34349737",
+                "source": "manchestereveningnews.co.uk",
+                "summary": "Vinicius Junior #7 of Brazil congratulates Erling Haaland #9 of Norway on the 2-1 victory during the FIFA World Cup 2026 Round of 16 match between Brazil and Norway at New York New Jersey Stadium on July 05, 2026 in East Rutherford, New Jersey. \n\nThe pair met during the World Cup - and now Vini is trying to work his magic(Image: Steph Chambers - FIFA/FIFA via Getty Images)\n\n\"We are considering legal action for the use of our player image in this context.\"\n\nHaaland is contracted at the Etihad Stadium until 2034 and told ESPN that he is committed to City. He said: \"I’m super happy and I’m looking forward to what’s next because I think it’s exciting times for City as a club and also me as a player. I’m looking forward to continuing with City.\"\n\nContent Image",
+                "score": 0.70847535,
+                "published_date": "Sat, 25 Jul 2026 10:27:37 GMT",
+                "date": "Sat, 25 Jul 2026 10:27:37 GMT"
+              },
+              {
+                "title": "‘Convinced it will happen’ - Man City striker Erling Haaland tipped for future Real Madrid transfer by former team-mate | Goal.com",
+                "url": "https://www.goal.com/en/lists/convinced-will-happen-man-city-striker-erling-haaland-tipped-future-real-madrid-transfer-former-team-mate/blt9f7a7406510a8703",
+                "source": "goal.com",
+                "summary": "Haaland Raccoon\n\n## What comes next for Haaland?\n\nHaaland remains fully committed to Manchester City for the 2026-27 campaign, focusing on securing more silverware under new manager Enzo Maresca.\n\nWhile a blockbuster transfer to Real Madrid seems highly unlikely this summer due to their recent spending, the Spanish club have historically pursued their top targets relentlessly. Fans will closely monitor the striker's situation as the seasons progress to see if this predicted switch materialises.\n\nManchester City crest\nInter crest\nReal Madrid crest\nFiorentina crest",
+                "score": 0.7016523,
+                "published_date": "Sun, 26 Jul 2026 16:43:49 GMT",
+                "date": "Sun, 26 Jul 2026 16:43:49 GMT"
+              }
+            ],
+            "quality": {
+              "status": "sufficient",
+              "relevant_count": 5,
+              "discarded_count": 14,
+              "timeframe_broadened": true
+            },
+            "attempts": [
+              {
+                "query": "Haaland tin bóng đá mới",
+                "timeframe": "day",
+                "search_depth": "basic",
+                "returned": 8,
+                "accepted": 1
+              },
+              {
+                "query": "Haaland tin bóng đá mới football news 2026",
+                "timeframe": "day",
+                "search_depth": "advanced",
+                "returned": 8,
+                "accepted": 1
+              },
+              {
+                "query": "Haaland tin bóng đá mới football news 2026",
+                "timeframe": "week",
+                "search_depth": "advanced",
+                "returned": 8,
+                "accepted": 8
+              }
+            ],
+            "warning": "The requested window had insufficient relevant evidence, so a broader window was also searched. Check published_date before answering."
+          }
+        }
+      ]
+    },
+    {
+      "id": "G08_switch_web_to_url",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "what_it_tests": "The explicit source switch must suppress stale lookup intent and use only the supplied URL."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tìm tin web về Liverpool."
+        },
+        {
+          "role": "user",
+          "content": "Bỏ tìm web, tôi muốn bạn đọc nguồn chính thức."
+        },
+        {
+          "role": "user",
+          "content": "Dùng URL này: https://www.liverpoolfc.com/news"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "fetch",
+            "args": {
+              "url": "https://www.liverpoolfc.com/news"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "fetch",
+            "args": {
+              "url": "https://www.liverpoolfc.com/news",
+              "max_age": 0
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "fetch",
+          "args": {
+            "url": "https://www.liverpoolfc.com/news",
+            "max_age": 0
+          },
+          "result": {
+            "tool": "read_url",
+            "error": "ReadTimeout",
+            "message": "HTTPSConnectionPool(host='api.firecrawl.dev', port=443): Read timed out. (read timeout=60)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "G09_supply_facebook_page_id",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "what_it_tests": "A later turn fills a required Page ID without losing the original Facebook transparency intent."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Kiểm tra độ minh bạch của Facebook Page này."
+        },
+        {
+          "role": "assistant",
+          "content": "Bạn vui lòng cung cấp Page ID dạng số."
+        },
+        {
+          "role": "user",
+          "content": "Page ID là 20531316728."
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "facebook_page_transparency",
+            "args": {
+              "page_id": "20531316728"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "facebook_page_transparency",
+            "args": {
+              "page_id": "20531316728"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "missing_info",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "facebook_page_transparency",
+          "args": {
+            "page_id": "20531316728"
+          },
+          "result": {
+            "tool": "facebook_page_transparency",
+            "page_id": "20531316728",
+            "transparency": {
+              "page_id": "20531316728",
+              "name": "Facebook",
+              "page_type": "PAGE",
+              "verification_status": "BLUE_VERIFIED",
+              "owner_type": "NONE",
+              "admin_countries": [
+                {
+                  "country": null,
+                  "count": 12
+                },
+                {
+                  "country": null,
+                  "count": 5
+                }
+              ],
+              "unknown_admin_count": 0,
+              "has_active_ads": true,
+              "has_run_political_ads": true,
+              "history": [
+                {
+                  "event_type": "NAME_CHANGE",
+                  "event_time": "2022-06-03T17:00:14+00:00",
+                  "target_name": "Facebook"
+                },
+                {
+                  "event_type": "NAME_CHANGE",
+                  "event_time": "2020-02-27T21:32:51+00:00",
+                  "target_name": "Facebook App"
+                },
+                {
+                  "event_type": "NAME_CHANGE",
+                  "event_time": "2020-02-25T18:45:14+00:00",
+                  "target_name": "Facebook app"
+                },
+                {
+                  "event_type": "NAME_CHANGE",
+                  "event_time": "2019-11-12T16:53:51+00:00",
+                  "target_name": "Facebook"
+                },
+                {
+                  "event_type": "NAME_CHANGE",
+                  "event_time": "2019-11-12T16:24:13+00:00",
+                  "target_name": "Facebook app"
+                },
+                {
+                  "event_type": "CREATION",
+                  "event_time": "2007-11-07T22:51:32+00:00",
+                  "target_name": "Facebook"
+                }
+              ]
+            },
+            "items": [
+              {
+                "title": "Facebook",
+                "url": "https://www.facebook.com/20531316728",
+                "source": "facebook.com",
+                "summary": "Verification: BLUE_VERIFIED; Admin locations: unknown (12), unknown (5); Active ads: True; Political ads: True; Transparency history events: 6"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "G10_cancel_research",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "what_it_tests": "Cancellation and a meta capability question must not reactivate the earlier social search."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tìm thảo luận trên X về Champions League."
+        },
+        {
+          "role": "user",
+          "content": "Thôi, hủy việc tìm kiếm đó."
+        },
+        {
+          "role": "user",
+          "content": "Chỉ nói ngắn gọn bạn có thể giúp gì cho tin bóng đá."
+        }
+      ],
+      "expect": {
+        "no_tool": true
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [],
+        "actual_text": "Tôi có thể cung cấp thông tin về tin tức bóng đá hiện tại, chuyển nhượng, chấn thương, lịch thi đấu, và các thông báo từ câu lạc bộ hoặc cầu thủ. Nếu bạn cần thông tin cụ thể nào, hãy cho tôi biết!",
+        "case_failure_type": "unnecessary_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": []
+    }
+  ]
+}

@@ -12,7 +12,9 @@ from .papers.tool import arxiv_search
 from .paper_text.tool import get_arxiv_paper_text
 from .timeline.tool import get_user_tweets
 from .fetch.tool import read_url
+from .facebook_page_transparency.tool import get_facebook_page_transparency
 from .format.tool import render_digest
+from .instagram_profile.tool import get_instagram_profile
 from .policy.tool import search_company_policy
 from .social_search.tool import search_tweets
 from .send.tool import send_telegram
@@ -30,7 +32,9 @@ TOOL_FUNCTIONS = {
     "social_search": search_tweets,
     "lookup": web_search,
     "fetch": read_url,
+    "facebook_page_transparency": get_facebook_page_transparency,
     "format": render_digest,
+    "instagram_profile": get_instagram_profile,
     "send": send_telegram,
     "policy": search_company_policy,
     "papers": arxiv_search,

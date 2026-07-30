@@ -6,13 +6,14 @@ from typing import Any
 import requests
 
 from tools._shared import TIMEOUT, err
+from tools.lookup.tool import web_search
 
 
 def _twitter_get(path: str, params: dict[str, Any]) -> dict[str, Any]:
     key = os.getenv("RAPIDAPI_KEY")
-    host = os.getenv("RAPIDAPI_TWITTER_HOST", "twitter-api45.p.rapidapi.com")
-    if not key:
-        raise RuntimeError("Missing RAPIDAPI_KEY env var")
+    host = (os.getenv("RAPIDAPI_TWITTER_HOST") or "").strip()
+    if not key or not host:
+        raise RuntimeError("RapidAPI Twitter backend is not configured")
     response = requests.get(
         f"https://{host}{path}",
         params=params,
@@ -44,9 +45,58 @@ def _tweets_from(data: dict[str, Any], limit: int) -> list[dict[str, Any]]:
 
 
 def search_tweets(query: str = "", search_type: str = "Latest", limit: int = 5) -> dict[str, Any]:
+    query = (query or "").strip()
+    search_type = search_type if search_type in {"Latest", "Top"} else "Latest"
+    limit = max(1, min(int(limit or 5), 10))
+    if not query:
+        return err("search_tweets", ValueError("query is required"))
     try:
         data = _twitter_get("/search.php", {"query": query, "search_type": search_type})
-        return {"tool": "search_tweets", "query": query, "search_type": search_type, "items": _tweets_from(data, limit)}
-    except Exception as exc:
-        return err("search_tweets", exc)
+        items = _tweets_from(data, limit)
+        if not items:
+            raise ValueError("RapidAPI Twitter returned no search items")
+        return {
+            "tool": "search_tweets",
+            "query": query,
+            "search_type": search_type,
+            "items": items,
+            "backend": "rapidapi_twitter",
+        }
+    except Exception as primary_exc:
+        qualifier = "popular" if search_type == "Top" else "latest"
+        fallback = web_search(
+            query=query,
+            intent=f"{qualifier} public X posts about this football topic",
+            topic="general",
+            timeframe="week",
+            strict_timeframe=True,
+            max_results=limit,
+        )
+        if fallback.get("error"):
+            return err(
+                "search_tweets",
+                RuntimeError(
+                    "Twitter backend and Tavily fallback both failed: "
+                    f"{fallback.get('message') or fallback.get('error')}"
+                ),
+            )
+        x_items = [
+            item for item in (fallback.get("items") or [])
+            if "x.com/" in str(item.get("url") or "").lower()
+            or "twitter.com/" in str(item.get("url") or "").lower()
+        ][:limit]
+        return {
+            "tool": "search_tweets",
+            "query": query,
+            "search_type": search_type,
+            "items": x_items,
+            "backend": "tavily_x_index_fallback",
+            "fallback_reason": type(primary_exc).__name__,
+            "quality": {
+                "status": "indexed_fallback" if x_items else "no_relevant_results",
+                "relevant_count": len(x_items),
+                "live": False,
+            },
+            "warning": "The RapidAPI X search backend was unavailable. Tavily's public X index can be delayed and is not a live social search.",
+        }
 

@@ -1,0 +1,1664 @@
+{
+  "run_id": "v5_B_base_openrouter_20260729T134241152755",
+  "version": "v5",
+  "artifact_version": "v5+p520f36050b86+tb303857e6606",
+  "prompt_hash": "520f36050b8683f620b5f38693a553e9a55484a2fe9daeb939314348fb0283ca",
+  "tools_hash": "b303857e660637339444e3517684d68ad1a8edb926922a800ce1ddeb96be48a0",
+  "phase": "B",
+  "suite": "base",
+  "provider": "openrouter",
+  "model": "openai/gpt-4o-mini",
+  "system_prompt": "C:\\Users\\banka\\Documents\\lab-04\\Day04-C401-Prompt-Engineering-Tool-Calling-Labs-student-k3\\starter_v0\\artifacts\\system_prompt.md",
+  "tools": "C:\\Users\\banka\\Documents\\lab-04\\Day04-C401-Prompt-Engineering-Tool-Calling-Labs-student-k3\\starter_v0\\artifacts\\tools.yaml",
+  "eval_cases": "data\\eval_base.json",
+  "dataset_id": "day04_v2_research_base",
+  "dataset_role": "base",
+  "description": "Core eval cho research agent: routing đúng tool + đúng args, hỏi lại khi thiếu (ask_user), xác nhận trước khi gửi, và xử lý câu ngoài phạm vi / không cần tool. Chấm trên tool_calls + args (subset). KHÔNG sửa file này — chỉ thêm case vào eval_group.json.",
+  "generated_at": "2026-07-29T13:42:41",
+  "summary": {
+    "total_cases": 20,
+    "measured_cases": 20,
+    "provider_error_cases": 0,
+    "passed_cases": 20,
+    "case_accuracy": 1.0,
+    "tool_routing_accuracy": 1.0,
+    "argument_accuracy": 1.0,
+    "multiturn_accuracy": 1.0,
+    "failure_counts": {},
+    "observed_mismatch_counts": {}
+  },
+  "results": [
+    {
+      "id": "R01_user_tweets_routing",
+      "phase": "B",
+      "suite": "base",
+      "case_suite": "base",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "routing_user_tweets_name_to_handle",
+        "difficulty": "medium",
+        "what_it_tests": "Tin CỦA một người nổi tiếng → map tên Sam Altman thành handle sama rồi gọi get_user_tweets."
+      },
+      "input": "Tweet mới nhất của Sam Altman là gì?",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "timeline",
+            "args": {
+              "screenname": "sama"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "timeline",
+            "args": {
+              "screenname": "sama",
+              "limit": 1
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "timeline",
+          "args": {
+            "screenname": "sama",
+            "limit": 1
+          },
+          "result": {
+            "tool": "get_user_tweets",
+            "screenname": "sama",
+            "items": [
+              {
+                "title": "Sam Altman on X: \"we had a significant security incident during evaluation of our models. we are sharing what we have learned so far. thanks to @huggingface for the partnership on this. https://t.co/2o2VfR6PIa\" / X",
+                "url": "https://x.com/sama/status/2079661132302995790",
+                "source": "x.com",
+                "summary": "Log inSign up\n\n## Post\n\n user avatar\n\n  Sam Altman\n\n  OpenAI\n\n  @sama\n\n  we had a significant security incident during evaluation of our models. we are sharing what we have learned so far. thanks to @huggingface for the partnership on this.\n\n  Temporary OpenGraph image for the OpenAI and Hugging Face security incident draft.\n\n  OpenAI and Hugging Face partner to address security incident during model evaluationFrom openai.com\n\n  8:13 PM · Jul 21, 202610.1MViews\n user avatar [...] AI Notkilleveryoneism Memes ⏸️\n\n  @AISafetyMemes\n\n  Jul 21\n\n  TLDR: During a test, an OpenAI model hacked out of its container to reach the internet THEN hacked into Hugging Face (!) to steal the test's answers\n\n  \n\n  \n\n  325K\n user avatar\n\n  Jason Garrett's Burner\n\n  @smellytoast6\n\n  Jul 21 [...] Jul 21\n\n  OpenAI executives were literally stroking themselves while they typed out this report. If y'all can't understand that this was written to purely brag about the model then I don't know what to tell you.\n\n  94K\n user avatar\n\n  maria\n\n  @maria\\_rcks\n\n  Jul 21\n\n  WHAT\n\n  \n\n  285K\n # Join the conversation\n\n  Read 2,161 more replies\n\nDon't miss what's happening\n\nPeople on X are the first to know.\n\nLog inSign up",
+                "score": 0.75268626,
+                "published_date": null,
+                "date": null
+              }
+            ],
+            "backend": "tavily_x_index_fallback",
+            "fallback_reason": "RuntimeError",
+            "quality": {
+              "status": "indexed_fallback",
+              "relevant_count": 1,
+              "live": false
+            },
+            "warning": "The RapidAPI timeline backend was unavailable. Tavily's public X index can be delayed and is not a live timeline."
+          }
+        }
+      ]
+    },
+    {
+      "id": "R02_search_tweets_routing",
+      "phase": "B",
+      "suite": "base",
+      "case_suite": "base",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "routing_search_tweets",
+        "difficulty": "easy",
+        "what_it_tests": "Tweet theo CHỦ ĐỀ → search_tweets, không phải get_user_tweets."
+      },
+      "input": "Mọi người đang bàn gì về GPT-5 trên Twitter?",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "social_search",
+            "args": {}
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "social_search",
+            "args": {
+              "query": "GPT-5",
+              "search_type": "Latest"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "social_search",
+          "args": {
+            "query": "GPT-5",
+            "search_type": "Latest"
+          },
+          "result": {
+            "tool": "search_tweets",
+            "query": "GPT-5",
+            "search_type": "Latest",
+            "items": [],
+            "backend": "tavily_x_index_fallback",
+            "fallback_reason": "RuntimeError",
+            "quality": {
+              "status": "no_relevant_results",
+              "relevant_count": 0,
+              "live": false
+            },
+            "warning": "The RapidAPI X search backend was unavailable. Tavily's public X index can be delayed and is not a live social search."
+          }
+        }
+      ]
+    },
+    {
+      "id": "R03_web_news_routing",
+      "phase": "B",
+      "suite": "base",
+      "case_suite": "base",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "routing_web_news",
+        "difficulty": "medium",
+        "what_it_tests": "Tin thời sự trên web → web_search topic=news, timeframe=day (hôm nay)."
+      },
+      "input": "Tin tức AI hôm nay có gì nổi bật?",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "AI",
+              "topic": "news",
+              "timeframe": "day"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "AI",
+              "intent": "tin tức nổi bật",
+              "topic": "news",
+              "timeframe": "day"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "AI",
+            "intent": "tin tức nổi bật",
+            "topic": "news",
+            "timeframe": "day"
+          },
+          "result": {
+            "tool": "web_search",
+            "query": "AI",
+            "intent": "tin tức nổi bật",
+            "topic": "news",
+            "timeframe": "day",
+            "strict_timeframe": false,
+            "retrieved_at": "2026-07-29T06:40:44+00:00",
+            "items": [
+              {
+                "title": "Eightco Holdings (NASDAQ: ORBS) thông báo về việc tham gia vòng gọi vốn trị giá 52,5 triệu USD của World Foundation khi World Foundation chuyển đổi từ việc xây dựng mạng lưới sang mở rộng quy mô tiện ích.",
+                "url": "https://www.prnewswire.com/vn/news-releases/u0065u0069u0067u0068u0074u0063u006Fu002Du0068u006Fu006Cu0064u0069u006Eu0067u0073u002Du0028u006Eu0061u0073u0064u0061u0071u003Au002Du006Fu0072-302836431.html",
+                "source": "prnewswire.com",
+                "summary": "Tom Lee, Thành Viên Hội Đồng Quản Trị của Eightco (ORBS) cho biết: \"Việc giảm lượng phát hành token WLD, bắt đầu từ ngày 24 tháng 7, đã cắt giảm một nửa nguồn cung bổ sung.\" Điều này sẽ cải thiện đáng kể sự cn bằng cung/cầu ròng đối với WLD và do đó, củng cố lập luận về việc cải thiện tỷ lệ rủi ro/lợi nhuận trong giá cả\".\n\nNhững Tin Tức Nổi Bật về Trí Tuệ Nhn Tạo (AI) Đang Thu Hút Sự Chú Ý: [...] Ban quản lý ORBS tin rằng danh mục tài sản của Công Ty nắm giữ một số thành tố quan trọng nhất đối với hệ thống tài chính kỹ thuật số và trí tuệ nhn tạo trong tương lai. Những tin tức nổi bật trong tuần này bao gồm: [...] Vào ngày 21 tháng 7, có thông báo rằng công ty quản lý tài sản Grayscale đã nộp hồ sơ lên Ủy Ban Chứng Khoán và Giao Dịch Hoa Kỳ (SEC) để ra mắt quỹ ETF đầu tiên tại Hoa Kỳ gắn với Worldcoin (theo Decrypt).\n Vào ngày 21 tháng 7, OpenAI đã công bố ra mắt chương trình ChatGPT dành cho các doanh nghiệp nhỏ, một sáng kiến nhằm giúp các doanh nghiệp nhỏ nng cao năng suất và mở rộng hoạt động kinh doanh bằng ChatGPT (theo OpenAI).",
+                "score": 0.7306941,
+                "published_date": "Tue, 28 Jul 2026 11:39:00 GMT",
+                "date": "Tue, 28 Jul 2026 11:39:00 GMT"
+              },
+              {
+                "title": "AI dần trở thành lựa chọn mặc định khi tìm kiếm trên Google: Hành vi người dùng thay đổi ra sao? | Advertising Vietnam",
+                "url": "https://advertisingvietnam.com/article/ai-dan-tro-thanh-lua-chon-mac-dinh-khi-tim-kiem-tren-google-hanh-vi-nguoi-dung-thay-doi-ra-sao",
+                "source": "advertisingvietnam.com",
+                "summary": "Cùng nhìn lại các tin tức nổi bật và chiến dịch sáng tạo của thương hiệu trong tuần vừa qua với series Điểm tin...\n\nÝ Nhi\n\nÝ Nhi•\n\nYouTube cán mốc 11 tỷ USD doanh thu quảng cáo trong quý 2/2026, nhờ World Cup và làn sóng AI\n\n## YouTube cán mốc 11 tỷ USD doanh thu quảng cáo trong quý 2/2026, nhờ World Cup và làn sóng AI\n\nYouTube vừa lập kỷ lục doanh thu quảng cáo trong một quý, đạt 11,06 tỷ USD trong quý 2/2026 (từ tháng 4 đến thán...\n\nTrung Nguyen\n\nTrung Nguyen• [...] Dù vậy, cơ hội không hẳn đã khép lại với ngành báo chí. Đối với ChatGPT, lượng truy cập trên máy tính tại Mỹ đã được cải thiện sau bản cập nhật tìm kiếm ngày 7/5. Cụ thể, tỷ lệ truy cập trang web trực tiếp đã tăng hơn gấp đôi, từ 25% vào tháng 3/2026, lên gần 60% vào ngày 30/5. Điều này cho thấy, người dùng vẫn sẵn sàng nhấp vào các liên kết màu xanh nổi bật trong cu trả lời AI nếu chúng được hiển thị rõ ràng.\n\nScreenshot 2026-07-28 162817.pngScreenshot 2026-07-28 163005.png\n\nẢnh: Similarweb [...] ## Trip.com bị Trung Quốc phạt 765 triệu USD vì lạm dụng vị thế thống lĩnh thị trường\n\nCục Quản lý Giám sát Thị trường Nhà nước Trung Quốc (SAMR) đã công bố quyết định xử phạt hành chính đối với Trip...\n\nTrung Nguyen\n\nTrung Nguyen•\n\nĐiểm tin tuần: Coca-Cola làm mới nhận diện toàn cầu; Hasaki mở cửa hàng đầu tiên tại Mỹ\n\n## Điểm tin tuần: Coca-Cola làm mới nhận diện toàn cầu; Hasaki mở cửa hàng đầu tiên tại Mỹ",
+                "score": 0.63316137,
+                "published_date": "Tue, 28 Jul 2026 09:41:10 GMT",
+                "date": "Tue, 28 Jul 2026 09:41:10 GMT"
+              },
+              {
+                "title": "AI - 'con dao hai lưỡi' trong hoạt động báo chí",
+                "url": "https://baotintuc.vn/video/ai-con-dao-hai-luoi-trong-hoat-dong-bao-chi-20260729131256356.htm",
+                "source": "baotintuc.vn",
+                "summary": "Trí tuệ nhân tạo (AI) đang tái định hình toàn bộ quy trình sản xuất tin tức. Từ tổng hợp dữ liệu, dựng đồ họa tự động cho đến hỗ trợ phân tích thông tin.",
+                "score": 0.5414337,
+                "published_date": "Wed, 29 Jul 2026 06:00:00 GMT",
+                "date": "Wed, 29 Jul 2026 06:00:00 GMT"
+              },
+              {
+                "title": "AI của Anthropic phát hiện điểm yếu trong công nghệ bảo vệ dữ liệu của bạn",
+                "url": "https://vn.beincrypto.com/anthropics-ai-weaknesses-technology-data",
+                "source": "vn.beincrypto.com",
+                "summary": "Anh thường xuyên cập nhật các sự kiện có ảnh hưởng lớn tới thị trường, từ các thay đổi chính sách của Cục Dự trữ Liên bang Mỹ cho đến những diễn biến pháp lý, tổ chức lớn, với các phân tích chuyên sâu, cập nhật kịp thời dành cho nhà đầu tư và các lãnh đạo trong ngành. Nhờ khả năng nhạy bén với các thông tin quan trọng và không bị ảnh hưởng bởi các chiến dịch PR, Lockridge mang đến góc nhìn sắc bén về xu hướng thanh khoản, sự tham gia của các tổ chức lớn và cập nhật các đổi mới đang nổi trên [...] Dù vậy, quá trình chuyển đổi vẫn đang được thúc đẩy. Google dự kiến hoàn tất việc chuyển đổi hệ thống mã hóa vào năm 2029 theo lộ trình chuyển đổi của họ. Các cơ quan Mỹ đặt mục tiêu hoàn thành trước hạn chót năm 2031.\n\n## Sắp tới có gì cần chú ý [...] Trong quá khứ cũng từng có những thiết kế bị lộ lỗ hổng ở giai đoạn muộn. Năm 2022, các nhà nghiên cứu từng phá vỡ SIKE – một ứng viên mã hóa sau lượng tử, chỉ trong khoảng một giờ trên một chiếc laptop cá nhân.\n\nBitcoin (BTC) và Ethereum (ETH) sử dụng hệ thống mã hóa khác. Các chuyên gia vẫn còn tranh luận về việc khi nào máy tính lượng tử sẽ phá vỡ hệ thống này. Những phát hiện mới này chưa ảnh hưởng gì đến chúng.",
+                "score": 0.3783448,
+                "published_date": "Tue, 28 Jul 2026 18:36:20 GMT",
+                "date": "Tue, 28 Jul 2026 18:36:20 GMT"
+              },
+              {
+                "title": "Điểm tin 11h ngày 29/7",
+                "url": "https://vneconomy.vn/diem-tin-11h-ngay-297-s899.htm",
+                "source": "vneconomy.vn",
+                "summary": "Cổ phiếu công nghệ Mỹ và Hàn Quốc ngày càng gắn kết chặt chẽ do sự phụ thuộc của các tập đoàn Mỹ vào chip nhớ Hàn Quốc trong làn sóng đầu tư AI.",
+                "score": 0.34906715,
+                "published_date": "Wed, 29 Jul 2026 03:00:00 GMT",
+                "date": "Wed, 29 Jul 2026 03:00:00 GMT"
+              }
+            ],
+            "quality": {
+              "status": "sufficient",
+              "relevant_count": 5,
+              "discarded_count": 0,
+              "timeframe_broadened": false
+            },
+            "attempts": [
+              {
+                "query": "AI tin tức nổi bật",
+                "timeframe": "day",
+                "search_depth": "basic",
+                "returned": 8,
+                "accepted": 8
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "R04_read_url_routing",
+      "phase": "B",
+      "suite": "base",
+      "case_suite": "base",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "routing_read_url",
+        "difficulty": "easy",
+        "what_it_tests": "Đã có link cụ thể → read_url, không phải web_search."
+      },
+      "input": "Tóm tắt bài này giúp mình: https://openai.com/blog/gpt-5",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "fetch",
+            "args": {
+              "url": "https://openai.com/blog/gpt-5"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "fetch",
+            "args": {
+              "url": "https://openai.com/blog/gpt-5"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "fetch",
+          "args": {
+            "url": "https://openai.com/blog/gpt-5"
+          },
+          "result": {
+            "tool": "read_url",
+            "url": "https://openai.com/blog/gpt-5",
+            "retrieved_at": "2026-07-29T06:40:54+00:00",
+            "max_age": 0,
+            "cache_state": null,
+            "items": [
+              {
+                "title": "OpenAI",
+                "url": "https://openai.com/blog/gpt-5",
+                "source": "openai.com",
+                "summary": "OpenAI\n\n# 404\n\nThe index rests now\n\nQuiet shelves hold their places\n\nChoose another book\n\nby [gpt-5.6-sol(opens in a new window)](https://chatgpt.com/?model=gpt-5.6-sol&openaicom-did=dba71ae9-3a13-449c-a57d-55ef715ec2f2&openaicom_referred=true)",
+                "published_date": null,
+                "modified_date": null,
+                "date": null
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "R05_limit_arg",
+      "phase": "B",
+      "suite": "base",
+      "case_suite": "base",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "arg_limit",
+        "difficulty": "easy",
+        "what_it_tests": "Trích đúng limit=10 từ '10 tweet'."
+      },
+      "input": "Lấy 10 tweet mới nhất của Elon Musk",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "timeline",
+            "args": {
+              "screenname": "elonmusk",
+              "limit": 10
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "timeline",
+            "args": {
+              "screenname": "elonmusk",
+              "limit": 10
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "timeline",
+          "args": {
+            "screenname": "elonmusk",
+            "limit": 10
+          },
+          "result": {
+            "tool": "get_user_tweets",
+            "screenname": "elonmusk",
+            "items": [
+              {
+                "title": "Elon Musk on X: \"Based on strong positive feedback from customers in our beta test program, @SpaceXAI will make Grok 4.5 available to the public tomorrow. It is an Opus-class model, but faster, more token-efficient and lower cost.\" / X",
+                "url": "https://x.com/elonmusk/status/2074740539874775163",
+                "source": "x.com",
+                "summary": "Log inSign up\n\n## Post\n\n user avatar\n\n  Elon Musk\n\n  X\n\n  @elonmusk\n\n  Based on strong positive feedback from customers in our beta test program, @SpaceXAI will make Grok 4.5 available to the public tomorrow. It is an Opus-class model, but faster, more token-efficient and lower cost.\n\n  6:21 AM · Jul 8, 20267.1MViews\n user avatar\n\n  Elon Musk\n\n  X\n\n  @elonmusk\n\n  Jul 8 [...] Jul 8\n\n  We will continue to make refinements to the Grok Build harness and the 1.5T foundation model almost every day in response to user requests. The 2T model will finish training this month and be available to customers next month.\n\n  659K\n user avatar\n\n  Max\n\n  @kudela\\_maxim\n\n  Jul 8\n\n  Elon, today. Not tomorrow, tomorrow is Sol. None will have time for grok.\n\n  34K\n # Join the conversation\n\n  Read 6,329 more replies\n\nDon't miss what's happening\n\nPeople on X are the first to know. [...] Log inSign up",
+                "score": 0.7578844,
+                "published_date": null,
+                "date": null
+              }
+            ],
+            "backend": "tavily_x_index_fallback",
+            "fallback_reason": "RuntimeError",
+            "quality": {
+              "status": "indexed_fallback",
+              "relevant_count": 1,
+              "live": false
+            },
+            "warning": "The RapidAPI timeline backend was unavailable. Tavily's public X index can be delayed and is not a live timeline."
+          }
+        }
+      ]
+    },
+    {
+      "id": "R06_timeframe_arg",
+      "phase": "B",
+      "suite": "base",
+      "case_suite": "base",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "arg_timeframe",
+        "difficulty": "medium",
+        "what_it_tests": "'tuần này' → timeframe=week."
+      },
+      "input": "Tin công nghệ trong tuần này",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "topic": "news",
+              "timeframe": "week"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "công nghệ",
+              "intent": "tin công nghệ mới",
+              "topic": "news",
+              "timeframe": "week"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "công nghệ",
+            "intent": "tin công nghệ mới",
+            "topic": "news",
+            "timeframe": "week"
+          },
+          "result": {
+            "tool": "web_search",
+            "query": "công nghệ",
+            "intent": "tin công nghệ mới",
+            "topic": "news",
+            "timeframe": "week",
+            "strict_timeframe": false,
+            "retrieved_at": "2026-07-29T06:40:59+00:00",
+            "items": [
+              {
+                "title": "Điểm tin an ninh mạng tháng 7/2026",
+                "url": "https://nhandan.vn/diem-tin-an-ninh-mang-thang-72026-post977243.html",
+                "source": "nhandan.vn",
+                "summary": "Báo Nhn Dn điện tử Trang chủ Nhận diện thủ đoạn Kỹ năng số phòng, chống tội phạm Góc nhìn \n\n## Khoa học - Công nghệ\n\n## Phòng, chống tội phạm công nghệ cao\n\n# Điểm tin an ninh mạng tháng 7/2026\n\nWorld Cup 2026 không chỉ ngày hội thể thao lớn nhất hành tinh mà còn là thời điểm các đường dy cá độ bóng đá tăng tốc hoạt động. Chỉ trong hơn một tháng, Công an các địa phương đã đồng loạt triệt phá nhiều đường dy tổ chức đánh bạc trên không gian mạng với quy mô từ hàng chục đến hàng nghìn tỷ đồng.\n\nPrefer Nhan Dan on Google\n\nĐiểm tin an ninh mạng tháng 7/2026.\n\n \n\nĐiểm chung của các vụ việc là tội phạm sử dụng hệ thống tài khoản phn cấp trên các website cá cược nước ngoài, hoạt động liên tỉnh, thậm chí có yếu tố xuyên biên giới. [...] ## Lừa đảo công nghệ cao nhắm vào trẻ em dịp hè\n\nTội phạm   \n\n## Tội phạm \"ôm\" tiền tỷ, nạn nhn \"ôm\" nợ xấu suốt đời\n\nKhi mạng xã hội trở thành công cụ của các “thần y ion kiềm”.  \n\n## [[Video] Khi mạng xã hội trở thành công cụ của các “thần y ion kiềm”]( \"[Video] Khi mạng xã hội trở thành công cụ của các “thần y ion kiềm”\")\n\nTừ ngày 1/7/2026, tăng mức xử phạt với hành vi giả mạo trên mạng xã hội.  \n\n## Tăng mức xử phạt với hành vi giả mạo trên mạng xã hội\n\nCuộc gọi rác. (Ảnh minh họa)  \n\n## Siết xử phạt tin nhắn rác, cuộc gọi rác\n\nVì sao website giả mạo dịch vụ công vẫn còn “đất sống”?  \n\n## Vì sao website giả mạo dịch vụ công vẫn còn “đất sống”?\n\nẢnh minh hoạ.  \n\n## Cảnh báo gia tăng tình trạng cá độ bóng đá trên mạng trước World Cup 2026 [...] - Triển lãm \"Bức tường an ninh mạng” tại phố đi bộ Hồ Gươm.\n\nBAN CÔNG NGHỆ & BAN KHOA HỌC-MÔI TRƯỜNG\n\n### Tin liên quan\n\n## [[Video] Muamau và chiêu dụ dỗ kiếm tiền online]( \"[Video] Muamau và chiêu dụ dỗ kiếm tiền online\")\n\n## [[Video] Cảnh giác với chiêu trò đánh vào tình thương của cha mẹ]( \"[Video] Cảnh giác với chiêu trò đánh vào tình thương của cha mẹ\")\n\n## [[Video] Ngăn chặn tội phạm mạng lợi dụng chủ trương số hóa dữ liệu]( \"[Video] Ngăn chặn tội phạm mạng lợi dụng chủ trương số hóa dữ liệu\")\n\nTriệt phá đường dy cá độ bóng đá Hoạt động truyền thông về an toàn không gian số an ninh mạng lừa đảo quà tặng\n\n### Tin đọc nhiều\n\n## ASEAN Cup 2026: Lịch thi đấu từ vòng bảng đến chung kết\n\n## Lịch thi đấu của tuyển Việt Nam tại ASEAN Cup 2026",
+                "score": 0.50344294,
+                "published_date": "Fri, 24 Jul 2026 01:40:57 GMT",
+                "date": "Fri, 24 Jul 2026 01:40:57 GMT"
+              },
+              {
+                "title": "Samsung AI TV đồng hành cùng FPT Play – đơn vị phát sóng trực tiếp ASEAN HYUNDAI CUP 2026, thăng hạng giải đấu cùng Chế độ Bóng đá AI và Vision AI Companion – Samsung Newsroom Việt Nam",
+                "url": "https://news.samsung.com/vn/samsung-ai-tv-dong-hanh-cung-fpt-play-don-vi-phat-song-truc-tiep-asean-hyundai-cup-2026-thang-hang-giai-dau-cung-che-do-bong-da-ai-va-vision-ai-companion",
+                "source": "news.samsung.com",
+                "summary": "Sở hữu nhiều công nghệ đột phá về AI, đặc biệt là các tính năng tối ưu cho thể thao, Samsung AI TV sẵn sàng mở ra trải nghiệm bóng đá tuyệt đỉnh cho người dùng xuyên suốt ASEAN HYUNDAI CUP 2026, đặc biệt là trên 2 dòng sản phẩm chủ lực Micro RGB và Mini LED. TV Micro RGB đầu tiên trên thế giới từ Samsung sử dụng hệ thống đèn nền RGB siêu nhỏ nhằm mang đến từng trận đấu với màu sắc chân thực với độ chính xác ấn tượng, cùng với bộ xử lý AI Engine Pro tân tiến giúp xử lý và tái tạo chất lượng hình ảnh sống động vượt trội. Cùng với đó, tần số quét 165Hz giúp cho từng đường bóng trở nên mượt mà hơn, giảm thiểu độ trễ cho những pha giao tranh kịch tính. Bên cạnh đó, TV Mini LED cũng là một sự lựa chọn phù hợp với khán giả với mức chi phí dễ tiếp cận hơn. Được trang bị đèn nền Mini LED có kích [...] Ngoài ra, Samsung AI TV 2026 còn có những tính năng đặc biệt tối ưu cho trải nghiệm thể thao như:\n\nĐặc biệt, Samsung AI TV cũng tiên phong mang đến trải nghiệm bóng đá mãn nhãn thông qua các kích thước màn hình lớn và màn hình cực đại. Tín đồ bóng đá có thể lựa chọn các kích thước đa dạng từ 65 inch, 75 inch, 85 inch trên nhiều dòng Samsung AI TV, 77 inch và 83 inch trên TV OLED, cùng các tùy chọn màn hình cực đại 98 inch, 100 inch và 115 inch trên các dòng Micro RGB, Neo QLED và Mini LED. Công nghệ hiển thị vượt trội cùng tính năng Supersize Picture Enhancer tối ưu hình ảnh cho màn hình lớn bằng AI sẽ tạo nên cảm giác đắm chìm trong không khí sôi động của ASEAN HYUNDAI CUP 2026. [...] Samsung Newsroom\n\n# Samsung AI TV đồng hành cùng FPT Play – đơn vị phát sóng trực tiếp ASEAN HYUNDAI CUP 2026, thăng hạng giải đấu cùng Chế độ Bóng đá AI và Vision AI Companion\n\n27/07/2026\n\nĐồng hành cùng FPT Play - đơn vị phát sóng trực tiếp ASEAN HYUNDAI CUP 2026, Samsung AI TV thăng hạng toàn diện trải nghiệm thưởng thức giải đấu qua kích thước màn hình lớn, tối ưu hình ảnh, âm thanh theo yêu cầu, hỏi đáp thông tin trận đấu với trợ lý Vision AI Companion, Chế độ Bóng đá AI\n\nNhân dịp ASEAN HYUNDAI CUP 2026 khởi tranh, Công ty Điện tử Samsung Việt Nam triển khai chương trình ưu đãi “Samsung AI TV đỉnh cao – Cuồng nhiệt mùa bóng lớn”, giúp người dùng dễ dàng nâng cấp thiết bị nghe nhìn để tận hưởng trọn vẹn không khí của giải bóng đá hấp dẫn nhất Đông Nam Á ngay tại nhà.",
+                "score": 0.49348235,
+                "published_date": "Mon, 27 Jul 2026 00:00:00 GMT",
+                "date": "Mon, 27 Jul 2026 00:00:00 GMT"
+              },
+              {
+                "title": "ASEAN Championship 2026: LỊCH THI ĐẤU của ĐỘI TUYỂN BÓNG ĐÁ VIỆT NAM; CẢNH BÁO CÁ ĐỘ",
+                "url": "https://xaydungchinhsach.chinhphu.vn/asean-cup-2026-lich-thi-dau-danh-sach-doi-tuyen-bong-da-viet-nam-119260615150155103.htm",
+                "source": "xaydungchinhsach.chinhphu.vn",
+                "summary": "Cục Cảnh sát hình sự cũng cảnh báo về nguy cơ mất an toàn thông tin và gia tăng các hành vi lừa đảo công nghệ cao liên quan đến hoạt động cá độ bóng đá trực tuyến.\n\nTheo cơ quan chức năng, các đường dy cá độ hiện nay sử dụng nhiều thủ đoạn tinh vi trên không gian mạng để dụ dỗ người chơi cung cấp thông tin cá nhn và dữ liệu nhạy cảm như số điện thoại, tài khoản ngn hàng, hình ảnh căn cước công dn, thậm chí cả mã OTP.\n\nNhững thông tin này sau đó có thể bị các đối tượng xấu mua bán, trao đổi hoặc trực tiếp sử dụng để chiếm đoạt tài khoản, thực hiện hành vi lừa đảo tài chính và các vi phạm pháp luật khác mà nạn nhn không hề hay biết. [...] Cục Cảnh sát hình sự chỉ rõ, các đối tượng thường lợi dụng không gian mạng để tổ chức cá độ bóng đá dưới nhiều hình thức khác nhau như xy dựng website, ứng dụng cá cược đặt máy chủ ở nước ngoài; lập các hội, nhóm kín trên Facebook, Telegram, Zalo để lôi kéo, hướng dẫn người chơi; quảng cáo trá hình trên các trang xem bóng đá trực tuyến hoặc các nền tảng phát sóng miễn phí.\n\nCác đường dy cá độ còn sử dụng hệ thống \"đại lý\", \"cộng tác viên\" để mở tài khoản cho người chơi; đưa ra nhiều chương trình khuyến mại như tặng tiền cược, hoàn tiền, thưởng hoa hồng giới thiệu thành viên mới nhằm thu hút người tham gia. Việc thanh toán được thực hiện thông qua tài khoản ngn hàng, ví điện tử hoặc tiền ảo để che giấu dòng tiền đánh bạc bất hợp pháp. [...] Chính sách và cuộc sống\n\n(Chinhphu.vn) - Từ tháng 7/2026, nhiều quy định mới về tiền lương, lương hưu, trợ cấp, phụ cấp, chính sách xã hội chính thức có hiệu lực, được người dn mong chờ.\n\nBÁCH PHN VỊ các TỔ HỢP A00, A01, B00, C00, D01, Kỳ thi tốt nghiệp THPT 2026 \n\n### BÁCH PHN VỊ các TỔ HỢP A00, A01, B00, C00, D01, Kỳ thi tốt nghiệp THPT 2026\n\nChính sách và cuộc sống\n\n(Chinhphu.vn) - Bách phn vị một số tổ hợp môn A00, A01, B00, C00, D01, Kỳ thi tốt nghiệp THPT năm 2026.\n\nTOÀN VĂN: Nghị quyết 57-NQ/TW về đột phá phát triển khoa học, công nghệ, đổi mới sáng tạo và chuyển đổi số quốc gia \n\n### TOÀN VĂN: Nghị quyết 57-NQ/TW về đột phá phát triển khoa học, công nghệ, đổi mới sáng tạo và chuyển đổi số quốc gia\n\nChính sách và cuộc sống",
+                "score": 0.40641484,
+                "published_date": "Mon, 27 Jul 2026 10:29:00 GMT",
+                "date": "Mon, 27 Jul 2026 10:29:00 GMT"
+              },
+              {
+                "title": "Football Festival Việt Nam 2026: Sân chơi nuôi dưỡng đam mê bóng đá trẻ",
+                "url": "https://htv.vn/football-festival-viet-nam-2026-san-choi-nuoi-duong-dam-me-bong-da-tre-222260725083511028.htm",
+                "source": "htv.vn",
+                "summary": "HTV Phim   Phim truyền hình   Phim tài liệu\n\nHTV Sự kiện   Made By Vietnam   Ngày hội HTV   Innovation Fest   Chung một tấm lòng\n\nHTV Thể thao   Cuộc đua xe đạp Cúp Truyền hình   Cuộc đua offroad HTV   SEA Games 33\n\n### Multimedia\n\n Multiform   Longform   NewZgraphic   Doanh nhn Sài Gòn\n\nCác trang liên kết\n\n### Bạn hãy chọn Profile tiện dụng\n\n   Profile yêu giải trí      Profile yêu mặc định      Profile yêu phát sóng\n\n#### Xu hướng\n\nIRAN\n\nTết Nguyên tiêu\n\ngiá xăng dầu\n\ncông an tphcm\n\nKinh tế\n\ncông nghệ\n\ngiải trí\n\n0\n\nThể thao Thứ Bảy 25/07/2026, 08:35\n\n# Football Festival Việt Nam 2026: Sn chơi nuôi dưỡng đam mê bóng đá trẻ\n\nBAN THỂ DỤC THỂ THAO\n\nTheo dõi HTV trên Google News [...] Sau lễ khai mạc Giải Bóng đá Bãi biển VĐQG 2026 diễn ra chiều 23/7 tại sn thi đấu bóng đá bãi biển Quy Nhơn (Gia Lai), hai trận đấu đầu tiên của lượt 1 đã diễn ra sôi nổi với tổng cộng 17 bàn thắng được ghi.\n\nTeqball - Làn gió mới cho lớp bóng đá cộng đồng \n\n### Teqball - Làn gió mới cho lớp bóng đá cộng đồng\n\n(HTV) - Teqball đang trở thành môn thể thao bổ trợ hiệu quả cho bóng đá, giúp nng cao kỹ thuật cá nhn, khả năng kiểm soát bóng và tư duy chiến thuật.\n\nÝ kiến của bạn\n\nHãy nhập họ và tên\n\nBình luận\n\nXem thêm bình luận\n\nThông tin của bạn\n\nTên hiển thị:   \n Hãy nhập họ và tên Email:   \n Mã xác nhận:\n\ncaptcha\n\n### Có thể bạn sẽ thích\n\nTP. Hồ Chí Minh kiểm tra đột xuất nhà xe Năm Lu sau vụ cháy xe khách khiến 7 người tử vong [...] BAN THỂ DỤC THỂ THAO\n\nTheo dõi HTV trên Google News\n\n(HTV) - Gần 1.000 cầu thủ nhí đến từ 44 cu lạc bộ, trung tm bóng đá cộng đồng trên cả nước sẽ hội tụ tại Football Festival Việt Nam 2026, ngày hội bóng đá hè hướng đến trải nghiệm, giao lưu và phát hiện tài năng trẻ.\n\n#### Không đặt nặng thành tích, đề cao trải nghiệm\n\nFootball Festival U9-U11-U13 Việt Nam 2026 là dự án bóng đá cộng đồng do Công ty Cổ phần Giải pháp Thể thao Việt Nam (VSSG) phối hợp cùng CLB Bóng đá Công an TP. Hồ Chí Minh tổ chức.\n\nGiải đáu hướng đến xy dựng một ngày hội bóng đá hè chuyên nghiệp, mở rộng cánh cửa cho các trung tm đào tạo bóng đá cộng đồng đến từ ba miền Bắc - Trung - Nam cùng tham gia",
+                "score": 0.34528238,
+                "published_date": "Sat, 25 Jul 2026 01:35:00 GMT",
+                "date": "Sat, 25 Jul 2026 01:35:00 GMT"
+              },
+              {
+                "title": "Giúp kiểm toán viên làm chủ các công cụ công nghệ mới",
+                "url": "https://www.qdnd.vn/kinh-te/tin-tuc/giup-kiem-toan-vien-lam-chu-cac-cong-cu-cong-nghe-moi-1051003",
+                "source": "qdnd.vn",
+                "summary": "Khóa học nhằm trang bị kiến thức, kỹ năng thực hành, giúp đội ngũ công chức, viên chức, kiểm toán viên làm chủ các công cụ công nghệ mới để nâng cao năng",
+                "score": 0.029359564,
+                "published_date": "Mon, 27 Jul 2026 06:00:00 GMT",
+                "date": "Mon, 27 Jul 2026 06:00:00 GMT"
+              }
+            ],
+            "quality": {
+              "status": "sufficient",
+              "relevant_count": 5,
+              "discarded_count": 11,
+              "timeframe_broadened": false
+            },
+            "attempts": [
+              {
+                "query": "công nghệ tin công nghệ mới",
+                "timeframe": "week",
+                "search_depth": "basic",
+                "returned": 8,
+                "accepted": 0
+              },
+              {
+                "query": "công nghệ tin công nghệ mới football news 2026",
+                "timeframe": "week",
+                "search_depth": "advanced",
+                "returned": 8,
+                "accepted": 5
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "R07_search_type_arg",
+      "phase": "B",
+      "suite": "base",
+      "case_suite": "base",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "arg_search_type",
+        "difficulty": "medium",
+        "what_it_tests": "'phổ biến/top' → search_type=Top (không phải Latest)."
+      },
+      "input": "Cho mình các tweet phổ biến (top) nhất về OpenAI",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "social_search",
+            "args": {
+              "search_type": "Top"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "social_search",
+            "args": {
+              "query": "OpenAI",
+              "search_type": "Top"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "social_search",
+          "args": {
+            "query": "OpenAI",
+            "search_type": "Top"
+          },
+          "result": {
+            "tool": "search_tweets",
+            "query": "OpenAI",
+            "search_type": "Top",
+            "items": [],
+            "backend": "tavily_x_index_fallback",
+            "fallback_reason": "RuntimeError",
+            "quality": {
+              "status": "no_relevant_results",
+              "relevant_count": 0,
+              "live": false
+            },
+            "warning": "The RapidAPI X search backend was unavailable. Tavily's public X index can be delayed and is not a live social search."
+          }
+        }
+      ]
+    },
+    {
+      "id": "R08_out_of_scope",
+      "phase": "B",
+      "suite": "base",
+      "case_suite": "base",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "out_of_scope",
+        "difficulty": "easy",
+        "what_it_tests": "Câu ngoài phạm vi research → KHÔNG gọi tool, từ chối/định hướng."
+      },
+      "input": "Giải giúp mình bài toán tích phân: nguyên hàm của x^2 là gì?",
+      "expect": {
+        "no_tool": true,
+        "behavior": "refuse"
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [],
+        "actual_text": "Nguyên hàm của \\( x^2 \\) là một hàm mà khi lấy đạo hàm sẽ cho ra \\( x^2 \\). Nguyên hàm của \\( x^n \\) (với \\( n \\neq -1 \\)) được tính theo công thức:\n\n\\[\n\\int x^n \\, dx = \\frac{x^{n+1}}{n+1} + C\n\\]\n\nTrong trường hợp này, với \\( n = 2 \\):\n\n\\[\n\\int x^2 \\, dx = \\frac{x^{2+1}}{2+1} + C = \\frac{x^3}{3} + C\n\\]\n\nVậy nguyên hàm của \\( x^2 \\) là:\n\n\\[\n\\frac{x^3}{3} + C\n\\]\n\nTrong đó \\( C \\) là hằng số tích phân.",
+        "case_failure_type": "out_of_scope",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": []
+    },
+    {
+      "id": "R09_no_tool_capability",
+      "phase": "B",
+      "suite": "base",
+      "case_suite": "base",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "no_tool_meta",
+        "difficulty": "easy",
+        "what_it_tests": "Câu hỏi meta → trả lời thẳng, KHÔNG gọi tool."
+      },
+      "input": "Bạn là gì và làm được những gì?",
+      "expect": {
+        "no_tool": true,
+        "behavior": "answer_without_tool"
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [],
+        "actual_text": "Tôi là trợ lý thông tin bóng đá, chuyên cung cấp thông tin về bóng đá Việt Nam và quốc tế, bao gồm tin tức, chuyển nhượng, chấn thương, lịch thi đấu và các thông tin liên quan khác. Tôi có thể tìm kiếm và xác minh thông tin từ các nguồn công khai để trả lời các câu hỏi của bạn một cách chính xác và nhanh chóng.",
+        "case_failure_type": "unnecessary_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": []
+    },
+    {
+      "id": "R10_missing_handle",
+      "phase": "B",
+      "suite": "base",
+      "case_suite": "base",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "clarify_missing_handle",
+        "difficulty": "medium",
+        "what_it_tests": "Thiếu handle → ask_user, KHÔNG đoán bừa người nào."
+      },
+      "input": "Tóm tắt 5 tweet mới nhất giúp mình",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "response_type": "text"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "question": "Bạn muốn tóm tắt tweet từ tài khoản nào?",
+              "response_type": "text"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "missing_info",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "clarify",
+          "args": {
+            "question": "Bạn muốn tóm tắt tweet từ tài khoản nào?",
+            "response_type": "text"
+          },
+          "result": {
+            "tool": "ask_user",
+            "question": "Bạn muốn tóm tắt tweet từ tài khoản nào?",
+            "response_type": "text",
+            "options": [],
+            "awaiting_user": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "R11_missing_url",
+      "phase": "B",
+      "suite": "base",
+      "case_suite": "base",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "clarify_missing_url",
+        "difficulty": "medium",
+        "what_it_tests": "Nói 'bài này' nhưng không có link → ask_user xin URL."
+      },
+      "input": "Tóm tắt bài viết này hộ mình",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "response_type": "text"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "question": "Bạn có thể cung cấp liên kết đến bài viết mà bạn muốn tóm tắt không?",
+              "response_type": "text"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "missing_info",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "clarify",
+          "args": {
+            "question": "Bạn có thể cung cấp liên kết đến bài viết mà bạn muốn tóm tắt không?",
+            "response_type": "text"
+          },
+          "result": {
+            "tool": "ask_user",
+            "question": "Bạn có thể cung cấp liên kết đến bài viết mà bạn muốn tóm tắt không?",
+            "response_type": "text",
+            "options": [],
+            "awaiting_user": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "R12_confirm_before_send",
+      "phase": "B",
+      "suite": "base",
+      "case_suite": "base",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "confirm_before_write",
+        "difficulty": "medium",
+        "what_it_tests": "Hành động ghi (gửi) → xác nhận trước (ask_user yes_no), không tự gửi."
+      },
+      "input": "Đăng bản tin này lên Telegram giúp mình",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "response_type": "yes_no"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "question": "Bạn có thể cung cấp nội dung cụ thể mà bạn muốn đăng lên Telegram không?",
+              "response_type": "yes_no"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_boundary",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "clarify",
+          "args": {
+            "question": "Bạn có thể cung cấp nội dung cụ thể mà bạn muốn đăng lên Telegram không?",
+            "response_type": "yes_no"
+          },
+          "result": {
+            "tool": "ask_user",
+            "question": "Bạn có thể cung cấp nội dung cụ thể mà bạn muốn đăng lên Telegram không?",
+            "response_type": "yes_no",
+            "options": [],
+            "awaiting_user": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "R13_parallel_web_and_tweets",
+      "phase": "B",
+      "suite": "base",
+      "case_suite": "base",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "parallel_tool_calls",
+        "difficulty": "hard",
+        "what_it_tests": "Một request cần hai nguồn → gọi cả web_search và search_tweets; eval không phụ thuộc thứ tự tool call."
+      },
+      "input": "Tìm trên web tin AI hôm nay và tìm thêm tweet về AI.",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "AI",
+              "topic": "news",
+              "timeframe": "day"
+            }
+          },
+          {
+            "name": "social_search",
+            "args": {
+              "query": "AI"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "AI",
+              "intent": "tin bóng đá mới",
+              "topic": "news",
+              "timeframe": "day"
+            }
+          },
+          {
+            "name": "social_search",
+            "args": {
+              "query": "AI",
+              "search_type": "Latest"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "AI",
+            "intent": "tin bóng đá mới",
+            "topic": "news",
+            "timeframe": "day"
+          },
+          "result": {
+            "tool": "web_search",
+            "query": "AI",
+            "intent": "tin bóng đá mới",
+            "topic": "news",
+            "timeframe": "day",
+            "strict_timeframe": false,
+            "retrieved_at": "2026-07-29T06:41:19+00:00",
+            "items": [
+              {
+                "title": "Kết quả, bảng xếp hạng, lịch thi đấu ASEAN Cup 2026 (AFF Cup) mới nhất",
+                "url": "https://baogialai.com.vn/ket-qua-bang-xep-hang-lich-thi-dau-asean-cup-2026-aff-cup-moi-nhat-post593622.html",
+                "source": "baogialai.com.vn",
+                "summary": "ASEAN Cup 2026, giải đấu trước đy quen thuộc với tên gọi AFF Cup, đã hoàn tất hai lượt trận đầu tiên của mỗi bảng. Đội tuyển Việt Nam gy ấn tượng mạnh bằng chiến thắng 7-0 trước Timor-Leste, nhưng Singapore mới là đội tạm dẫn đầu bảng A nhờ giành trọn 6 điểm sau hai trận.\n\n ket-qua-lich-thi-dau-aff-cup-2026.jpg\") \n\nHình minh họa (AI) [...] World Cup 2026\n\n(GLO)- Giấc mộng bá vương đã hoàn toàn tan vỡ với Tam Sư sau thất bại bạc nhược trước Argentina. Trận tranh hạng 3 với người Pháp lúc 4 giờ ngày 19-7 (theo giờ Việt Nam) sẽ là cứu cánh để kéo họ không sa lầy vào khủng hoảng.\n\nHoàng Anh Gia Lai thử việc 3 ngoại binh người Brazil.   \n\n## Hoàng Anh Gia Lai thử việc 3 ngoại binh người Brazil\n\nWorld Cup 2026\n\n(GLO)- Ngày 17-7, 3 ngoại binh người Brazil đã đến Trung tm Huấn luyện Hàm Rồng để thử việc tại Hoàng Anh Gia Lai (HAGL). [...] Bóng đá\n\n(GLO)- Chiều 25-7, 2 cặp bán kết Giải Bóng đá Vô địch U17 quốc gia Cúp Rồng Đỏ 2026 đã được xác định sau 2 trận tứ kết cuối cùng.\n\nBế mạc Giải bóng đá thiếu niên nhi đồng tỉnh Gia Lai năm 2026  \n\n## Bế mạc Giải bóng đá thiếu niên nhi đồng tỉnh Gia Lai năm 2026\n\nBóng đá\n\n(GLO)- Sau 5 ngày tranh tài sôi nổi, chiều 25-7, tại sn vận động Quy Nhơn (phường Quy Nhơn), Giải bóng đá thiếu niên và nhi đồng tỉnh Gia Lai năm 2026 - tranh cúp Hoa Sen Home đã bế mạc.",
+                "score": 0.23090285,
+                "published_date": "Wed, 29 Jul 2026 01:44:32 GMT",
+                "date": "Wed, 29 Jul 2026 01:44:32 GMT"
+              },
+              {
+                "title": "UEFA dọa rút các đội tuyển châu Âu khỏi World Cup - Tuổi Trẻ Online",
+                "url": "https://tuoitre.vn/uefa-doa-rut-cac-doi-tuyen-chau-au-khoi-world-cup-100260729084946191.htm",
+                "source": "tuoitre.vn",
+                "summary": "## Dòng sự kiện: World Cup 2026\n\n### Tin liên quan\n\nVua phá lưới ASEAN Cup 2026: Đình Bắc cạnh tranh chân sút Indonesia và Malaysia\n\n#### Vua phá lưới ASEAN Cup 2026: Đình Bắc cạnh tranh chân sút Indonesia và Malaysia\n\nXếp hạng ASEAN Cup 2026: Malaysia 'vượt mặt' Thái Lan\n\n#### Xếp hạng ASEAN Cup 2026: Malaysia 'vượt mặt' Thái Lan\n\nLại Lý Huynh đấu '1 chọi 10' ở Đà Nẵng\n\n#### Lại Lý Huynh đấu '1 chọi 10' ở Đà Nẵng\n\n### Tuổi Trẻ Online Newsletters\n\n### Đăng ký ngay để nhận gói tin tức mới [...] World Cup 2026\nthông tin tài khoản\n\n# UEFA dọa rút các đội tuyển châu Âu khỏi World Cup\n\ntác giả\nTHANH ĐỊNH\nnews google\n\nLiên đoàn Bóng đá châu Âu (UEFA) dọa tẩy chay World Cup vì kế hoạch mới của FIFA.\n\n - Ảnh 1.\n\nTây Ban Nha là nhà vô địch của World Cup 2026 - Ảnh: AFP\n\nCụ thể, FIFA dưới sự dẫn dắt của Chủ tịch Gianni Infantino đã công bố ý định thành lập một tổ chức thương mại độc lập mang tên FIFA Forward Enterprise (FFE). [...] Nếu kịch bản này xảy ra, đây sẽ là bi kịch đối với bóng đá thế giới. Sự vắng mặt của các cường quốc bóng đá châu Âu như Tây Ban Nha (nhà đương kim vô địch World Cup 2026), Pháp, Anh hay Đức sẽ hủy hoại hoàn toàn giá trị thương mại lẫn chuyên môn của giải đấu.\n\nTrước đây vào năm 2021, UEFA cũng từng thành công trong việc buộc FIFA phải hủy bỏ ý tưởng tổ chức World Cup hai năm một lần nhờ đe dọa tẩy chay tương tự.\n\n - Ảnh 3.",
+                "score": 0.17964599,
+                "published_date": "Wed, 29 Jul 2026 02:09:00 GMT",
+                "date": "Wed, 29 Jul 2026 02:09:00 GMT"
+              },
+              {
+                "title": "Bảng xếp hạng ASEAN Cup 2026 (AFF Cup) - BXH ASEAN Cup mới nhất",
+                "url": "https://vietnamnet.vn/bang-xep-hang-asean-cup-2026-bxh-asean-cup-moi-nhat-2536686.html",
+                "source": "vietnamnet.vn",
+                "summary": "### Tài Lộc và vị trí bất ngờ ở tuyển Việt Nam tại ASEAN Cup 2026\n ### Tuyển Việt Nam: Đu là ưu tiên của HLV Kim Sang Sik ở ASEAN Cup 2026\n ### Lịch thi đấu của tuyển Việt Nam tại giải ASEAN Cup 2026\n\n.svg)\n\n    Sao chép liên kết; \"Sao chép liên kết\")\n\n Xem thêm về:\n ### Bảng xếp hạng bóng đá\n\n## Tin cùng chuyên mục\n\n## Tin mới\n\nback_to_top [...] Tuyển Việt Nam nằm ở bảng A cùng Indonesia, Singapore, Campuchia và Timor-Leste. Đy là bảng đấu nhiều thử thách, trong đó Indonesia là đối thủ cạnh tranh cho vị trí đầu bảng. Singapore có thể gy khó khăn nhờ lối chơi kỷ luật và thể lực.\n\nTheo lịch thi đấu, thầy trò HLV Kim Sang Sik mở màn bằng chuyến làm khách trước Timor-Leste ngày 24-7. Sau đó, đội tuyển Việt Nam tiếp Singapore ngày 31-7, làm khách của Indonesia ngày 3-8 và khép lại vòng bảng bằng trận gặp Campuchia ngày 7-8. [...] Với tư cách đương kim vô địch, mục tiêu của “Những chiến binh sao vàng” là bảo vệ thành công ngôi vương Đông Nam Á. Tuy nhiên, hành trình này được dự báo không dễ dàng khi Thái Lan và Indonesia là hai đối thủ đáng gờm. Bản lĩnh, sự ổn định và khả năng tận dụng cơ hội sẽ quyết định khả năng tiến su của tuyển Việt Nam.\n\nKết quả bóng đá ASEAN Cup 2026 mới nhất\n\nKết quả bóng đá ASEAN Cup 2026 - VietNamNet cập nhật sớm và chính xác nhất kết quả bóng đá giải vô địch Đông Nam Á - ASEAN Cup 2026.",
+                "score": 0.16555294,
+                "published_date": "Tue, 28 Jul 2026 14:00:00 GMT",
+                "date": "Tue, 28 Jul 2026 14:00:00 GMT"
+              },
+              {
+                "title": "Quyết định gây tranh cãi mới nhất của FIFA khiến UEFA tính tẩy chay World Cup",
+                "url": "https://thethaovanhoa.vn/quyet-dinh-gay-tranh-cai-moi-nhat-cua-fifa-khien-uefa-tinh-tay-chay-world-cup-20260729064102712.htm",
+                "source": "thethaovanhoa.vn",
+                "summary": "FIFA hôm thứ Ba đã công bố một kế hoạch gây tranh cãi nhằm bán cổ phần của World Cup cho các nhà đầu tư tư nhân. Ngay lập tức, UEFA đã chỉ trích mạnh mẽ,",
+                "score": 0.07061741,
+                "published_date": "Tue, 28 Jul 2026 23:00:00 GMT",
+                "date": "Tue, 28 Jul 2026 23:00:00 GMT"
+              }
+            ],
+            "quality": {
+              "status": "sufficient",
+              "relevant_count": 4,
+              "discarded_count": 2,
+              "timeframe_broadened": false
+            },
+            "attempts": [
+              {
+                "query": "AI tin bóng đá mới",
+                "timeframe": "day",
+                "search_depth": "basic",
+                "returned": 6,
+                "accepted": 4
+              }
+            ]
+          }
+        },
+        {
+          "tool": "social_search",
+          "args": {
+            "query": "AI",
+            "search_type": "Latest"
+          },
+          "result": {
+            "tool": "search_tweets",
+            "query": "AI",
+            "search_type": "Latest",
+            "items": [
+              {
+                "title": "One of my struggles with AI is applying it to every day ...",
+                "url": "https://x.com/4WhomJBellTolls/status/2080045245291499623",
+                "source": "x.com",
+                "summary": "Log inSign up\n\n## Post\n\n user avatar\n\n  Jeff Bell\n\n  @4WhomJBellTolls\n\n  One of my struggles with AI is applying it to every day processes. Ronnie has helped. Great insights here.\n\n  user avatar\n\n  Ronnie Evans\n\n  @RonnieAEvans\n\n  Jul 21\n\n  Article cover image\n\n  Article\n\n  AI In Fantasy Sports: Then And Now\n\n  On the Topic of Layers By Ronnie Evans, Goodguy.ai Last summer in Canton, Ohio, Goodguy.ai hosted a panel about AI at the Fantasy Football Expo, and we could tell within... [...] 9:40 PM · Jul 22, 20262.6KViews\n user avatar\n\n  Ronnie Evans\n\n  @RonnieAEvans\n\n  Jul 22\n\n  Thanks and SEE U SOON\n\n  31\n\nDon't miss what's happening\n\nPeople on X are the first to know.\n\nLog inSign up",
+                "score": 0.3815888,
+                "published_date": null,
+                "date": null
+              }
+            ],
+            "backend": "tavily_x_index_fallback",
+            "fallback_reason": "RuntimeError",
+            "quality": {
+              "status": "indexed_fallback",
+              "relevant_count": 1,
+              "live": false
+            },
+            "warning": "The RapidAPI X search backend was unavailable. Tavily's public X index can be delayed and is not a live social search."
+          }
+        }
+      ]
+    },
+    {
+      "id": "R14_out_of_scope_coding",
+      "phase": "B",
+      "suite": "base",
+      "case_suite": "base",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "out_of_scope_coding",
+        "difficulty": "easy",
+        "what_it_tests": "Câu coding ngoài phạm vi research/news → KHÔNG gọi tool."
+      },
+      "input": "Viết giúp mình một hàm Python tính Fibonacci bằng recursion.",
+      "expect": {
+        "no_tool": true,
+        "behavior": "refuse"
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [],
+        "actual_text": "Dưới đây là một hàm Python sử dụng đệ quy để tính số Fibonacci:\n\n```python\ndef fibonacci(n):\n    if n <= 0:\n        return 0\n    elif n == 1:\n        return 1\n    else:\n        return fibonacci(n - 1) + fibonacci(n - 2)\n\n# Ví dụ sử dụng\nn = 10\nprint(f\"Fibonacci của {n} là: {fibonacci(n)}\")\n```\n\nHàm `fibonacci` nhận một số nguyên `n` và trả về số Fibonacci tương ứng. Nếu `n` là 0, hàm trả về 0; nếu `n` là 1, hàm trả về 1. Đối với các giá trị lớn hơn 1, hàm sẽ gọi chính nó để tính tổng của hai số Fibonacci trước đó.",
+        "case_failure_type": "out_of_scope",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": []
+    },
+    {
+      "id": "M01_clarify_then_fill",
+      "phase": "B",
+      "suite": "base",
+      "case_suite": "base",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "multiturn_clarify_fill",
+        "difficulty": "hard",
+        "what_it_tests": "3 turns: carry limit=5 từ lượt 1 + map tên Elon Musk thành handle elonmusk từ lượt 2."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tóm tắt 5 tweet mới nhất giúp mình"
+        },
+        {
+          "role": "user",
+          "content": "Của Elon Musk nhé"
+        },
+        {
+          "role": "user",
+          "content": "Giữ đúng 5 tweet, đừng đổi số lượng"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "timeline",
+            "args": {
+              "screenname": "elonmusk",
+              "limit": 5
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "timeline",
+            "args": {
+              "screenname": "elonmusk",
+              "limit": 5
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "missing_info",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "timeline",
+          "args": {
+            "screenname": "elonmusk",
+            "limit": 5
+          },
+          "result": {
+            "tool": "get_user_tweets",
+            "screenname": "elonmusk",
+            "items": [
+              {
+                "title": "Elon Musk on X: \"Based on strong positive feedback from customers in our beta test program, @SpaceXAI will make Grok 4.5 available to the public tomorrow. It is an Opus-class model, but faster, more token-efficient and lower cost.\" / X",
+                "url": "https://x.com/elonmusk/status/2074740539874775163",
+                "source": "x.com",
+                "summary": "Log inSign up\n\n## Post\n\n user avatar\n\n  Elon Musk\n\n  X\n\n  @elonmusk\n\n  Based on strong positive feedback from customers in our beta test program, @SpaceXAI will make Grok 4.5 available to the public tomorrow. It is an Opus-class model, but faster, more token-efficient and lower cost.\n\n  6:21 AM · Jul 8, 20267.1MViews\n user avatar\n\n  Elon Musk\n\n  X\n\n  @elonmusk\n\n  Jul 8 [...] Jul 8\n\n  We will continue to make refinements to the Grok Build harness and the 1.5T foundation model almost every day in response to user requests. The 2T model will finish training this month and be available to customers next month.\n\n  659K\n user avatar\n\n  Max\n\n  @kudela\\_maxim\n\n  Jul 8\n\n  Elon, today. Not tomorrow, tomorrow is Sol. None will have time for grok.\n\n  34K\n # Join the conversation\n\n  Read 6,329 more replies\n\nDon't miss what's happening\n\nPeople on X are the first to know. [...] Log inSign up",
+                "score": 0.7578844,
+                "published_date": null,
+                "date": null
+              }
+            ],
+            "backend": "tavily_x_index_fallback",
+            "fallback_reason": "RuntimeError",
+            "quality": {
+              "status": "indexed_fallback",
+              "relevant_count": 1,
+              "live": false
+            },
+            "warning": "The RapidAPI timeline backend was unavailable. Tavily's public X index can be delayed and is not a live timeline."
+          }
+        }
+      ]
+    },
+    {
+      "id": "M02_carryover_timeframe",
+      "phase": "B",
+      "suite": "base",
+      "case_suite": "base",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "multiturn_carryover",
+        "difficulty": "hard",
+        "what_it_tests": "3 turns: chỉ xử lý latest turn, carry timeframe=day và topic=news, query robotics."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tin AI hôm nay có gì?"
+        },
+        {
+          "role": "user",
+          "content": "Còn về robotics thì sao?"
+        },
+        {
+          "role": "user",
+          "content": "Chỉ tìm robotics thôi, vẫn là tin hôm nay"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "robotics",
+              "topic": "news",
+              "timeframe": "day"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "robotics",
+              "intent": "tin bóng đá mới",
+              "topic": "news",
+              "timeframe": "day"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "robotics",
+            "intent": "tin bóng đá mới",
+            "topic": "news",
+            "timeframe": "day"
+          },
+          "result": {
+            "tool": "web_search",
+            "query": "robotics",
+            "intent": "tin bóng đá mới",
+            "topic": "news",
+            "timeframe": "day",
+            "strict_timeframe": false,
+            "retrieved_at": "2026-07-29T06:41:31+00:00",
+            "items": [
+              {
+                "title": "Rotterdam Hosts a Meeting Between Italian Companies and Benelux Industry Professionals with GSL Export - Robotics & Automation News",
+                "url": "https://roboticsandautomationnews.com/2026/07/28/rotterdam-hosts-a-meeting-between-italian-companies-and-benelux-industry-professionals-with-gsl-export/103647/",
+                "source": "roboticsandautomationnews.com",
+                "summary": "AGIBOT has unveiled four new robotics products at the World Artificial Intelligence Conference (WAIC) 2026 in Shanghai, expanding its portfolio of humanoid robots, industrial automation systems and … [[Read More...] about AGIBOT unveils four new robots at WAIC 2026 as it expands industrial embodied AI portfolio](\n\n#### Agility Robotics opens new Fremont facility to accelerate physical AI development\n\nAgility Robotics, a humanoid robotics and physical AI company, has opened its new Fremont, California facility designed to accelerate physical AI developments that directly improve performance in … [[Read More...] about Agility Robotics opens new Fremont facility to accelerate physical AI development](\n\n#### 1X unveils 25-degrees-of-freedom humanoid robot hands for NEO [...] ISS National Laboratory has launched the 2026 Orbital Edge Accelerator, a new startup program designed to help deep-tech companies accelerate research, commercialization, and fundraising through … [[Read More...] about ISS National Lab launches Orbital Edge accelerator with up to $750,000 per startup and ISS flight access](\n\n#### HEBI Robotics awarded $850,000 business contract by NASA\n\nNASA has awarded HEBI Robotics continued Small Business Innovation Research (SBIR) funding in the form of a Phase II grant for the creation and testing of physical actuation hardware components for … [[Read More...] about HEBI Robotics awarded $850,000 business contract by NASA](\n\nMore » Space\n\n### Science\n\n#### IEEE study highlights cryogenic VCSELs for high-speed optical interconnects [...] #### Faraday Future highlights robotics expansion and shipment milestone at Automate 2026\n\nFaraday Future’s AI subsidiary, FFAI, says it is accelerating its expansion into commercial robotics following its debut at Automate 2026 in Chicago, where it showcased its \"one brain, multiple forms\" … [[Read More...] about Faraday Future highlights robotics expansion and shipment milestone at Automate 2026](\n\n#### Fujitsu partners with Fanuc, Yaskawa and Kawasaki to advance physical AI using Nvidia technology",
+                "score": 0.5492786,
+                "published_date": "Tue, 28 Jul 2026 13:43:53 GMT",
+                "date": "Tue, 28 Jul 2026 13:43:53 GMT"
+              },
+              {
+                "title": "Robot \"made in Bolivia\" truyền cảm hứng cho thế hệ trẻ",
+                "url": "https://hanoionline.vn/robot-made-in-bolivia-truyen-cam-hung-cho-the-he-tre-410221.htm",
+                "source": "hanoionline.vn",
+                "summary": "Tin liên quan\n\nRobot A.I thay thế lao động thủ công tại vùng sản xuất táo\n\nRobot lập bản đồ băng tan dưới các hồ băng\n\nPhát động cuộc thi Robotics quốc tế AIROC 2026\n\nHàn Quốc tổ chức giải bóng đá dành cho robot hình người\n\nRobot mang gương mặt ông Trump và Zuckerberg\n\nTừ khoá\n\nbolivia robot Robot hình người Đổi mới sáng tạo\n\nTin tức\n\n### Mỹ cáo buộc Iran tấn công lực lượng Mỹ tại Trung Đông\n\n\n\n### Mỹ cáo buộc Iran tấn công lực lượng Mỹ tại Trung Đông [...] # Báo và Phát thanh Truyền hình Hà Nội TRANG THÔNG TIN ĐIỆN TỬ CỦA CƠ QUAN BÁO VÀ PHÁT THANH TRUYỀN HÌNH HÀ NỘI\n\nTin tức\n\n## Robot \"made in Bolivia\" truyền cảm hứng cho thế hệ trẻ\n\nĐỗ Phú\n\nĐỗ Phú\n\n28/07/2026, 21:40\n\nTại Bolivia, một kỹ sư điện tử đã tự chế tạo robot hình người từ các linh kiện sẵn có trong nước với mong muốn khơi dậy niềm đam mê công nghệ và đổi mới sáng tạo cho thế hệ trẻ.\n\nBài viết hay? Hãy đánh giá bài viết\n\nTin liên quan [...] Thủ tướng Australia Anthony Albanese ngày 28/7 cho biết chính phủ nước này sẽ xem xét xy dựng nhà máy lọc dầu mới đầu tiên sau hơn 60 năm nhằm tăng cường an ninh năng lượng, trong bối cảnh xung đột tại Trung Đông ảnh hưởng đến nguồn cung nhiên liệu toàn cầu.\n\n### Trung Quốc - Slovakia tăng cường hợp tác chiến lược\n\n\n\n### Trung Quốc - Slovakia tăng cường hợp tác chiến lược",
+                "score": 0.52378637,
+                "published_date": "Tue, 28 Jul 2026 14:00:00 GMT",
+                "date": "Tue, 28 Jul 2026 14:00:00 GMT"
+              },
+              {
+                "title": "Registration is open for RoboBusiness 2026 - The Robot Report",
+                "url": "https://www.therobotreport.com/registration-is-open-for-robobusiness-2026/",
+                "source": "therobotreport.com",
+                "summary": "The Robot Report\n\n# Registration is open for RoboBusiness 2026\n\nBy Brianna Wessling |\n\nRegistration is now open for RoboBusiness 2026, the leading event for commercial robotics developers. This year, we’ll be celebrating 20 years of RoboBusiness and looking back at how it has helped the robotics industry advance over the past two decades.\n\nRoboBusiness will be at the Santa Clara Convention Center on Oct. 20 and 21, 2026. The event is produced by The Robot Report and parent company Arrowfly.\n\nAttendees at the show will gain the latest insights from experts in robotics and AI on cutting-edge research, industry trends, and innovative applications in sectors such as manufacturing, healthcare, agriculture, logistics, and more. [...] ## Who will you see talk at RoboBusiness 2026?\n\nRoboBusiness features five different conference tracks covering physical AI, enabling technologies, humanoids, field robotics, and business and deployment. The Engineering Theater on the show floor will also feature presentations by industry experts.\n\nSpeakers from many of today’s cutting-edge robotics organizations will present. These include confirmed presenters from AGIBOT, Autonomous Solutions Inc. (ASI), Burro, Chef Robotics, Cobot, PSYONIC, Teradyne Robotics, and more.\n\nThe full agenda is coming soon, and in the meantime, here are noteworthy featured speakers: [...] Home\n News\n Technologies\n  + Batteries / Power Supplies\n  + Cameras / Imaging / Vision\n  + Controllers\n  + End Effectors\n  + Microprocessors / SoCs\n  + Motion Control\n  + Sensors\n  + Soft Robotics\n  + Software / Simulation\n Development\n  + Artificial Intelligence\n  + Human Robot Interaction / Haptics\n  + Mobility / Navigation\n  + Research\n Robots\n  + AGVs\n  + AMRs\n  + Consumer\n  + Collaborative Robots\n  + Drones\n  + Humanoids\n  + Industrial\n  + Self-Driving Vehicles\n  + Unmanned Maritime Systems\n Business\n  + Financial\n    - Investments\n    - Mergers & Acquisitions\n    - Earnings\n  + Markets\n    - Agriculture\n    - Healthcare\n    - Logistics\n    - Manufacturing\n    - Mining\n    - Security\n  + RBR50\n    - RBR50 Winners 2025\n    - RBR50 Winners 2024\n    - RBR50 Winners 2023",
+                "score": 0.3512003,
+                "published_date": "Tue, 28 Jul 2026 20:54:46 GMT",
+                "date": "Tue, 28 Jul 2026 20:54:46 GMT"
+              },
+              {
+                "title": "50 companies delivering robotics in construction - Building Design + Construction",
+                "url": "https://www.bdcnetwork.com/aec-tech/article/55394058/50-companies-delivering-robotics-in-construction",
+                "source": "bdcnetwork.com",
+                "summary": "ICON  \nICON launched its Titan printer in early 2026: a multistory robotic system that prints structural concrete walls up to 27 feet high. The Austin-based company has already printed over 220 structures including homes, military barracks, and the largest 3D-printed neighborhood ever built.\n\nMechasys  \nMechasys develops robotic layout and installation systems for MEP trades, automating the placement of hangers, sleeves, and other ceiling-mounted components from BIM-coordinated plans. The platform is designed to reduce the overhead drilling and marking work that typically keeps skilled MEP crews tied up for weeks on large commercial projects. [...] AEC Tech\n\n# 50 companies delivering robotics in construction\n\nBuiltWorlds' annual Robotics Top 50 report shows off advancements in spatial AI and the growing applications of robotics in construction.\n\nBy BuiltWorlds\n\nJuly 28, 2026\n\n5 min read\n\nAdd Us On Google\n\nEarlier this month, BuiltWorlds released its 2026 Robotics Top 50, showing off the top robotics companies in the global built environment. This year’s list reflects the growing use of robotics on and off the jobsite, including significant advancements in spatial AI.\n\n“We’ve seen jobsite robotics usage rise sharply since 2025,” says Audrey Lynch, Director of Research for BuiltWorlds. “Those piloting robotics specifically rose three-fold, signaling growing awareness and willingness to test the technology.” [...] Here are a dozen North America-based, AEC-specific companies mentioned in the report (Descriptions are provided by BuiltWorlds. For more details on these companies and others listed in the report, access the 2026 Robotics Top 50 List here.):\n\nCanvas (JLG)  \nCanvas, now part of JLG, automates drywall finishing by spraying and sanding joint compound with consistent, repeatable results across large commercial interiors. The robot works alongside human crews to take on the most physically demanding and time-consuming part of the finishing process.",
+                "score": 0.32759354,
+                "published_date": "Tue, 28 Jul 2026 15:42:54 GMT",
+                "date": "Tue, 28 Jul 2026 15:42:54 GMT"
+              }
+            ],
+            "quality": {
+              "status": "sufficient",
+              "relevant_count": 4,
+              "discarded_count": 5,
+              "timeframe_broadened": false
+            },
+            "attempts": [
+              {
+                "query": "robotics tin bóng đá mới",
+                "timeframe": "day",
+                "search_depth": "basic",
+                "returned": 1,
+                "accepted": 1
+              },
+              {
+                "query": "robotics tin bóng đá mới football news 2026",
+                "timeframe": "day",
+                "search_depth": "advanced",
+                "returned": 8,
+                "accepted": 3
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "M03_correction_handle",
+      "phase": "B",
+      "suite": "base",
+      "case_suite": "base",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "multiturn_correction",
+        "difficulty": "hard",
+        "what_it_tests": "3 turns: map tên thường, sửa Sam Altman→Andrej Karpathy, dùng handle karpathy và limit=3."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tweet mới nhất của Sam Altman"
+        },
+        {
+          "role": "user",
+          "content": "À nhầm, của Andrej Karpathy"
+        },
+        {
+          "role": "user",
+          "content": "Lấy 3 tweet mới nhất nhé"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "timeline",
+            "args": {
+              "screenname": "karpathy",
+              "limit": 3
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "timeline",
+            "args": {
+              "screenname": "karpathy",
+              "limit": 3
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "timeline",
+          "args": {
+            "screenname": "karpathy",
+            "limit": 3
+          },
+          "result": {
+            "tool": "get_user_tweets",
+            "screenname": "karpathy",
+            "items": [],
+            "backend": "tavily_x_index_fallback",
+            "fallback_reason": "RuntimeError",
+            "quality": {
+              "status": "no_relevant_results",
+              "relevant_count": 0,
+              "live": false
+            },
+            "warning": "The RapidAPI timeline backend was unavailable. Tavily's public X index can be delayed and is not a live timeline."
+          }
+        }
+      ]
+    },
+    {
+      "id": "M04_clarify_then_url",
+      "phase": "B",
+      "suite": "base",
+      "case_suite": "base",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "multiturn_clarify_url",
+        "difficulty": "medium",
+        "what_it_tests": "3 turns: sau khi được cung cấp URL, latest turn xác nhận chỉ đọc link đó → read_url đúng url."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tóm tắt bài này hộ mình"
+        },
+        {
+          "role": "user",
+          "content": "https://anthropic.com/news/claude"
+        },
+        {
+          "role": "user",
+          "content": "Chỉ đọc đúng link đó thôi"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "fetch",
+            "args": {
+              "url": "https://anthropic.com/news/claude"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "fetch",
+            "args": {
+              "url": "https://anthropic.com/news/claude",
+              "max_age": 0
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "missing_info",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "fetch",
+          "args": {
+            "url": "https://anthropic.com/news/claude",
+            "max_age": 0
+          },
+          "result": {
+            "tool": "read_url",
+            "error": "ReadTimeout",
+            "message": "HTTPSConnectionPool(host='api.firecrawl.dev', port=443): Read timed out. (read timeout=60)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "M05_correction_limit",
+      "phase": "B",
+      "suite": "base",
+      "case_suite": "base",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "multiturn_arg_correction",
+        "difficulty": "hard",
+        "what_it_tests": "3 turns: map tên Elon Musk, carry handle elonmusk, sửa limit 10→3."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Lấy 10 tweet mới nhất của Elon Musk"
+        },
+        {
+          "role": "user",
+          "content": "Cho mình 3 thôi"
+        },
+        {
+          "role": "user",
+          "content": "Vẫn của Elon Musk nhé"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "timeline",
+            "args": {
+              "screenname": "elonmusk",
+              "limit": 3
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "timeline",
+            "args": {
+              "screenname": "elonmusk",
+              "limit": 3
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "timeline",
+          "args": {
+            "screenname": "elonmusk",
+            "limit": 3
+          },
+          "result": {
+            "tool": "get_user_tweets",
+            "screenname": "elonmusk",
+            "items": [
+              {
+                "title": "Elon Musk on X: \"Based on strong positive feedback from customers in our beta test program, @SpaceXAI will make Grok 4.5 available to the public tomorrow. It is an Opus-class model, but faster, more token-efficient and lower cost.\" / X",
+                "url": "https://x.com/elonmusk/status/2074740539874775163",
+                "source": "x.com",
+                "summary": "Log inSign up\n\n## Post\n\n user avatar\n\n  Elon Musk\n\n  X\n\n  @elonmusk\n\n  Based on strong positive feedback from customers in our beta test program, @SpaceXAI will make Grok 4.5 available to the public tomorrow. It is an Opus-class model, but faster, more token-efficient and lower cost.\n\n  6:21 AM · Jul 8, 20267.1MViews\n user avatar\n\n  Elon Musk\n\n  X\n\n  @elonmusk\n\n  Jul 8 [...] Jul 8\n\n  We will continue to make refinements to the Grok Build harness and the 1.5T foundation model almost every day in response to user requests. The 2T model will finish training this month and be available to customers next month.\n\n  659K\n user avatar\n\n  Max\n\n  @kudela\\_maxim\n\n  Jul 8\n\n  Elon, today. Not tomorrow, tomorrow is Sol. None will have time for grok.\n\n  34K\n # Join the conversation\n\n  Read 6,329 more replies\n\nDon't miss what's happening\n\nPeople on X are the first to know. [...] Log inSign up",
+                "score": 0.7578844,
+                "published_date": null,
+                "date": null
+              }
+            ],
+            "backend": "tavily_x_index_fallback",
+            "fallback_reason": "RuntimeError",
+            "quality": {
+              "status": "indexed_fallback",
+              "relevant_count": 1,
+              "live": false
+            },
+            "warning": "The RapidAPI timeline backend was unavailable. Tavily's public X index can be delayed and is not a live timeline."
+          }
+        }
+      ]
+    },
+    {
+      "id": "M06_switch_tool",
+      "phase": "B",
+      "suite": "base",
+      "case_suite": "base",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "multiturn_switch_tool",
+        "difficulty": "hard",
+        "what_it_tests": "3 turns: explicitly bỏ Twitter, chuyển sang web_search news, giữ chủ đề OpenAI."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Mọi người nói gì về OpenAI trên Twitter?"
+        },
+        {
+          "role": "user",
+          "content": "Bỏ Twitter, chuyển sang tìm trên web tin tức đi"
+        },
+        {
+          "role": "user",
+          "content": "Giữ chủ đề OpenAI"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "OpenAI",
+              "topic": "news"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "OpenAI",
+              "intent": "tin tức",
+              "topic": "news",
+              "timeframe": "week"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "OpenAI",
+            "intent": "tin tức",
+            "topic": "news",
+            "timeframe": "week"
+          },
+          "result": {
+            "tool": "web_search",
+            "query": "OpenAI",
+            "intent": "tin tức",
+            "topic": "news",
+            "timeframe": "week",
+            "strict_timeframe": false,
+            "retrieved_at": "2026-07-29T06:42:41+00:00",
+            "items": [
+              {
+                "title": "Mô hình OpenAI bị phát hiện thực hiện cuộc tấn công thứ hai - Báo VnExpress",
+                "url": "https://vnexpress.net/mo-hinh-openai-bi-phat-hien-thuc-hien-cuoc-tan-cong-thu-hai-5102745.html",
+                "source": "vnexpress.net",
+                "summary": "Trong bản tin cập nhật hôm 28/7, OpenAI thông báo đã \"vô hiệu hóa, mã hóa và cấm tiếp cận\" đối với mô hình AI mất kiểm soát.\n\nLogo OpenAI và một số sản phẩm của công ty hiển thị trên một smartphone. Ảnh: Reuters\n\nLogo OpenAI và một số sản phẩm của công ty hiển thị trên một smartphone. Ảnh: Reuters [...] \"Những mô hình AI tiên phong đang thu hẹp khoảng cách với tin tặc hàng đầu thế giới\", ông nói, đồng thời cảnh báo những vụ tấn công tương tự có thể được tiến hành bằng công nghệ sẵn có, nằm ngoài môi trường bảo mật của các phòng thí nghiệm.\n\nĐiệp Anh (Theo Reuters)\n\nTrở lại Khoa học công nghệTrở lại Khoa học công nghệ\n\ngoogle Thêm VnExpress trên Google   Chọn VnExpress làm nguồn ưu tiên trên Google Search. Xem hướng dẫn.\n\n   Copy link thành công [...] Cu chuyện AI thoát vòng kiểm soát dù thử nghiệm diễn ra trong môi trường \"cách ly triệt để\" đang gy ra những lo u xoay quanh năng lực và mối đe dọa từ những phòng thí nghiệm hàng đầu. Matt Suiche, kỹ sư an ninh mạng tại công ty Tolmo, đánh giá sự việc cho thấy hệ thống AI giờ đy có năng lực tương đương chuyên gia và tin tặc lành nghề.",
+                "score": 0.82288796,
+                "published_date": "Wed, 29 Jul 2026 02:47:12 GMT",
+                "date": "Wed, 29 Jul 2026 02:47:12 GMT"
+              },
+              {
+                "title": "OpenAI lên kế hoạch xây dựng trung tâm dữ liệu khổng lồ 30 tỷ USD tại Georgia",
+                "url": "https://vn.investing.com/news/stock-market-news/openai-len-ke-hoach-xay-dung-trung-tam-du-lieu-khong-lo-30-ty-usd-tai-georgia-2670208",
+                "source": "vn.investing.com",
+                "summary": "Điện năng & Chi phí: OpenAI đã đảm bảo được 3,2 gigawatt (GW) từ Georgia Power — đủ để cung cấp điện cho khoảng 2,4 triệu hộ gia đình. Công ty cam kết đầu tư 20 tỷ USD tại địa phương để nhận các ưu đãi, với tổng chi phí dự kiến vượt 30 tỷ USD khi đạt công suất tối đa.\n\n   Lộ trình: Công suất ban đầu sẽ đi vào hoạt động vào năm 2028, với kế hoạch mở rộng toàn diện kéo dài đến năm 2032.\n\nCập nhật tin tức nóng nhất bằng cách nâng cấp lên InvestingPro - giảm ngay 60% hôm nay [...] Tin tức khác\n\n       Tin Mới nhận\n       Tin Phổ biến Nhất\n       Lịch Kinh tế\n       Ý Tưởng Đầu Tư\n       Hồ Sơ SEC\n       Lợi Tức\n       Xếp Hạng của Nhà Phân Tích\n       Các Bản Ghi\n\n   Phân tích \n\nPhân tích \n       Tổng quan Thị trường\n       Tiền tệ\n       Thị trường Chứng khoán\n       Hàng hoá\n       Trái phiếu\n       Tiền điện tử\n\nXem thêm ở mục Quan Điểm\n\n       Phân tích Xem Nhiều nhất\n       Truyện Tranh\n       Các lựa chọn của biên tập viên\n\n   Kỹ thuật [...] -0.67%\n\nPVS\n\n33,900.00\n\n+300.0\n\n+0.89%\n\nQuảng cáo\n\nBài Viết Phổ Biến Nhất\n\nTin tức\n\nPhân tích\n\nImage 2\n\nImage 3\n\nVì sao cuộc họp Fed tháng 7 trở nên khó dự báo?\n\nTheo Investing.co...\n\n28 thg 7, 2026\n\nImage 4\n\nImage 5\n\nIran phóng tên lửa vào lực lượng Mỹ ở Trung Đông, phá vỡ lệnh ngừng bắn\n\nTheo Investing.co...\n\n28 thg 7, 2026\n\nImage 6\n\nImage 7\n\nGiá dầu tăng hơn 4% khi Iran tấn công, lo ngại nguồn cung tái bùng phát\n\nTheo Investing.co...\n\n28 thg 7, 2026\n\nImage 8\n\nImage 9",
+                "score": 0.75809944,
+                "published_date": "Wed, 22 Jul 2026 13:20:20 GMT",
+                "date": "Wed, 22 Jul 2026 13:20:20 GMT"
+              },
+              {
+                "title": "OpenAI mang giọng nói lên bản desktop ChatGPT, 5 gói trả phí được ưu tiên | Yellow",
+                "url": "https://yellow.com/vi/news/openai-mang-gi%E1%BB%8Dng-n%C3%B3i-l%C3%AAn-chatgpt-b%E1%BA%A3n-desktop-5-nh%C3%B3m-thu%C3%AA-bao-%C4%91%C6%B0%E1%BB%A3c-%C6%B0u-ti%C3%AAn",
+                "source": "yellow.com",
+                "summary": "Tin Tức Liên Quan\n\nOpenAI m thầm thử nghiệm Bidi 1 trong khi ChatGPT học lắng nghe ngay khi đang nói\n\nMô hình giọng nói hai chiều Bidi 1 cho phép ChatGPT nói, nghe và xử lý ngắt lời theo thời gian thực, đã xuất hiện với một nhóm nhỏ người dùng.\n\nOpenAI gặp sự cố, ChatGPT, Codex và API “tắt tiếng” gần 50 phút sáng thứ Bảy\n\nChatGPT, Codex và API của OpenAI bị ngừng gần 50 phút toàn cầu, thúc đẩy lại tranh luận về rủi ro tập trung và vai trò tính toán phi tập trung. [...] Apr 18, 2026\n\nBài phn tích cách Claude Mythos, mẫu AI “tiền tuyến” tập trung vào khai thác lỗ hổng, có thể làm rung chuyển an ninh mạng, tài chính và hạ tầng crypto.\n\nBài viết học tập liên quan\n\nCách Sử Dụng Bot Giao Dịch Cổ Phiếu AI: Công Cụ Miễn Phí Và Rủi Ro Thực Sự\n\nHướng dẫn bot giao dịch cổ phiếu AI cho người mới, cách dùng công cụ miễn phí và các rủi ro thực tế; backtest không phản ánh hiệu suất thật.\n\nAI phi tập trung đang tái định nghĩa quyền kiểm soát các mô hình vận hành Web3 [...] Codex vừa thay thế ChatGPT trong chính quy trình làm việc nội bộ của OpenAI?\n\nJul 05, 2026\n\nNghiên cứu cho thấy Codex tạo 99,8% token nội bộ, bùng nổ ở người không phải lập trình viên và báo hiệu kỷ nguyên ưu tiên agent thay cho chatbot.\n\nOpenAI ra mắt GPT-5.5, vượt Opus 4.7 trong tác vụ agent và 14 bài đánh giá chuẩn\n\nApr 23, 2026\n\nOpenAI ra mắt GPT-5.5, tập trung tác vụ agent, vượt Opus 4.7 trên 14 benchmark, nổi bật ở Terminal-Bench, FrontierMath và dùng máy tính.",
+                "score": 0.74004334,
+                "published_date": "Sat, 25 Jul 2026 13:53:00 GMT",
+                "date": "Sat, 25 Jul 2026 13:53:00 GMT"
+              },
+              {
+                "title": "Eightco Holdings (NASDAQ: ORBS) thông báo về việc tham gia vòng gọi vốn trị giá 52,5 triệu USD của World Foundation khi World Foundation chuyển đổi từ việc xây dựng mạng lưới sang mở rộng quy mô tiện ích.",
+                "url": "https://www.prnewswire.com/vn/news-releases/u0065u0069u0067u0068u0074u0063u006Fu002Du0068u006Fu006Cu0064u0069u006Eu0067u0073u002Du0028u006Eu0061u0073u0064u0061u0071u003Au002Du006Fu0072-302836431.html",
+                "source": "prnewswire.com",
+                "summary": "vào OpenAI, WLD và Beast Industries; các tuyên bố rằng OpenAI đã nộp hồ sơ S-1 bảo mật, chuẩn bị cho một đợt chào bán cổ phiếu lần đầu ra công chúng dự kiến trong tương lai; và các tuyên bố liên quan đến các giai đoạn tiếp theo của dự án trung tm dữ liệu của OpenAI tại tiểu bang Georgia trong giai đoạn từ năm 2028 đến năm 2032. Các từ ngữ như \"lập kế hoạch\", \"kỳ vọng\", \"sẽ\", \"dự kiến\", \"tiếp tục\", \"mở rộng\", \"thúc đẩy\", \"phát triển\", \"tin rằng\", \"hướng dẫn\", \"mục tiêu\", \"có thể\", \"duy trì\", \"dự [...] Vào ngày 21 tháng 7, có thông báo rằng công ty quản lý tài sản Grayscale đã nộp hồ sơ lên Ủy Ban Chứng Khoán và Giao Dịch Hoa Kỳ (SEC) để ra mắt quỹ ETF đầu tiên tại Hoa Kỳ gắn với Worldcoin (theo Decrypt).\n Vào ngày 21 tháng 7, OpenAI đã công bố ra mắt chương trình ChatGPT dành cho các doanh nghiệp nhỏ, một sáng kiến nhằm giúp các doanh nghiệp nhỏ nng cao năng suất và mở rộng hoạt động kinh doanh bằng ChatGPT (theo OpenAI). [...] Share toX\n\nCơ cấu kho quỹ của Eightco tính đến ngày 26 tháng 7 năm 2026: 90 triệu USD vốn chủ sở hữu OpenAI (gián tiếp), 18 triệu USD vốn chủ sở hữu Beast Industries, 16.278 ETH, gần 302 triệu token WLD, 142 triệu USD tiền mặt và các khoản tương đương, tổng cộng khoảng 391 triệu USD\n\nVừa qua, OpenAI thông báo rằng họ đã nộp hồ sơ S-1 bảo mật, chuẩn bị cho đợt chào bán cổ phiếu lần đầu ra công chúng dự kiến trong tương lai",
+                "score": 0.6899958,
+                "published_date": "Tue, 28 Jul 2026 11:39:00 GMT",
+                "date": "Tue, 28 Jul 2026 11:39:00 GMT"
+              },
+              {
+                "title": "Dự báo: Nvidia bảo lãnh 250 tỷ USD cho trung tâm dữ liệu OpenAI Ohio",
+                "url": "https://phemex.com/vi/academy/nvidia-openai-ohio-data-center-guarantee",
+                "source": "phemex.com",
+                "summary": "Bản tin cuối tuần dễ bị nhầm lẫn với một thỏa thuận đã có sẵn, và nhầm lẫn này có thể dẫn đến quyết định giao dịch sai lầm. Vào tháng 9/2025, NVIDIA và OpenAI công bố hợp tác chiến lược triển khai tối thiểu 10 gigawatt hệ thống NVIDIA, với việc NVIDIA dự định đầu tư đến 100 tỷ USD theo từng gigawatt đưa vào hoạt động. Đó là thỏa thuận chính thức, đã được xác nhận trên NVIDIA newsroom. Còn bảo lãnh Ohio là một thỏa thuận khác, quy mô gấp hơn hai lần và đang ở giai đoạn thảo luận. [...] Tin tức Bài viết phương tiện truyền thông mới nhất\n\nHợp đồng Image 6: menu tag\n\nKhuyến mãi\n\nTrung tâm sự kiện Hợp đồng Tương lai Khám phá các sự kiện hợp đồng tương lai và nhận phần thưởng hấp dẫn\n\nCác tính năng\n\nUSDⓈ-M Perpetual Hợp đồng vĩnh viễn sử dụng USDT hoặc USDC làm tiền ký quỹ\n\nCOIN-M Perpetual Hợp đồng vĩnh viễn sử dụng đồng tiền cụ thể làm tiền ký quỹ\n\nSao chép giao dịch Theo dõi các nhà giao dịch hàng đầu và sao chép các giao dịch của họ [...] Bản tin cuối tuần trên Phemex từng đề cập việc OpenAI tìm kiếm mô hình thuê chip Nvidia, và các cuộc đàm phán về bảo lãnh chính là nền tảng của nội dung đó. Leasing (thuê) sẽ là cách OpenAI tận dụng nguồn lực tại Ohio mà không cần sở hữu, còn bảo lãnh là điều cần thiết để dự án này được tài trợ và xây dựng ngay từ đầu.\n\n## Hai thỏa thuận, một mối quan hệ ngày càng rối rắm",
+                "score": 0.6737291,
+                "published_date": "Mon, 27 Jul 2026 09:45:41 GMT",
+                "date": "Mon, 27 Jul 2026 09:45:41 GMT"
+              }
+            ],
+            "quality": {
+              "status": "sufficient",
+              "relevant_count": 5,
+              "discarded_count": 0,
+              "timeframe_broadened": false
+            },
+            "attempts": [
+              {
+                "query": "OpenAI tin tức",
+                "timeframe": "week",
+                "search_depth": "basic",
+                "returned": 8,
+                "accepted": 8
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

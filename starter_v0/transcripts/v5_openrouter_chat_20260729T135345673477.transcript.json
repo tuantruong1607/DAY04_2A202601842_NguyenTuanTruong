@@ -1,0 +1,291 @@
+{
+  "transcript_id": "v5_openrouter_chat_20260729T135345673477",
+  "version": "v5",
+  "artifact_version": "v5+p520f36050b86+tb303857e6606",
+  "prompt_hash": "520f36050b8683f620b5f38693a553e9a55484a2fe9daeb939314348fb0283ca",
+  "tools_hash": "b303857e660637339444e3517684d68ad1a8edb926922a800ce1ddeb96be48a0",
+  "provider": "openrouter",
+  "model": null,
+  "system_prompt": "artifacts\\system_prompt.md",
+  "tools": "artifacts\\tools.yaml",
+  "history_window": 5,
+  "max_tool_rounds": 4,
+  "created_at": "2026-07-29T13:54:08",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-07-29T13:53:56",
+      "user": "Chuyển nhượng Real Madrid",
+      "status": "answered",
+      "assistant_text": "### Kết luận\nReal Madrid đang có những động thái chuyển nhượng đáng chú ý trong thời gian gần đây. Họ dự kiến sẽ ký hợp đồng với cầu thủ trẻ Yan Diomande từ RB Leipzig với mức phí khoảng 135 triệu euro. Đồng thời, có thông tin rằng Manchester United đang chuẩn bị một lời đề nghị cho Aurélien Tchouaméni, trong khi Vinícius Júnior cũng đang thu hút sự quan tâm từ Arsenal và Liverpool.\n\n### Những gì đã kiểm tra\n- Real Madrid gần như đã hoàn tất việc ký hợp đồng với Yan Diomande, một tài năng trẻ từ RB Leipzig, với mức phí có thể trở thành kỷ lục của câu lạc bộ.\n- Manchester United đang có ý định chiêu mộ Aurélien Tchouaméni, trong khi Vinícius Júnior có thể rời Real Madrid nếu nhận được lời đề nghị hợp lý.\n- Các nguồn tin từ ESPN và Sports Illustrated đều xác nhận thông tin này.\n\n### Mức tin cậy\nCao, vì thông tin được xác nhận từ nhiều nguồn báo chí uy tín như ESPN và Sports Illustrated.\n\n### Nguồn\n- [Sports Illustrated](https://www.si.com/soccer/transfer-rumors-real-madrid-vinicius-jr-u-turn-man-utd-tchouameni-bid)\n- [ESPN](https://www.espn.com/soccer/story/_/id/49460425/real-madrid-set-sign-yan-diomande-135m-deal-rb-leipzig-transfer)\n- [The News International](https://www.thenews.com.pk/latest/1410347-real-madrid-advance-yan-diomande-signing-amid-vincius-jnior-transfer-rumours)\n- [Telecom Asia Sport](https://www.telecomasia.net/news/football/mbappe-perez-olise-real-madrid-bayern/)\n- [Yahoo Sports](https://sports.yahoo.com/articles/deal-real-madrid-agree-terms-192100570.html)",
+      "rounds": [
+        {
+          "round": 1,
+          "stage": "planning",
+          "assistant_text": null,
+          "model_tool_calls": [
+            {
+              "name": "lookup",
+              "args": {
+                "query": "Real Madrid",
+                "intent": "tin chuyển nhượng",
+                "topic": "news",
+                "timeframe": "week"
+              }
+            }
+          ],
+          "tool_calls": [
+            {
+              "name": "lookup",
+              "args": {
+                "query": "Real Madrid",
+                "intent": "tin chuyển nhượng",
+                "topic": "news",
+                "timeframe": "week",
+                "strict_timeframe": false
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "lookup",
+              "args": {
+                "query": "Real Madrid",
+                "intent": "tin chuyển nhượng",
+                "topic": "news",
+                "timeframe": "week",
+                "strict_timeframe": false
+              },
+              "result": {
+                "tool": "web_search",
+                "query": "Real Madrid",
+                "intent": "tin chuyển nhượng",
+                "topic": "news",
+                "timeframe": "week",
+                "strict_timeframe": false,
+                "retrieved_at": "2026-07-29T06:54:01+00:00",
+                "items": [
+                  {
+                    "title": "Transfer Rumors: Real Madrid’s Vinicius Jr U-Turn; Man Utd Make Tchouameni Bid - Sports Illustrated",
+                    "url": "https://www.si.com/soccer/transfer-rumors-real-madrid-vinicius-jr-u-turn-man-utd-tchouameni-bid",
+                    "source": "si.com",
+                    "summary": "# Transfer Rumors: Real Madrid’s Vinicius Jr U-Turn; Man Utd Make Tchouameni Bid. Pedro Neto, Bruno Guimarães, Bradley Barcola, Rodri and more feature in the gossip. *Sports Illustrated rounds up the latest**transfer**rumors and gossip from around the world.*. Liverpool also hold an interest in the Portugal international, who is valued around $91 million (£68 million). Manchester United are readying a bid of $91 million (£68 million) to sign Real Madrid midfielder **Aurélien Tchouaméni**. **Tchouaméni** has made it clear he is open to playing for Man Utd if he is no longer wanted by Real Madrid. Arsenal, Chelsea, Liverpool, Man City, Man Utd and Newcastle are all interested in signing Porto winger **Oskar Pietuszewski**. Both Barcelona and PSG have made contact wth Man City midfielder **Rodri** in an attempt to rival Real Madrid’s pursuit of the World Cup winner. Meanwhile, **Vinícius Jr**’s representatives have reached out to Arsenal, Liverpool and Man City, with all three Premier League sides expressing interest in striking a summer deal.",
+                    "score": 0.7099254,
+                    "published_date": "Sun, 26 Jul 2026 23:05:00 GMT",
+                    "date": "Sun, 26 Jul 2026 23:05:00 GMT"
+                  },
+                  {
+                    "title": "Real Madrid set to sign Yan Diomande in €135m deal - ESPN",
+                    "url": "https://www.espn.com/soccer/story/_/id/49460425/real-madrid-set-sign-yan-diomande-135m-deal-rb-leipzig-transfer",
+                    "source": "espn.com",
+                    "summary": "Sources: Madrid set to sign €135m Diomande. Sources: Arsenal explore move for Vinícius Júnior. # Real Madrid set to sign Yan Diomande in €135m deal. Real Madrid expect to complete a deal to sign Yan Diomande from RB Leipzig in the coming hours, sources have told ESPN. Winger Diomande, 19, is one of football's top young prospects after excelling in the Bundesliga last season -- scoring 12 goals and providing eight assists -- and starring for Ivory Coast at the World Cup. A source told ESPN that Madrid were set to seal the teenager's signing between Monday and Tuesday, for a deal expected to total €135 million ($153.8m) including variables, with a fixed sum of between €115m ($131m) and €120m ($136.7m). If the add-ons are achieved, Diomande would represent a record transfer for Madrid, surpassing the signings of Jude Bellingham from Borussia Dortmund and Eden Hazard from Chelsea. **- Arsenal interested in Real Madrid star Vinícius Júnior - sources**.",
+                    "score": 0.6783488,
+                    "published_date": "Mon, 27 Jul 2026 07:19:37 GMT",
+                    "date": "Mon, 27 Jul 2026 07:19:37 GMT"
+                  },
+                  {
+                    "title": "Real Madrid advance Yan Diomande signing amid Vinícius Júnior transfer rumours - The News International",
+                    "url": "https://www.thenews.com.pk/latest/1410347-real-madrid-advance-yan-diomande-signing-amid-vincius-jnior-transfer-rumours",
+                    "source": "thenews.com.pk",
+                    "summary": "Diomande, who attracted interest from Liverpool and Paris Saint-Germain, scored 12 Bundesliga goals last season and impressed at the 2026 FIFA World Cup. Meanwhile, Sport reports that Real Madrid will only consider offers of at least 160 million euros for Vinícius Júnior. Real Madrid are close to completing the signing of RB Leipzig winger Yan Diomande, according to journalist Fabrizio Romano. The report said the Ivory Coast international is expected to join the Spanish club for a fee of more than 100 million euros and will travel to Madrid this week to complete a medical and sign a five-year contract. Sport reports that Real Madrid will only consider offers of at least 160 million euros for Vinícius Júnior. According to ESPN, Arsenal have explored the possibility of signing the Brazil forward, who has one year remaining on his contract, although discussions are still at an early stage. * Arsenal consider move for Vinícius Júnior amid Real Madrid contract uncertainty.",
+                    "score": 0.6260562,
+                    "published_date": "Mon, 27 Jul 2026 01:55:07 GMT",
+                    "date": "Mon, 27 Jul 2026 01:55:07 GMT"
+                  },
+                  {
+                    "title": "Mbappé Informs Pérez He Has Persuaded Olise to Join Real Madrid from Bayern - Telecom Asia Sport",
+                    "url": "https://www.telecomasia.net/news/football/mbappe-perez-olise-real-madrid-bayern/",
+                    "source": "telecomasia.net",
+                    "summary": "# Mbappé Informs Pérez He Has Persuaded Olise to Join Real Madrid from Bayern. **Real Madrid forward Kylian Mbappé has informed club president Florentino Pérez that he has successfully convinced his France teammate, Bayern Munich's Michael Olise, to join the Spanish giants.**. According to German publication Bild, this conversation took place during the recent World Cup. Mbappé, who has been friends with Olise for some time, has been actively promoting the idea of this transfer. It is reported that during the tournament, Kylian communicated daily with the Bayern striker, detailing the advantages of moving to Madrid. In particular, Mbappé assured Olise that Real Madrid greatly needs his playing skills and praised life in the Spanish capital, highlighting the local climate, restaurants, and city infrastructure. Olise has been with Bayern Munich since 2024. During his two years with Bayern, Olise has won two Bundesliga titles, as well as the domestic Cup and Supercup. Real Madrid finished as runners-up in La Liga for the 2025/26 season.",
+                    "score": 0.6216563,
+                    "published_date": "Wed, 22 Jul 2026 20:47:11 GMT",
+                    "date": "Wed, 22 Jul 2026 20:47:11 GMT"
+                  },
+                  {
+                    "title": "🤝It's a deal: Real Madrid agree terms with Diomandé - Yahoo Sports",
+                    "url": "https://sports.yahoo.com/articles/deal-real-madrid-agree-terms-192100570.html",
+                    "source": "sports.yahoo.com",
+                    "summary": "* LeBron to 76ers: Winners/losers. * Day in the life of Caitlin Clark. # 🤝It's a deal: Real Madrid agree terms with Diomandé. Real Madrid have reached a verbal agreement on personal terms with young talent Yan Diomande. After receiving the player’s approval for the move, the Madrid club have strengthened their position in the race for one of the biggest prospects of the summer transfer market. ## Fresh move in response to Leipzig’s stance. After RB Leipzig rejected an initial offer of €90 million plus €10 million in add-ons, the Real Madrid board are already preparing a higher bid. The aim of the club’s hierarchy is to unlock negotiations and complete the transfer as soon as possible. Meanwhile, Paris Saint-Germain, who had also secured the player’s approval back in June, have reopened talks. The Parisian club are looking to press their case until the very last moment to prevent Diomande from heading to the Spanish capital.",
+                    "score": 0.6208291,
+                    "published_date": "Sat, 25 Jul 2026 19:21:00 GMT",
+                    "date": "Sat, 25 Jul 2026 19:21:00 GMT"
+                  }
+                ],
+                "quality": {
+                  "status": "sufficient",
+                  "relevant_count": 5,
+                  "discarded_count": 1,
+                  "timeframe_broadened": false
+                },
+                "attempts": [
+                  {
+                    "query": "Real Madrid tin chuyển nhượng",
+                    "timeframe": "week",
+                    "search_depth": "basic",
+                    "returned": 8,
+                    "accepted": 7
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "stage": "synthesis",
+          "assistant_text": "### Kết luận\nReal Madrid đang có những động thái chuyển nhượng đáng chú ý trong thời gian gần đây. Họ dự kiến sẽ ký hợp đồng với cầu thủ trẻ Yan Diomande từ RB Leipzig với mức phí khoảng 135 triệu euro. Đồng thời, có thông tin rằng Manchester United đang chuẩn bị một lời đề nghị cho Aurélien Tchouaméni, trong khi Vinícius Júnior cũng đang thu hút sự quan tâm từ Arsenal và Liverpool.\n\n### Những gì đã kiểm tra\n- Real Madrid gần như đã hoàn tất việc ký hợp đồng với Yan Diomande, một tài năng trẻ từ RB Leipzig, với mức phí có thể trở thành kỷ lục của câu lạc bộ.\n- Manchester United đang có ý định chiêu mộ Aurélien Tchouaméni, trong khi Vinícius Júnior có thể rời Real Madrid nếu nhận được lời đề nghị hợp lý.\n- Các nguồn tin từ ESPN và Sports Illustrated đều xác nhận thông tin này.\n\n### Mức tin cậy\nHigh, vì thông tin được xác nhận từ nhiều nguồn báo chí uy tín như ESPN và Sports Illustrated.\n\n### Nguồn\n- [Sports Illustrated](https://www.si.com/soccer/transfer-rumors-real-madrid-vinicius-jr-u-turn-man-utd-tchouameni-bid)\n- [ESPN](https://www.espn.com/soccer/story/_/id/49460425/real-madrid-set-sign-yan-diomande-135m-deal-rb-leipzig-transfer)\n- [The News International](https://www.thenews.com.pk/latest/1410347-real-madrid-advance-yan-diomande-signing-amid-vincius-jnior-transfer-rumours)\n- [Telecom Asia Sport](https://www.telecomasia.net/news/football/mbappe-perez-olise-real-madrid-bayern/)\n- [Yahoo Sports](https://sports.yahoo.com/articles/deal-real-madrid-agree-terms-192100570.html)",
+          "model_tool_calls": [],
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "Real Madrid",
+            "intent": "tin chuyển nhượng",
+            "topic": "news",
+            "timeframe": "week",
+            "strict_timeframe": false
+          },
+          "result": {
+            "tool": "web_search",
+            "query": "Real Madrid",
+            "intent": "tin chuyển nhượng",
+            "topic": "news",
+            "timeframe": "week",
+            "strict_timeframe": false,
+            "retrieved_at": "2026-07-29T06:54:01+00:00",
+            "items": [
+              {
+                "title": "Transfer Rumors: Real Madrid’s Vinicius Jr U-Turn; Man Utd Make Tchouameni Bid - Sports Illustrated",
+                "url": "https://www.si.com/soccer/transfer-rumors-real-madrid-vinicius-jr-u-turn-man-utd-tchouameni-bid",
+                "source": "si.com",
+                "summary": "# Transfer Rumors: Real Madrid’s Vinicius Jr U-Turn; Man Utd Make Tchouameni Bid. Pedro Neto, Bruno Guimarães, Bradley Barcola, Rodri and more feature in the gossip. *Sports Illustrated rounds up the latest**transfer**rumors and gossip from around the world.*. Liverpool also hold an interest in the Portugal international, who is valued around $91 million (£68 million). Manchester United are readying a bid of $91 million (£68 million) to sign Real Madrid midfielder **Aurélien Tchouaméni**. **Tchouaméni** has made it clear he is open to playing for Man Utd if he is no longer wanted by Real Madrid. Arsenal, Chelsea, Liverpool, Man City, Man Utd and Newcastle are all interested in signing Porto winger **Oskar Pietuszewski**. Both Barcelona and PSG have made contact wth Man City midfielder **Rodri** in an attempt to rival Real Madrid’s pursuit of the World Cup winner. Meanwhile, **Vinícius Jr**’s representatives have reached out to Arsenal, Liverpool and Man City, with all three Premier League sides expressing interest in striking a summer deal.",
+                "score": 0.7099254,
+                "published_date": "Sun, 26 Jul 2026 23:05:00 GMT",
+                "date": "Sun, 26 Jul 2026 23:05:00 GMT"
+              },
+              {
+                "title": "Real Madrid set to sign Yan Diomande in €135m deal - ESPN",
+                "url": "https://www.espn.com/soccer/story/_/id/49460425/real-madrid-set-sign-yan-diomande-135m-deal-rb-leipzig-transfer",
+                "source": "espn.com",
+                "summary": "Sources: Madrid set to sign €135m Diomande. Sources: Arsenal explore move for Vinícius Júnior. # Real Madrid set to sign Yan Diomande in €135m deal. Real Madrid expect to complete a deal to sign Yan Diomande from RB Leipzig in the coming hours, sources have told ESPN. Winger Diomande, 19, is one of football's top young prospects after excelling in the Bundesliga last season -- scoring 12 goals and providing eight assists -- and starring for Ivory Coast at the World Cup. A source told ESPN that Madrid were set to seal the teenager's signing between Monday and Tuesday, for a deal expected to total €135 million ($153.8m) including variables, with a fixed sum of between €115m ($131m) and €120m ($136.7m). If the add-ons are achieved, Diomande would represent a record transfer for Madrid, surpassing the signings of Jude Bellingham from Borussia Dortmund and Eden Hazard from Chelsea. **- Arsenal interested in Real Madrid star Vinícius Júnior - sources**.",
+                "score": 0.6783488,
+                "published_date": "Mon, 27 Jul 2026 07:19:37 GMT",
+                "date": "Mon, 27 Jul 2026 07:19:37 GMT"
+              },
+              {
+                "title": "Real Madrid advance Yan Diomande signing amid Vinícius Júnior transfer rumours - The News International",
+                "url": "https://www.thenews.com.pk/latest/1410347-real-madrid-advance-yan-diomande-signing-amid-vincius-jnior-transfer-rumours",
+                "source": "thenews.com.pk",
+                "summary": "Diomande, who attracted interest from Liverpool and Paris Saint-Germain, scored 12 Bundesliga goals last season and impressed at the 2026 FIFA World Cup. Meanwhile, Sport reports that Real Madrid will only consider offers of at least 160 million euros for Vinícius Júnior. Real Madrid are close to completing the signing of RB Leipzig winger Yan Diomande, according to journalist Fabrizio Romano. The report said the Ivory Coast international is expected to join the Spanish club for a fee of more than 100 million euros and will travel to Madrid this week to complete a medical and sign a five-year contract. Sport reports that Real Madrid will only consider offers of at least 160 million euros for Vinícius Júnior. According to ESPN, Arsenal have explored the possibility of signing the Brazil forward, who has one year remaining on his contract, although discussions are still at an early stage. * Arsenal consider move for Vinícius Júnior amid Real Madrid contract uncertainty.",
+                "score": 0.6260562,
+                "published_date": "Mon, 27 Jul 2026 01:55:07 GMT",
+                "date": "Mon, 27 Jul 2026 01:55:07 GMT"
+              },
+              {
+                "title": "Mbappé Informs Pérez He Has Persuaded Olise to Join Real Madrid from Bayern - Telecom Asia Sport",
+                "url": "https://www.telecomasia.net/news/football/mbappe-perez-olise-real-madrid-bayern/",
+                "source": "telecomasia.net",
+                "summary": "# Mbappé Informs Pérez He Has Persuaded Olise to Join Real Madrid from Bayern. **Real Madrid forward Kylian Mbappé has informed club president Florentino Pérez that he has successfully convinced his France teammate, Bayern Munich's Michael Olise, to join the Spanish giants.**. According to German publication Bild, this conversation took place during the recent World Cup. Mbappé, who has been friends with Olise for some time, has been actively promoting the idea of this transfer. It is reported that during the tournament, Kylian communicated daily with the Bayern striker, detailing the advantages of moving to Madrid. In particular, Mbappé assured Olise that Real Madrid greatly needs his playing skills and praised life in the Spanish capital, highlighting the local climate, restaurants, and city infrastructure. Olise has been with Bayern Munich since 2024. During his two years with Bayern, Olise has won two Bundesliga titles, as well as the domestic Cup and Supercup. Real Madrid finished as runners-up in La Liga for the 2025/26 season.",
+                "score": 0.6216563,
+                "published_date": "Wed, 22 Jul 2026 20:47:11 GMT",
+                "date": "Wed, 22 Jul 2026 20:47:11 GMT"
+              },
+              {
+                "title": "🤝It's a deal: Real Madrid agree terms with Diomandé - Yahoo Sports",
+                "url": "https://sports.yahoo.com/articles/deal-real-madrid-agree-terms-192100570.html",
+                "source": "sports.yahoo.com",
+                "summary": "* LeBron to 76ers: Winners/losers. * Day in the life of Caitlin Clark. # 🤝It's a deal: Real Madrid agree terms with Diomandé. Real Madrid have reached a verbal agreement on personal terms with young talent Yan Diomande. After receiving the player’s approval for the move, the Madrid club have strengthened their position in the race for one of the biggest prospects of the summer transfer market. ## Fresh move in response to Leipzig’s stance. After RB Leipzig rejected an initial offer of €90 million plus €10 million in add-ons, the Real Madrid board are already preparing a higher bid. The aim of the club’s hierarchy is to unlock negotiations and complete the transfer as soon as possible. Meanwhile, Paris Saint-Germain, who had also secured the player’s approval back in June, have reopened talks. The Parisian club are looking to press their case until the very last moment to prevent Diomande from heading to the Spanish capital.",
+                "score": 0.6208291,
+                "published_date": "Sat, 25 Jul 2026 19:21:00 GMT",
+                "date": "Sat, 25 Jul 2026 19:21:00 GMT"
+              }
+            ],
+            "quality": {
+              "status": "sufficient",
+              "relevant_count": 5,
+              "discarded_count": 1,
+              "timeframe_broadened": false
+            },
+            "attempts": [
+              {
+                "query": "Real Madrid tin chuyển nhượng",
+                "timeframe": "week",
+                "search_depth": "basic",
+                "returned": 8,
+                "accepted": 7
+              }
+            ]
+          }
+        }
+      ],
+      "evidence": [
+        {
+          "tool": "lookup",
+          "title": "Transfer Rumors: Real Madrid’s Vinicius Jr U-Turn; Man Utd Make Tchouameni Bid - Sports Illustrated",
+          "url": "https://www.si.com/soccer/transfer-rumors-real-madrid-vinicius-jr-u-turn-man-utd-tchouameni-bid",
+          "source": "si.com",
+          "summary": "# Transfer Rumors: Real Madrid’s Vinicius Jr U-Turn; Man Utd Make Tchouameni Bid. Pedro Neto, Bruno Guimarães, Bradley Barcola, Rodri and more feature in the gossip. *Sports Illustrated rounds up the latest**transfer**rumors and gossip from around the world.*. Liverpool also hold an interest in the Portugal international, who is valued around $91 million (£68 million). Manchester United are readying a bid of $91 million (£68 million) to sign Real Madrid midfielder **Aurélien Tchouaméni**. **Tchouaméni** has made it clear he is open to playing for Man Utd if he is no longer wanted by Real Madrid. Arsenal, Chelsea, Liverpool, Man City, Man Utd and Newcastle are all interested in signing Porto winger **Oskar Pietuszewski**. Both Barcelona and PSG have made contact wth Man City midfielder **Rodri** in an attempt to rival Real Madrid’s pursuit of the World Cup winner. Meanwhile, **Vinícius Jr",
+          "score": 0.7099254,
+          "published_date": "Sun, 26 Jul 2026 23:05:00 GMT",
+          "modified_date": null,
+          "retrieved_at": "2026-07-29T06:54:01+00:00",
+          "backend": null
+        },
+        {
+          "tool": "lookup",
+          "title": "Real Madrid set to sign Yan Diomande in €135m deal - ESPN",
+          "url": "https://www.espn.com/soccer/story/_/id/49460425/real-madrid-set-sign-yan-diomande-135m-deal-rb-leipzig-transfer",
+          "source": "espn.com",
+          "summary": "Sources: Madrid set to sign €135m Diomande. Sources: Arsenal explore move for Vinícius Júnior. # Real Madrid set to sign Yan Diomande in €135m deal. Real Madrid expect to complete a deal to sign Yan Diomande from RB Leipzig in the coming hours, sources have told ESPN. Winger Diomande, 19, is one of football's top young prospects after excelling in the Bundesliga last season -- scoring 12 goals and providing eight assists -- and starring for Ivory Coast at the World Cup. A source told ESPN that Madrid were set to seal the teenager's signing between Monday and Tuesday, for a deal expected to total €135 million ($153.8m) including variables, with a fixed sum of between €115m ($131m) and €120m ($136.7m). If the add-ons are achieved, Diomande would represent a record transfer for Madrid, surpassing the signings of Jude Bellingham from Borussia Dortmund and Eden Hazard from Chelsea. **- Arsena",
+          "score": 0.6783488,
+          "published_date": "Mon, 27 Jul 2026 07:19:37 GMT",
+          "modified_date": null,
+          "retrieved_at": "2026-07-29T06:54:01+00:00",
+          "backend": null
+        },
+        {
+          "tool": "lookup",
+          "title": "Real Madrid advance Yan Diomande signing amid Vinícius Júnior transfer rumours - The News International",
+          "url": "https://www.thenews.com.pk/latest/1410347-real-madrid-advance-yan-diomande-signing-amid-vincius-jnior-transfer-rumours",
+          "source": "thenews.com.pk",
+          "summary": "Diomande, who attracted interest from Liverpool and Paris Saint-Germain, scored 12 Bundesliga goals last season and impressed at the 2026 FIFA World Cup. Meanwhile, Sport reports that Real Madrid will only consider offers of at least 160 million euros for Vinícius Júnior. Real Madrid are close to completing the signing of RB Leipzig winger Yan Diomande, according to journalist Fabrizio Romano. The report said the Ivory Coast international is expected to join the Spanish club for a fee of more than 100 million euros and will travel to Madrid this week to complete a medical and sign a five-year contract. Sport reports that Real Madrid will only consider offers of at least 160 million euros for Vinícius Júnior. According to ESPN, Arsenal have explored the possibility of signing the Brazil forward, who has one year remaining on his contract, although discussions are still at an early stage. ",
+          "score": 0.6260562,
+          "published_date": "Mon, 27 Jul 2026 01:55:07 GMT",
+          "modified_date": null,
+          "retrieved_at": "2026-07-29T06:54:01+00:00",
+          "backend": null
+        },
+        {
+          "tool": "lookup",
+          "title": "Mbappé Informs Pérez He Has Persuaded Olise to Join Real Madrid from Bayern - Telecom Asia Sport",
+          "url": "https://www.telecomasia.net/news/football/mbappe-perez-olise-real-madrid-bayern/",
+          "source": "telecomasia.net",
+          "summary": "# Mbappé Informs Pérez He Has Persuaded Olise to Join Real Madrid from Bayern. **Real Madrid forward Kylian Mbappé has informed club president Florentino Pérez that he has successfully convinced his France teammate, Bayern Munich's Michael Olise, to join the Spanish giants.**. According to German publication Bild, this conversation took place during the recent World Cup. Mbappé, who has been friends with Olise for some time, has been actively promoting the idea of this transfer. It is reported that during the tournament, Kylian communicated daily with the Bayern striker, detailing the advantages of moving to Madrid. In particular, Mbappé assured Olise that Real Madrid greatly needs his playing skills and praised life in the Spanish capital, highlighting the local climate, restaurants, and city infrastructure. Olise has been with Bayern Munich since 2024. During his two years with Bayern,",
+          "score": 0.6216563,
+          "published_date": "Wed, 22 Jul 2026 20:47:11 GMT",
+          "modified_date": null,
+          "retrieved_at": "2026-07-29T06:54:01+00:00",
+          "backend": null
+        },
+        {
+          "tool": "lookup",
+          "title": "🤝It's a deal: Real Madrid agree terms with Diomandé - Yahoo Sports",
+          "url": "https://sports.yahoo.com/articles/deal-real-madrid-agree-terms-192100570.html",
+          "source": "sports.yahoo.com",
+          "summary": "* LeBron to 76ers: Winners/losers. * Day in the life of Caitlin Clark. # 🤝It's a deal: Real Madrid agree terms with Diomandé. Real Madrid have reached a verbal agreement on personal terms with young talent Yan Diomande. After receiving the player’s approval for the move, the Madrid club have strengthened their position in the race for one of the biggest prospects of the summer transfer market. ## Fresh move in response to Leipzig’s stance. After RB Leipzig rejected an initial offer of €90 million plus €10 million in add-ons, the Real Madrid board are already preparing a higher bid. The aim of the club’s hierarchy is to unlock negotiations and complete the transfer as soon as possible. Meanwhile, Paris Saint-Germain, who had also secured the player’s approval back in June, have reopened talks. The Parisian club are looking to press their case until the very last moment to prevent Diomande",
+          "score": 0.6208291,
+          "published_date": "Sat, 25 Jul 2026 19:21:00 GMT",
+          "modified_date": null,
+          "retrieved_at": "2026-07-29T06:54:01+00:00",
+          "backend": null
+        }
+      ],
+      "ended_at": "2026-07-29T13:54:08"
+    }
+  ],
+  "updated_at": "2026-07-29T13:54:08"
+}

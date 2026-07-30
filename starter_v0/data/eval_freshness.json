@@ -1,0 +1,93 @@
+{
+  "dataset_id": "football_news_var_freshness_v1",
+  "dataset_role": "regression",
+  "description": "Targeted routing cases for freshness windows, intent-preserving lookup, and external-action confirmation.",
+  "cases": [
+    {
+      "id": "F01_completed_contract_uses_year",
+      "phase": "B",
+      "query": "Bernardo Silva đã ký hợp đồng với câu lạc bộ nào?",
+      "failure_type": "wrong_arg_value",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "Bernardo Silva",
+              "topic": "news",
+              "timeframe": "year"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F02_latest_injury_is_not_forced_to_day",
+      "phase": "B",
+      "query": "Tình trạng chấn thương mới nhất của Rodri hiện ra sao?",
+      "failure_type": "wrong_arg_value",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "Rodri",
+              "topic": "news",
+              "timeframe": "week"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F03_explicit_today_stays_day",
+      "phase": "B",
+      "query": "Cho tôi các tin mới về Liverpool hôm nay.",
+      "failure_type": "wrong_arg_value",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "Liverpool",
+              "topic": "news",
+              "timeframe": "day"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F04_confirm_before_telegram",
+      "phase": "B",
+      "query": "Đăng bản tin này lên Telegram giúp mình",
+      "failure_type": "wrong_boundary",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "response_type": "yes_no"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "F05_missing_claim_still_uses_text",
+      "phase": "B",
+      "query": "Kiểm tra tin chuyển nhượng này giúp tôi.",
+      "failure_type": "missing_info",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "response_type": "text"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

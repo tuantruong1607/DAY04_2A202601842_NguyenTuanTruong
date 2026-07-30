@@ -1,70 +1,81 @@
-# starter_v0 — tool declarations (intentionally vague).
-# Names and descriptions here are a rough first draft. Routing rules, name->handle
-# mapping, arg conventions (news/timeframe/Top), and the send-confirmation boundary
-# are NOT spelled out anywhere yet. Your job is to make these declarations + the
-# system prompt good enough that the agent routes correctly on the eval.
-#
-# If you rename a tool, keep the name in sync across:
-#   this file  ->  tools/__init__.py (TOOL_FUNCTIONS)  ->  data/eval_base.json + data/eval_research_extension.json
+# Football News VAR tool declarations.
+# Keep names synchronized with tools/__init__.py and the evaluation cases.
 tools:
-  # ---------------- Core tools ----------------
   - name: clarify
-    description: "Gửi một câu hỏi cho người dùng."
+    description: "Ask exactly one question. Selection precedence is mandatory: (1) if the user requests any external action such as send/post/publish/upload/Telegram, choose response_type=yes_no, even if content or another field is missing; (2) only when there is no external action, choose text for a missing handle, URL, Page ID, subject, or content; (3) choose choice only for concrete options."
     parameters:
       type: object
       properties:
-        question: {type: string, default: "", description: "Câu hỏi"}
-        response_type: {type: string, enum: [text, yes_no, choice], default: "text", description: "Kiểu trả lời"}
-        options: {type: array, default: [], items: {type: string}, description: "Các lựa chọn"}
-      required: [question]
+        question: {type: string, default: "", description: "One concise question"}
+        response_type: {type: string, enum: [yes_no, text, choice], default: yes_no, description: "Mandatory precedence: yes_no for every external send/post/publish/upload request; text only for missing data when no external action is requested; choice for concrete options"}
+        options: {type: array, default: [], items: {type: string}, description: "Concrete choices when response_type is choice"}
+      required: [question, response_type]
 
   - name: timeline
-    description: "Lấy các bài đăng gần đây."
+    description: "Retrieve recent public posts for a specific X/Twitter account. Requires an explicit handle or an unambiguous supported name-to-handle mapping; never guess a handle."
     parameters:
       type: object
       properties:
-        screenname: {type: string, default: "", description: "Tên tài khoản"}
-        limit: {type: integer, default: 5, description: "Số lượng"}
+        screenname: {type: string, default: "", description: "X/Twitter handle without @"}
+        limit: {type: integer, default: 5, description: "Maximum posts"}
       required: [screenname]
 
   - name: social_search
-    description: "Tìm trên mạng xã hội."
+    description: "Search public X/Twitter posts for the current request. Use only when the latest user turn still asks for X/Twitter or social-search evidence. Never call this tool after a later correction switches the source to the web, a supplied URL, Instagram, Facebook, or no research."
     parameters:
       type: object
       properties:
-        query: {type: string, default: "", description: "Từ khóa"}
-        search_type: {type: string, enum: [Latest, Top], default: "Latest", description: "Cách sắp xếp"}
-        limit: {type: integer, default: 5, description: "Số lượng"}
+        query: {type: string, default: "", description: "Search subject from the latest user request"}
+        search_type: {type: string, enum: [Latest, Top], default: Latest, description: "Latest for recent posts, Top for top posts"}
+        limit: {type: integer, default: 5, description: "Maximum posts"}
       required: [query]
 
   - name: lookup
-    description: "Tra cứu thông tin trên internet."
+    description: "Search the public web with relevance and freshness checks. Put the stable player, club, competition, or claim subject in query; put the action being investigated (transfer, contract, injury, fixture, result, etc.) in intent. Use topic=news for news. Use timeframe=day only for an explicit today/last-24-hours request. For an undated current-status or past-event question, choose a realistic month/year window instead of day."
     parameters:
       type: object
       properties:
-        query: {type: string, default: "", description: "Truy vấn"}
-        topic: {type: string, enum: [general, news], default: "general", description: "Phân loại"}
-        timeframe: {type: string, enum: [day, week, month, year], default: "week", description: "Khoảng thời gian"}
-        max_results: {type: integer, default: 5, description: "Số kết quả"}
+        query: {type: string, default: "", description: "Stable search subject, such as a player, club, competition, or full claim"}
+        intent: {type: string, default: "", description: "What must be found or verified, such as signed a contract, injury status, next fixture, or match result"}
+        topic: {type: string, enum: [general, news], default: general, description: "news for current news, general otherwise"}
+        timeframe: {type: string, enum: [day, week, month, year], default: week, description: "Requested freshness window"}
+        max_results: {type: integer, default: 5, description: "Maximum results"}
       required: [query]
 
   - name: fetch
-    description: "Lấy nội dung từ một địa chỉ."
+    description: "Fetch and extract fresh content from an explicit public URL supplied by the user or returned by another tool. Never invent a URL. For frequently changing news pages, keep max_age=0 to bypass cached content."
     parameters:
       type: object
       properties:
-        url: {type: string, default: "", description: "Địa chỉ"}
+        url: {type: string, default: "", description: "Complete http or https URL"}
+        max_age: {type: integer, default: 0, description: "Maximum accepted cache age in milliseconds; 0 forces a fresh scrape"}
       required: [url]
 
+  - name: instagram_profile
+    description: "Retrieve public Instagram profile statistics from a URL or handle: follower count, engagement, quality score, and verification. Use as supporting source evidence, not as proof that a football claim is true."
+    parameters:
+      type: object
+      properties:
+        profile_url: {type: string, default: "", description: "Instagram profile URL, @handle, or handle"}
+      required: [profile_url]
+
+  - name: facebook_page_transparency
+    description: "Inspect public Facebook Page transparency metadata by numeric page_id: Page name, verification, aggregated administrator countries, rename history, and advertising flags. Use as supporting source-identity evidence, not as proof that a football claim is true."
+    parameters:
+      type: object
+      properties:
+        page_id: {type: string, default: "", description: "Numeric Facebook Page ID, for example 20531316728"}
+      required: [page_id]
+
   - name: format
-    description: "Trình bày dữ liệu đã có thành văn bản."
+    description: "Format evidence already collected by other tools. This tool does not search, fetch, verify, publish, or send."
     parameters:
       type: object
       properties:
         items:
           type: array
           default: []
-          description: "Danh sách item"
+          description: "Evidence items"
           items:
             type: object
             properties:
@@ -73,46 +84,45 @@ tools:
               source: {type: string}
               summary: {type: string}
               section: {type: string}
-        template: {type: string, enum: [brief, sections, bullets, thread, daily_ai_vn], default: "sections", description: "Khuôn"}
-        headline: {type: string, default: "", description: "Tiêu đề"}
+        template: {type: string, enum: [brief, sections, bullets, thread, daily_ai_vn], default: sections, description: "Output template"}
+        headline: {type: string, default: "", description: "Output headline"}
       required: [items, template]
 
-  # ---------------- Bonus tools ----------------
   - name: send
-    description: "Gửi một đoạn văn bản đi."
+    description: "Perform an external send action only after the user explicitly confirms the exact prepared content. If content exists but confirmation is absent, call clarify with response_type=yes_no and ask whether to send that existing content. Never treat 'send it' as confirmation when the content itself was not yet shown or agreed."
     parameters:
       type: object
       properties:
-        text: {type: string, default: "", description: "Nội dung"}
-        confirmed: {type: boolean, default: false, description: "Cờ xác nhận"}
-      required: [text]
+        text: {type: string, default: "", description: "Exact confirmed content"}
+        confirmed: {type: boolean, default: false, description: "Must be true only after explicit user confirmation"}
+      required: [text, confirmed]
 
   - name: policy
-    description: "Tìm trong tài liệu nội bộ."
+    description: "Search the local policy corpus for internal rules. Use only for policy questions, not public-web research."
     parameters:
       type: object
       properties:
-        query: {type: string, default: "", description: "Truy vấn"}
-        policy_area: {type: string, enum: [all, ai_research, source_citation, data_privacy, external_publishing, tool_usage], default: "all", description: "Nhóm"}
-        top_k: {type: integer, default: 3, description: "Số mục"}
+        query: {type: string, default: "", description: "Policy question"}
+        policy_area: {type: string, enum: [all, ai_research, source_citation, data_privacy, external_publishing, tool_usage], default: all, description: "Policy section"}
+        top_k: {type: integer, default: 3, description: "Maximum passages"}
       required: [query]
 
   - name: papers
-    description: "Tìm bài báo khoa học."
+    description: "Search arXiv for academic papers. Use for research-paper requests, not general news."
     parameters:
       type: object
       properties:
-        query: {type: string, default: "", description: "Từ khóa"}
-        max_results: {type: integer, default: 5, description: "Số lượng"}
-        sort_by: {type: string, enum: [relevance, lastUpdatedDate, submittedDate], default: "relevance", description: "Sắp xếp"}
+        query: {type: string, default: "", description: "Academic search terms"}
+        max_results: {type: integer, default: 5, description: "Maximum papers"}
+        sort_by: {type: string, enum: [relevance, lastUpdatedDate, submittedDate], default: relevance, description: "Sort order"}
       required: [query]
 
   - name: paper_text
-    description: "Lấy nội dung text của một bài báo."
+    description: "Extract text from an explicit arXiv ID or URL. Never invent an arXiv identifier."
     parameters:
       type: object
       properties:
-        arxiv_url: {type: string, default: "", description: "ID hoặc địa chỉ"}
-        max_pages: {type: integer, default: 5, description: "Số trang"}
-        max_chars: {type: integer, default: 8000, description: "Số ký tự"}
+        arxiv_url: {type: string, default: "", description: "arXiv ID or URL"}
+        max_pages: {type: integer, default: 5, description: "Maximum PDF pages"}
+        max_chars: {type: integer, default: 8000, description: "Maximum extracted characters"}
       required: [arxiv_url]
